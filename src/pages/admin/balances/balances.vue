@@ -8,18 +8,18 @@
 
   export default {
     components: { transferModal, askModal },
-    data() {
-      return {
-        // dialog
-        dialogPay: false,
-        dialogDisPay: false,
-        transferModal: false,
-        askModal: false
-      }
-    },
+    data: () => ({
+      // dialog
+      dialogPay: false,
+      dialogDisPay: false,
+      transferModal: false,
+      askModal: false
+    }),
+
     computed: {
-      ...mapGetters(['balances', 'wa'])
+      ...mapGetters(['balances'])
     },
+
     methods: {
       transfer({ name }) {
         this.$store.commit('SET_DELIVER', name)
@@ -28,9 +28,9 @@
       transferSuccess() {
         this.transferModal = false
       },
-      ask({ name }) {
+      ask({ name }, receiverName) {
         this.$store.commit('SET_DELIVER', name)
-        this.$store.commit('SET_RECEIVE', '小蚁股')
+        this.$store.commit('SET_RECEIVE', receiverName)
         this.askModal = true
       },
       askSuccess() {
@@ -41,9 +41,15 @@
         getUID: 'GET_UID'
       })
     },
+
     created() {
       this.getAsset()
-      this.getUID(this.wa('address'))
+      window.balancesTimer = window.setInterval(() => this.getAsset(), 1000 * 2)
+      this.getUID()
+    },
+
+    destroyed() {
+      window.clearInterval(window.balancesTimer)
     }
   }
 </script>

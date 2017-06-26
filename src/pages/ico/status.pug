@@ -1,0 +1,94 @@
+.status.container
+	.panel.panel-default.panel-state
+		.panel-body
+			span.blue-span 众筹专区
+	el-row.status__body(:gutter="30")
+		el-col.status__tips(:span="6")
+			.ad-tips
+				.ad-tips__title 申购指南
+				.ad-tips__content(v-if="loggedIn")
+					p 你已登陆个人钱包，请在对
+					p 应的项目专区创建
+						span.blue-span 申购订单
+					p 并提交。
+					hr
+					p 众筹日期截止或满额，申购
+					p 通道关闭。
+				.ad-tips__content(v-else)
+					p
+						router-link(to="/login") 登陆个人钱包
+						| ，在对应的项目
+						p 专区创建“申购订单”并提交。
+						hr
+						p 众筹日期截止或满额，申购
+						p 通道关闭。
+
+		el-col.status__content(:span="18")
+			el-col(:span="12")
+				.thumbnail(style="padding: 0;")
+					.status__thumbnail__bg(:class="{ " +
+					"  'status__thumbnail__bg-pre': status === 'notStart'," +
+					"  'status__thumbnail__bg-success': status === 'success', " +
+					"  'status__thumbnail__bg-failure': status === 'failure'" +
+					"}")
+						| {{ data.title }}
+						.img
+					.caption
+						h4 基于小蚁区块链的应用平台服务商
+						p 目前旗下产品有：
+						p 蓝鲸淘————超导交易模式的智能资产转让平台
+						p 蓝鲸筹————超导交易模式的智能资产众筹平台
+						p 蓝鲸兑————小蚁生态首家承兑网关平台
+
+			el-col.status__operation(:span="12")
+				el-row
+					el-col(:span="16")
+						h4 ANS {{ data.assetPerShare * data.currentShares }}
+					el-col.text-right(:span="8")
+						h4 {{p}}%
+					el-col
+						el-progress(:stroke-width="18", :percentage="p", :status="progressStatus")
+				.detail-content
+					p 目标金额：
+						span {{ data.amountToICO }} ANS
+					p 当前支持人数：
+						span {{ data.backers }} 人
+					p 每份发行价：
+						span {{ data.assetPerShare }} ANS
+
+				el-row
+					a.btn.btn-block(href="#/about", target="_blank")
+						el-button.btn-block(type="success") 项目详情
+
+					el-input(v-show="status === 'proceeding' && !promiser", type="password",
+					placeholder="请输入申购密码", v-model.trim="password")
+
+					el-input(v-if="status === 'notStart'", :placeholder="'申购倒计时：' + countdownText", readonly)
+
+					el-input(v-else-if="promiser && p !== 100", placeholder="承兑者不可发起申购", :disabled="true")
+
+					el-input(
+					v-else-if="p !== 100 && status === 'proceeding'", placeholder="请输入申购份数",
+					v-model.number="shares")
+
+					a.btn.btn-block(
+					v-show="status === 'success' || data.txid",
+					:href="`${antchain}${adminAddress}`", target="_blank"
+					): el-button.mb10.btn-block(type="primary") 交易详情
+
+					el-button.btn-block(type="danger", v-if="status === 'success' || status === 'failure'")
+						| {{ status === 'success' ? '众筹成功' : '众筹失败' }}
+
+					el-button.btn-block(
+					v-else-if="promiser && p === 100", @click="ask($data)", :loading="loading"
+					) 确认承兑
+
+					el-button.btn-block(
+					v-else-if="promiser", :disabled="true"
+					) 承兑者无法参与申购
+
+					el-button.btn-block(
+					v-else,
+					type="primary", @click="bid($data)",
+					:disabled="disabled", :loading="loading"
+					) {{ p === 100 ? '等待承兑' : '确认申购' }}

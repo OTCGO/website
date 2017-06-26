@@ -43,6 +43,10 @@ module.exports = {
       {
         test: /\.styl$/,
         use: ['style-loader', 'css-loader', 'stylus-loader']
+      },
+      {
+        test: /\.(pdf|doc)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader?name=[name].[ext]'
       }
     ]
   },
@@ -50,9 +54,15 @@ module.exports = {
     extensions: ['.js', '.vue', '.less', '.css', '.scss'],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      '~assets': path.resolve(__dirname, 'src/assets'),
+      '~static': path.resolve(__dirname, 'src/static'),
+      '~images': path.resolve(__dirname, 'src/images'),
+      '~styles': path.resolve(__dirname, 'src/styles'),
       '~utils': path.resolve(__dirname, 'src/utils'),
-      '~components': path.resolve(__dirname, 'src/components')
+      '~components': path.resolve(__dirname, 'src/components'),
+      '~api': path.resolve(__dirname, 'src/api'),
+      '~pages': path.resolve(__dirname, 'src/pages'),
+      '~polyfill': path.resolve(__dirname, 'src/polyfill'),
+      '~libs': path.resolve(__dirname, 'src/libs')
     }
   },
   devServer: {
@@ -60,7 +70,7 @@ module.exports = {
     noInfo: true,
     proxy: {
       '/api/*': {
-        target: 'http://testnet.otcgo.cn/',
+        target: 'http://future.otcgo.cn/',
         secure: false,
         changeOrigin: true
       }

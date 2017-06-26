@@ -49,7 +49,9 @@
                     </ul> -->
                         </div>
                         <div class="col-lg-3 col-md-3 text-center">
-                            <h4 class="text-color text-type2">了解我们</h4>
+                            <router-link to="/about">
+                              <h4 class="text-color text-type2">了解我们</h4>
+                            </router-link>
                             <!--  <ul class="list-unstyled">
                       <li><router-link class="text-color2" to="/time-entries">了解小蚁</router-link></li>
                     <li><router-link class="text-color2" to="/time-entries">什么是OTC</router-link></li>
@@ -78,6 +80,7 @@
                     </div>
                     <div class="col-lg-2 text-center">
                         <h4 class="text-color text-type2">微信订阅号</h4>
+                        <img :src="require('~images/QRcode.jpg')" alt="QRcode" class="qrCode" />
                     </div>
                 </div>
             </div>
@@ -88,9 +91,12 @@
 export default {}
 </script>
 <style lang="css">
+.qrCode {
+  width: 100px;
+}
+
 #footer {
-    background-color: #F4F4F4;
-    margin: 25px -15px 0;
+    background-color: #eee;
     width: 1224px;
 }
 .footer-top{
@@ -113,19 +119,19 @@ export default {}
 }
 
 .bg-blue1 {
-    background-image: url(../../assets/foot-1.png);
+    background-image: url(../../images/foot-1.png);
 }
 
 .bg-blue2 {
-    background-image: url(../../assets/foot-2.png);
+    background-image: url(../../images/foot-2.png);
 }
 
 .bg-blue3 {
-    background-image: url(../../assets/foot-3.png);
+    background-image: url(../../images/foot-3.png);
 }
 
 .bg-blue4 {
-    background-image: url(../../assets/foot-4.png);
+    background-image: url(../../images/foot-4.png);
 }
 
 .foot-li {
@@ -137,7 +143,7 @@ export default {}
 }
 
 .bg-li {
-    background: url(../../assets/ver-line2.png) right center no-repeat;
+    background: url(../../images/ver-line2.png) right center no-repeat;
 }
 
 .foot-type {

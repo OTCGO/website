@@ -4,7 +4,7 @@
       <thead>
         <tr style="background: #efefef;">
           <th style="width:40%;vertical-align: middle;text-align: center;">对方地址</th>
-          <th>资产类型</th>
+          <th>资产名称</th>
           <th>资产数量</th>
           <th>转账时间</th>
         </tr>
@@ -14,7 +14,7 @@
           <td class="col-md-6"
               style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;vertical-align: middle;text-align: center;">
             <a class="link-interact"
-               :href="`//testnet.antchain.xyz/tx/hash/${history['txid']}`"
+               :href="`//antchain.xyz/tx/hash/${history['txid']}`"
                target="_blank">{{history['dest']}}</a>
           </td>
           <td class="col-md-2" style="vertical-align: middle;">{{history['name']}}</td>
@@ -23,7 +23,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- TODO: They is the paging -->
+
     <div class="row">
       <div class="col-xs-12">
         <div class="pull-right">
@@ -52,11 +52,13 @@
       pageLength: 7,
       total: 0
     }),
+
     methods: {
       handleSizeChange(val) {
         this.pageLength = val
         this.getHistory()
       },
+
       handleCurrentChange(val) {
         this.currentPage = val
         this.getHistory()
@@ -72,7 +74,8 @@
         }).then(r => {
           this.histories = r['data']
           this.total = r['item_num']
-        }).catch(e => {
+          this.$store.dispatch('GET_ASSET')
+        }).catch(() => {
           this.$message.error('获取转账记录失败！')
         })
       }
