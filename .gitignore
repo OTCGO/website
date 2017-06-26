@@ -6,3 +6,7 @@ npm-debug.log
 doc/update.md
 src/assets/js/CryptoJS v3.1.2/
 stats.json
+
+# yarn
+yarn.lock
+yarn-error.log
