@@ -5,9 +5,18 @@ export default {
       secondButton: ['oContent__on-tab', 'btn', { 'oContent__on-tab--active': false }],
       contentOne: true,
       contentTwo: false,
+      // price
       anccny: 0,
       anscny: 0,
-      kacans: 0
+      kacans: 0,
+      // Rate
+      anccnyRate: 0,
+      anscnyRate: 0,
+      kacansRate: 0,
+      // Volumn
+      anccnyVolumn: 0,
+      anscnyVolumn: 0,
+      kacansVolumn: 0
     }
   },
   methods: {
@@ -39,11 +48,28 @@ export default {
       this.anccny = ((await this.$http.get(`price/anccny`)).body) || 0
       this.anscny = ((await this.$http.get(`price/anscny`)).body) || 0
     },
+
+    // 24H涨跌幅 && 成交量
+    async getRateAndVolumn () {
+      let anccnyResult = (await this.$http.get(`markets/anccny`)).body
+      this.anccnyRate = anccnyResult.rate
+      this.anccnyVolumn = anccnyResult.volumnOfLast24Hours
+
+      let anscnyResult = (await this.$http.get(`markets/anscny`)).body
+      this.anscnyRate = anscnyResult.rate
+      this.anscnyVolumn = anscnyResult.volumnOfLast24Hours
+
+      let kacansResult = (await this.$http.get(`markets/kacans`)).body
+      this.kacansRate = kacansResult.rate
+      this.kacansVolumn = kacansResult.volumnOfLast24Hours
+    },
+
     toMarkets () {
       this.$router.push({path: '/markets', query: { class: 'kacans' }})
     }
   },
   mounted () {
     this.getPrice()
+    this.getRateAndVolumn()
   }
 }
