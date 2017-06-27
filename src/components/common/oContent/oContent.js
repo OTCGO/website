@@ -1,5 +1,5 @@
 export default {
-  data() {
+  data () {
     return {
       firstButton: ['oContent__tab', 'btn', { 'oContent__tab--active': true }],
       secondButton: ['oContent__on-tab', 'btn', { 'oContent__on-tab--active': false }],
@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-    switchOne(e) {
+    switchOne (e) {
       e.target.classList.add('oContent__tab--active')
       if (e.target.previousSibling) {
         e.target.previousSibling.classList.remove('oContent__tab--active')
@@ -22,7 +22,7 @@ export default {
       this.contentOne = true
       this.contentTwo = false
     },
-    switchTwo(e) {
+    switchTwo (e) {
       e.target.classList.add('oContent__on-tab--active')
       if (e.target.previousSibling) {
         e.target.previousSibling.classList.remove('oContent__tab--active')
@@ -34,16 +34,16 @@ export default {
       this.contentTwo = true
     },
 
-    async getPrice() {
+    async getPrice () {
       this.kacans = (await this.$http.get(`price/kacans`)).body
       this.anccny = ((await this.$http.get(`price/anccny`)).body) || 0
       this.anscny = ((await this.$http.get(`price/anscny`)).body) || 0
     },
-    toMarkets() {
-      this.$router.push({ path: '/markets', query: { class: 'kacans' }})
+    toMarkets () {
+      this.$router.push({path: '/markets', query: { class: 'kacans' }})
     }
   },
-  mounted() {
+  mounted () {
     this.getPrice()
   }
 }

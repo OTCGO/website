@@ -10,3 +10,6 @@ stats.json
 # yarn
 yarn.lock
 yarn-error.log
+
+# vscode
+.vscode

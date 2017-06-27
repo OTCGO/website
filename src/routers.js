@@ -14,7 +14,8 @@ const routes = [
   { path: '/', component: r => require(['~pages/home/home.vue'], r) },
 
   // 钱包
-  { path: '/admin', component: r => require(['~pages/admin/index.vue'], r),
+  { path: '/admin',
+    component: r => require(['~pages/admin/index.vue'], r),
     children: [
       { path: 'uid', component: r => require(['~pages/admin/uid/uid.vue'], r) },
       { path: 'redeem', component: r => require(['~pages/admin/redeem/redeem.vue'], r) },
@@ -37,7 +38,8 @@ const routes = [
   { path: '/ico/status', component: r => require(['~pages/ico/status.vue'], r) },
 
   // 了解我们
-  { path: '/about', component: r => require(['~pages/about'], r),
+  { path: '/about',
+    component: r => require(['~pages/about'], r),
     children: [
       { path: 'details', component: r => require(['~pages/about/details'], r) },
       { path: 'plans', component: r => require(['~pages/about/plans'], r) },
@@ -53,7 +55,7 @@ const routes = [
   // { path: '/test', component: r => require(['~pages/test/index.vue') },
 
   // 如果不存在，重定向于Home
-  { path: '*', redirect: { path: '/index' }}
+  {path: '*', redirect: { path: '/index' }}
 ]
 
 const router = new VueRouter({

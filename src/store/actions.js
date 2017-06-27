@@ -6,17 +6,17 @@ import service from '../api'
  */
 
 export default {
-  [type.login]({ commit, dispatch }, wa) {
+  [type.login] ({ commit, dispatch }, wa) {
     commit(type.setWallet, wa)
     commit(type.login)
     return dispatch(type.getUID)
   },
 
-  [type.logout]({ commit }) {
+  [type.logout] ({ commit }) {
     commit(type.logout)
   },
 
-  async [type.signUp]({ commit }, { publicKeyCompressed, publicKey, privateKeyEncrypted, privateKey }) {
+  async [type.signUp] ({ commit }, { publicKeyCompressed, publicKey, privateKeyEncrypted, privateKey }) {
     commit(type.setWalletTemporary, { publicKeyCompressed, publicKey, privateKeyEncrypted, privateKey, address: service.getC(publicKeyCompressed) })
     commit(type.downloadWallet)
     commit(type.signUp)
@@ -32,27 +32,27 @@ export default {
     commit(type.setWif, service.getW(state.wa.privateKey))
   },
 
-  [type.getMarkets]({}, { name, params}) {
+  [type.getMarkets] ({}, { name, params}) { // eslint-disable-line
     return service.getM(name, params)
   },
 
-  [type.getHistory]({ state }, { name, params }) {
+  [type.getHistory] ({ state }, { name, params }) {
     return service.getH(name, state.wa['address'], params)
   },
 
-  [type.getOrder]({ state }) {
+  [type.getOrder] ({ state }) {
     return service.getO(state.wa['address'])
   },
 
-  [type.bid]({ state }, { id }) {
+  [type.bid] ({ state }, { id }) {
     return service.bid({ id, hexPubkey: state.wa['publicKey'] }, state.wa['privateKey'])
   },
 
-  [type.redeem]({ state }, { id }) {
+  [type.redeem] ({ state }, { id }) {
     return service.redeem(id, state.wa['privateKey'], state.wa['address'])
   },
 
-  [type.ask]({ state }, { amount, price }) {
+  [type.ask] ({ state }, { amount, price }) {
     const deliver = state['deliver']
     const receive = state['receive']
 
@@ -65,7 +65,7 @@ export default {
     }, state.wa['privateKey'])
   },
 
-  async [type.transfer]({ state }, { dest, amount, assetId }) {
+  async [type.transfer] ({ state }, { dest, amount, assetId }) {
     try {
       return await service.transfer({
         dest,
@@ -79,19 +79,19 @@ export default {
     }
   },
 
-  [type.cancel]({ state }, { id }) {
+  [type.cancel] ({ state }, { id }) {
     return service.cancel(id, state.wa['privateKey'])
   },
 
-  async [type.getBlock]({ commit }) {
+  async [type.getBlock] ({ commit }) {
     commit(type.setBlock, (await service.getB()))
   },
 
-  [type.getICO](_, id) {
+  [type.getICO] (_, id) {
     return service.getI(id)
   },
 
-  [type.bidICO]({ state }, { id, shares, password }) {
+  [type.bidICO] ({ state }, { id, shares, password }) {
     return service.bidICO({
       id,
       shares,
@@ -100,9 +100,9 @@ export default {
     }, state.wa['privateKey'])
   },
 
-  [type.askICO]({ state }, { id, adminAddress }) {
+  [type.askICO] ({ state }, { id, adminAddress }) {
     const add = state.wa['address']
-    if (add !== adminAddress) return Promise.reject('The address is completely invalid!')
+    if (add !== adminAddress) return Promise.reject('The address is completely invalid!') // eslint-disable-line
 
     return service.askICO({ id, hexPubkey: state.wa['publicKey'] }, state.wa['privateKey'])
   },

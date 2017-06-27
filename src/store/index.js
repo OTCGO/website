@@ -12,7 +12,6 @@ Vue.use(Vuex)
  * Created by Amagi on 4/19/2017.
  */
 
-
 const state = {
   balances: [],
   wa: {},

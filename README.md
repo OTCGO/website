@@ -4,7 +4,7 @@
 ![Screenshot](https://raw.githubusercontent.com/AmagiDDmxh/otcgo/master/doc/Home.png)
 
 ## 源代码
-源代码地址：👉 https://github.com/AmagiDDmxh/otcgo
+源代码地址：👉 https://github.com/OTCGO/website
 
 欢迎大家star和fork😄
 

@@ -7,11 +7,11 @@ import '~polyfill'
  */
 
 export default {
-  [type.login](state) {
+  [type.login] (state) {
     state.loggedIn = true
   },
 
-  [type.logout](state) {
+  [type.logout] (state) {
     state.balances = []
     state.wa = {}
     state.receive = {}
@@ -19,29 +19,29 @@ export default {
     state.fileName = ''
   },
 
-  [type.signUp](state) {
+  [type.signUp] (state) {
     state.signUp = !state.signUp
   },
 
-  [type.setAsset](state, balances) {
+  [type.setAsset] (state, balances) {
     state.balances = balances
   },
 
-  [type.setUID](state, uid) {
+  [type.setUID] (state, uid) {
     Vue.set(state.wa, 'uid', uid)
   },
 
-  [type.setWallet](state, wa) {
+  [type.setWallet] (state, wa) {
     state.wa = wa
   },
 
   // TODO: There needed a another mutation to clear up those temporary state
-  [type.setWalletTemporary](state, wa) {
+  [type.setWalletTemporary] (state, wa) {
     state.waT = wa
   },
 
   // TODO: Might wanna change the func like a find field in a specific, not just by the name
-  [type.setReceive](state, name) {
+  [type.setReceive] (state, name) {
     state.receive = state.balances.find(i => {
       const arr = Object.values(i)
       for (let j = 0; j < arr.length; j++) {
@@ -49,7 +49,7 @@ export default {
       }
     })
   },
-  [type.setDeliver](state, name) {
+  [type.setDeliver] (state, name) {
     state.deliver = state.balances.find(i => {
       const arr = Object.values(i)
       for (let j = 0; j < arr.length; j++) {
@@ -57,7 +57,7 @@ export default {
       }
     })
   },
-  [type.downloadWallet](state) {
+  [type.downloadWallet] (state) {
     const { publicKeyCompressed, publicKey, privateKeyEncrypted, address } = state.waT
     const text = JSON.stringify({
       address, publicKey, publicKeyCompressed, privateKeyEncrypted
@@ -70,10 +70,10 @@ export default {
     aLink.download = state.fileName
     aLink.click()
   },
-  [type.setFileName](state, fileName) {
+  [type.setFileName] (state, fileName) {
     state.fileName = fileName
   },
-  [type.setWif](state, wif) {
+  [type.setWif] (state, wif) {
     state.wa['wif'] = wif
   },
   [type.setBlock] (state, block) {

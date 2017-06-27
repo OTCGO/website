@@ -3,31 +3,31 @@
  */
 
 export class Errors {
-  constructor(errors = {}) { this.errors = errors }
+  constructor (errors = {}) { this.errors = errors }
 
-  has(field) {
+  has (field) {
     if (field) return this.errors.hasOwnProperty(field)
     return Object.keys(this.errors).length > 0
   }
 
-  update(field) {
+  update (field) {
     for (const i in field) {
       if (field.hasOwnProperty(i)) this.errors[i] = field[i]
     }
   }
 
-  get(field) { return this.errors[field] }
+  get (field) { return this.errors[field] }
 
-  record(errors) { this.errors = errors }
+  record (errors) { this.errors = errors }
 
-  clear(field) {
+  clear (field) {
     if (field) return delete this.errors[field]
     this.errors = {}
   }
 }
 
 export class Form {
-  constructor(data) {
+  constructor (data) {
     this.originalData = data
 
     for (const field in data) {
@@ -37,9 +37,9 @@ export class Form {
     this.errors = new Errors()
   }
 
-  data() { return this.originalData }
+  data () { return this.originalData }
 
-  reset() {
+  reset () {
     for (const field in this.originalData) {
       if (this.originalData.hasOwnProperty(field)) this[field] = ''
     }
@@ -47,25 +47,25 @@ export class Form {
     this.errors.clear()
   }
 
-  post(url) {
+  post (url) {
     return this.submit('post', url)
   }
 
-  put(url) {
+  put (url) {
     return this.submit('put', url)
   }
 
-  patch(url) {
+  patch (url) {
     return this.submit('patch', url)
   }
 
-  delete(url) {
+  delete (url) {
     return this.submit('delete', url)
   }
 
-  static submit(requestType, url) {
+  static submit (requestType, url) {
     return new Promise((resolve, reject) => {
-      axios[requestType](url, this.data())
+      axios[requestType](url, this.data())// eslint-disable-line
           .then(response => {
             this.onSuccess(response.data)
 
@@ -79,13 +79,13 @@ export class Form {
     })
   }
 
-  onSuccess(data) {
-    alert(data.message) // temporary
+  onSuccess (data) {
+    alert(data.message) // eslint-disable-line
 
     this.reset()
   }
 
-  onFail(errors) {
+  onFail (errors) {
     this.errors.record(errors)
   }
 }
