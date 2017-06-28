@@ -69,7 +69,9 @@ export default {
     }
   },
   mounted () {
-    this.getPrice()
-    this.getRateAndVolumn()
+    setInterval(() => {
+      this.getPrice()
+      this.getRateAndVolumn()
+    }, 2000)
   }
 }
