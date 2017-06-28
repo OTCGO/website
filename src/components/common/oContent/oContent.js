@@ -52,15 +52,15 @@ export default {
     // 24H涨跌幅 && 成交量
     async getRateAndVolumn () {
       let anccnyResult = (await this.$http.get(`markets/anccny`)).body
-      this.anccnyRate = anccnyResult.rate
+      this.anccnyRate = anccnyResult.rate + '%'
       this.anccnyVolumn = anccnyResult.volumnOfLast24Hours
 
       let anscnyResult = (await this.$http.get(`markets/anscny`)).body
-      this.anscnyRate = anscnyResult.rate
+      this.anscnyRate = anscnyResult.rate + '%'
       this.anscnyVolumn = anscnyResult.volumnOfLast24Hours
 
       let kacansResult = (await this.$http.get(`markets/kacans`)).body
-      this.kacansRate = kacansResult.rate
+      this.kacansRate = kacansResult.rate + '%'
       this.kacansVolumn = kacansResult.volumnOfLast24Hours
     },
 
