@@ -72,7 +72,9 @@
         payNum: '', // 买入的数量
         payAnsPrice: '', // 买入的单价
         sellNum: '', // 卖出的数量
-        sellAnsPrice: '' // 卖出的价格
+        sellAnsPrice: '', // 卖出的价格
+        bidLoading: false,
+        askLoading: false
       }
     },
 
@@ -107,7 +109,6 @@
               label: ''
             }]
             return 'KAC'
-            break
           case 'lzglzj':
             this.tradeHeader = [{
               label: '卖／买'
@@ -121,7 +122,6 @@
               label: ''
             }]
             return 'LZG'
-            break
           case 'anscny':
             this.tradeHeader = [{
               label: '卖／买'
@@ -135,7 +135,6 @@
               label: ''
             }]
             return 'ANS'
-            break
           case 'anccny':
             this.tradeHeader = [{
               label: '卖／买'
@@ -149,7 +148,6 @@
               label: ''
             }]
             return 'ANC'
-            break
           default:
             return 'KAC'
         }
@@ -166,12 +164,10 @@
             this.sellPlaceHolder = '请输入卖出单价ANS'
             this.buyPlaceHolder = '请输入买入单价ANS'
             return 'ANS'
-            break
           case 'lzglzj':
             this.sellPlaceHolder = '请输入卖出单价LZJ'
             this.buyPlaceHolder = '请输入买入单价LZJ'
             return 'LZJ'
-            break
           default:
             this.sellPlaceHolder = '请输入卖出单价CNY'
             this.buyPlaceHolder = '请输入买入单价CNY'
@@ -231,45 +227,50 @@
       },
       // 挂买单
       bidAction () {
-        this.loggedIn ? this.$store.dispatch('SEND_BID', {
-          price: this.payAnsPrice,
-          amount: this.payNum,
-          assetId: this.ownAsset[0].assetId,
-          valueId: this.ownAsset[1].assetId
-        })
-        .then(data => {
-          console.log('%cbidAction: ', 'color: red', data)
-          if (data.hasOwnProperty('result') && data.result) {
-            this.$message.success('挂买单成功')
-          }
-          if (data.error) {
-            this.$message.warning('挂买单成功')
-          }
-        }).catch(err => this.$message.error(JSON.parse(err.bodyText).error))
+        if (this.loggedIn) {
+          if (!this.payAnsPrice || !this.payNum) return
 
-        : window.$router.push({ name: 'login' })
+          this.bidLoading = true
+          this.$store.dispatch('SEND_BID', {
+            price: this.payAnsPrice,
+            amount: this.payNum,
+            assetId: this.ownAsset[0].assetId,
+            valueId: this.ownAsset[1].assetId
+          }).then(data => {
+            if (data.hasOwnProperty('result') && data.result) this.$message.success('挂买单成功')
+            if (data.error) this.$message.warning(data.error)
+            this.bidLoading = false
+          }).catch(err => {
+            this.$message.error(JSON.parse(err.bodyText).error)
+            this.bidLoading = false
+          })
+        }
+        else window.$router.push('login')
       },
 
       // 挂卖单
       askAction () {
-        this.loggedIn ? this.$store.dispatch('SEND_ASK', {
-          price: this.sellAnsPrice,
-          amount: this.sellNum,
-          assetId: this.ownAsset[0].assetId,
-          valueId: this.ownAsset[1].assetId
-        })
-        .then(data => {
-          console.log('%caskAction: ', 'color: red', data)
-          if (data.hasOwnProperty('result') && data.result) {
-            this.$message.success('挂卖单成功')
-          }
-          if (data.error) {
-            this.$message.warning(data.error)
-          }
-        }).catch(err => this.$message.error(JSON.parse(err.bodyText).error))
-        : window.$router.push({
-          name: 'login'
-        })
+        if (this.loggedIn) {
+          if (!this.sellAnsPrice || !this.sellNum) return
+
+          this.askLoading = true
+          this.$store.dispatch('SEND_ASK', {
+            price: this.sellAnsPrice,
+            amount: this.sellNum,
+            assetId: this.ownAsset[0].assetId,
+            valueId: this.ownAsset[1].assetId
+          })
+              .then(data => {
+                if (data.hasOwnProperty('result') && data.result) this.$message.success('挂卖单成功')
+                if (data.error) this.$message.warning(data.error)
+                this.askLoading = false
+              })
+              .catch(err => {
+                this.$message.error(JSON.parse(err.bodyText).error)
+                this.askLoading = false
+              })
+        }
+        else window.$router.push('login')
       },
 
       buyOrder (id, eventCallBack) {
@@ -281,8 +282,8 @@
             id: id
           })
           .then(data => {
-            console.log('buy: ', data)
             if (data.hasOwnProperty('result') && data.result) {
+              this.buyButtonStatus = true
               this.$message.success('买入成功')
               eventCallBack(false)
             }
@@ -293,21 +294,20 @@
           })
         } else {
           window.$router.push({
-            name: 'login'
+            name: 'login'ffkgg1
           })
         }
       },
+
       sellOrder (id, eventCallBack) {
         if (this.loggedIn) {
           if (!this.sellButtonStatus) return
           this.sellButtonStatus = false
           eventCallBack(true)
-          this.$store.dispatch('SEND_FREE_ASK', {
-            id: id
-          })
+          this.$store.dispatch('SEND_FREE_ASK', { id })
           .then(data => {
-            console.log('buy: ', data)
             if (data.hasOwnProperty('result') && data.result) {
+              this.sellButtonStatus = true
               this.$message.success('卖出成功')
               eventCallBack(false)
             }
@@ -343,10 +343,14 @@
           case 'anscny':
             this.name = '小蚁股'
             this.receiveName = '人民币'
+            this.receiveCurrency = 'CNY'
+            this.deliverCurrency = 'ANS'
             break
           case 'anccny':
             this.name = '小蚁币'
             this.receiveName = '人民币'
+            this.receiveCurrency = 'CNY'
+            this.deliverCurrency = 'ANC'
             break
           case 'kacans':
             this.name = '开拍学园币（KAC）'
@@ -376,10 +380,9 @@
           findBalances(this.balances, this.deliverCurrency.toLocaleLowerCase())[0],
           findBalances(this.balances, this.receiveCurrency.toLocaleLowerCase())[0]
         ]
-        console.log('ownAsset: ', this.ownAsset)
         // 委托单
         this.loggedIn ? this.$store.dispatch('GET_ORDER_BY_ADDRESS').then(data => {
-          let ask = data['asks'].reduce(
+          const ask = data['asks'].reduce(
               (acc, item) => acc.concat({
                 id: {
                   render: false,
@@ -405,7 +408,7 @@
               }),
               []
           )
-          let bids = data['bids'].reduce(
+          const bids = data['bids'].reduce(
               (acc, item) => acc.concat({
                 id: {
                   render: false,
@@ -428,7 +431,6 @@
               []
           )
           this.actionDataSource = ask.concat(bids)
-          console.log('actionDataSource: ', this.actionDataSource)
         })
         .catch(err => this.$message.error(JSON.parse(err.bodyText).error)) : []
 
