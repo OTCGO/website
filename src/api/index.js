@@ -277,7 +277,7 @@ export default {
   getOrderByAddress,
   getHistoryById,
   getMyHistoryById,
-  getBlockHigh
+  getBlockHigh,
 }
 
 /* eslint-disable no-return-await */
