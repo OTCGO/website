@@ -294,7 +294,7 @@
           })
         } else {
           window.$router.push({
-            name: 'login'
+            name: 'login'ffkgg1
           })
         }
       },

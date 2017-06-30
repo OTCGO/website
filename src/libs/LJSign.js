@@ -83,12 +83,7 @@ class LJCurveFp {
   }
 
   containsPoint(x, y) {
-    return (y.multiply(y)
-             .subtract(x.multiply(x)
-                        .multiply(x)
-                        .add(this.__a.multiply(x))
-                        .add(this.__b)))
-        .remainder(this.__p).isZero()
+    return (y.multiply(y).subtract(x.multiply(x).multiply(x).add(this.__a.multiply(x)).add(this.__b))).remainder(this.__p).isZero()
   }
 }
 

@@ -7,7 +7,7 @@ import { ljSign } from '~libs/LJSign'
 
 Vue.use(VueResource)
 
-export const fetching = async (endPoint, data={}, method="get") => {
+const fetching = async (endPoint, data={}, method="get") => {
   const response = await Vue.http[method](`${endPoint}/`, data)
   return await response.json()
 }
