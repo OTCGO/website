@@ -83,7 +83,12 @@ class LJCurveFp {
   }
 
   containsPoint(x, y) {
-    return (y.multiply(y).subtract(x.multiply(x).multiply(x).add(this.__a.multiply(x)).add(this.__b))).remainder(this.__p).isZero()
+    return (y.multiply(y)
+             .subtract(x.multiply(x)
+                        .multiply(x)
+                        .add(this.__a.multiply(x))
+                        .add(this.__b)))
+        .remainder(this.__p).isZero()
   }
 }
 
@@ -442,6 +447,10 @@ const numberToString = function(n) {
 
 const sigencodeString = (r, s) => numberToString(r) + numberToString(s)
 
+const curveSecp256r1 = new LJCurveFp(_p, _a, _b)
+const generatorSecp256r1 = new LJPoint(curveSecp256r1, _Gx, _Gy, _r)
+const SECP256r1 = new LJCurve('SECP256r1', curveSecp256r1, generatorSecp256r1, [1, 3, 132, 0, 10], 'SECP256r1')
+
 class LJSigningKey {
   constructor(prvhex, curve = SECP256r1) {
     this.curve = curve
@@ -496,10 +505,6 @@ LJSigningKey.prototype.sign = function(msghex) {
   return sigencodeString(ljsignatue.r, ljsignatue.s)
 }
 */
-
-const curveSecp256r1 = new LJCurveFp(_p, _a, _b)
-const generatorSecp256r1 = new LJPoint(curveSecp256r1, _Gx, _Gy, _r)
-const SECP256r1 = new LJCurve('SECP256r1', curveSecp256r1, generatorSecp256r1, [1, 3, 132, 0, 10], 'SECP256r1')
 
 export const ljSign = (prvhex, msghex) => (new LJSigningKey(prvhex)).sign(msghex)
 

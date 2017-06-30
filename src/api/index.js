@@ -161,11 +161,6 @@ export const sendAsk = async ({ assetId, valueId, price, amount, hexPubkey }, pr
   })
 }
 
-export const sendAskTest = async ({ assetId, valueId, price, amount, hexPubkey }, pr, cb) =>
-    (await fetching('otc/ask', { assetId, valueId, price, amount, hexPubkey }, 'post'))
-
-
-
 /**
  * 挂买单
  */
@@ -210,9 +205,6 @@ export const sendFreeBid = async ({ id, hexPubkey }, pr) => {
  */
 export const otcSign = async ({ id, signature }) =>
   await (fetching('otc/sign', { id, signature }, 'post'))
-
-export const otcSignTest = async ({ id, pr, transaction }) =>
-    (await (fetching('otc/sign', { id, signature: ljSign(pr, transaction) }, 'post')))
 
 /**
  * 获取市场最新价格
@@ -284,8 +276,6 @@ export default {
   getHistoryById,
   getMyHistoryById,
   getBlockHigh,
-
-  sendAskTest
 }
 
 /**
