@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: 'table',
+  name: 'oTable',
   props: {
     tableHeader: {
       type: Array,

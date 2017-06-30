@@ -56,7 +56,7 @@ const routes = [
   // { path: '/test', component: r => require(['~pages/test/index.vue') },
 
   // 如果不存在，重定向于Home
-  {path: '*', redirect: { path: '/index' }}
+  { path: '*', redirect: { path: '/index' }}
 ]
 
 const router = new VueRouter({

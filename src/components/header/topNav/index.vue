@@ -74,6 +74,7 @@
     mounted() {
       this.getCount()
       this.run()
+
       this.$store.watch(state => state.blockHeight, () => { this.blockTime = 0 })
     },
 
