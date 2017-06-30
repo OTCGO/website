@@ -63,10 +63,6 @@
       blockTime: 0
     }),
 
-    watch: {
-      blockHigh() { this.blockTime = 0 }
-    },
-
     methods: {
       getCount() {
         this.$store.dispatch('GET_BLOCK')
@@ -80,6 +76,10 @@
     mounted() {
       this.getCount()
       this.run()
+
+      this.$store.watch(state => state.blockHeight, (newVal, oldVal) => {
+        if (newVal !== oldVal) this.blockTime = 0
+      })
     },
 
     destroyed() {
