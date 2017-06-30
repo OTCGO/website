@@ -9,10 +9,12 @@ export default {
       anccny: 0,
       anscny: 0,
       kacans: 0,
+
       // Rate
       anccnyRate: 0,
       anscnyRate: 0,
       kacansRate: 0,
+
       // Volumn
       anccnyVolumn: 0,
       anscnyVolumn: 0,
@@ -43,6 +45,11 @@ export default {
       this.contentTwo = true
     },
 
+    getData() {
+      this.getPrice()
+      this.getRateAndVolumn()
+    },
+
     async getPrice () {
       this.kacans = (await this.$http.get(`price/kacans`)).body
       this.anccny = ((await this.$http.get(`price/anccny`)).body) || 0
@@ -69,9 +76,12 @@ export default {
     }
   },
   mounted () {
-    setInterval(() => {
-      this.getPrice()
-      this.getRateAndVolumn()
-    }, 2000)
+    this.getData()
+
+    this.priceTimer = setInterval(() => this.getData(), 2000)
+  },
+  destroyed() {
+    clearInterval(this.priceTimer)
   }
+
 }

@@ -85,16 +85,20 @@ export default {
     }
   },
 
+  watch: {
+    'buttonStatus' (now, old) {
+      if (now === true) this.status = true
+      else this.status = false
+    }
+  },
+
   methods: {
     cancel (item) {
       this.$emit('cancel-click', item)
     },
     buttonEvent (fn) {
       if (typeof fn !== 'function') return console.warn('请传入方法')
-      const eventCallBack = (status) => {
-        console.log(status)
-        this.status = status
-      }
+      const eventCallBack = status => this.status = status
       fn(eventCallBack)
     }
   }

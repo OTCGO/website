@@ -278,23 +278,20 @@
           if (!this.buyButtonStatus) return
           this.buyButtonStatus = false
           eventCallBack(true)
-          this.$store.dispatch('SEND_FREE_BID', {
-            id: id
-          })
-          .then(data => {
-            if (data.hasOwnProperty('result') && data.result) {
-              this.buyButtonStatus = true
-              this.$message.success('买入成功')
-              eventCallBack(false)
-            }
-          })
-          .catch(err => {
-            this.buyButtonStatus = true
-            this.$message.error(JSON.parse(err.bodyText).error)
-          })
+          this.$store.dispatch('SEND_FREE_BID', { id })
+              .then(data => {
+                if (data.hasOwnProperty('result') && data.result) {
+                  this.$message.success('买入成功')
+                  eventCallBack(false)
+                }
+              })
+              .catch(err => {
+                this.$message.error(JSON.parse(err.bodyText).error)
+                eventCallBack(false)
+              })
         } else {
           window.$router.push({
-            name: 'login'ffkgg1
+            name: 'login'
           })
         }
       },
@@ -307,13 +304,11 @@
           this.$store.dispatch('SEND_FREE_ASK', { id })
           .then(data => {
             if (data.hasOwnProperty('result') && data.result) {
-              this.sellButtonStatus = true
               this.$message.success('卖出成功')
               eventCallBack(false)
             }
           })
           .catch(err => {
-            this.sellButtonStatus = true
             this.$message.error(JSON.parse(err.bodyText).error)
           })
         } else {
