@@ -137,5 +137,7 @@ export default {
 
   [type.getMyHistoryById]: ({ state }, { marketId, active, length }) => service.getMyHistoryById(Object.assign({ marketId, active, length }, {
     address: state.wa['address']
-  }))
+  })),
+
+  [type.doClaim]: ({ state }) => service.doClaim(state.wa['publicKey'], state.wa['privateKey'])
 }
