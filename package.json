@@ -59,6 +59,7 @@
     "pug": "^2.0.0-beta11",
     "pug-loader": "^2.3.0",
     "sass-loader": "^4.1.1",
+    "secp256k1": "^3.3.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

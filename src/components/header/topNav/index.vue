@@ -55,9 +55,7 @@
   export default {
     name: 'topNav',
 
-    computed: {
-      ...mapGetters(['blockHeight'])
-    },
+    computed: mapGetters(['blockHeight']),
 
     data: () => ({
       blockTime: 0
@@ -77,9 +75,7 @@
       this.getCount()
       this.run()
 
-      this.$store.watch(state => state.blockHeight, (newVal, oldVal) => {
-        if (newVal !== oldVal) this.blockTime = 0
-      })
+      this.$store.watch(state => state.blockHeight, () => { this.blockTime = 0 })
     },
 
     destroyed() {
