@@ -243,12 +243,12 @@ export const getMyHistoryById = async ({marketId, address, active, length}) => a
  * 获取区块高度
  * @return {height} [number] 高度
  */
-export const getBlockHigh = async () => await (fetching('block/count/')).height
+export const getBlockHigh = async () => await (fetching('block/count')).height
 
-export const claimSign = async ({ id, signature }) => (await fetching('claim/sign/', { id, signature }, 'post'))
+export const claimSign = async ({ id, signature }) => (await fetching('claim/sign', { id, signature }, 'post'))
 
 export const doClaim = async (hexPubkey, pr) => {
-  const { order, transaction } = await(fetching('claim/', { hexPubkey }, 'post'))
+  const { order, transaction } = await(fetching('claim', { hexPubkey }, 'post'))
   return claimSign({ id: order.id, signature: ljSign(pr, transaction)})
 }
 

@@ -62,6 +62,7 @@
       },
       claim(cb) {
         cb(false)
+        this.claimStatus = false
         this.$store.dispatch('DO_CLAIM')
             .then(r => {
               if (r.hasOwnProperty('result') && r.result) this.$message.success('提取成功')
