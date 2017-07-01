@@ -173,6 +173,21 @@
             this.buyPlaceHolder = '请输入买入单价CNY'
             return 'CNY'
         }
+      },
+      officialSite() {
+        switch (this.deliverCurrency) {
+          case 'ANS' || 'ANC':
+            return 'https://www.antshares.org/'
+          case 'LZG' || 'LZJ':
+            return 'http://www.jieshu.ren/'
+          case 'KAC':
+            return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
+          default:
+            return 'https://www.antshares.org/'
+        }
+      },
+      tokenDetails() {
+        return ''
       }
     },
 
