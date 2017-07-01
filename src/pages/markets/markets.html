@@ -7,8 +7,12 @@
   <div class="row">
     <div class="el-content-left">
       <div class="el-flex-between">
-        <button class="el-button el-button--primary el-button-lg" type="button">官方网站</button>
-        <button class="el-button el-button--primary el-button-lg" type="button">代币详情</button>
+        <a :href="officialSite" target="_blank">
+          <button class="el-button el-button--primary el-button-lg">官方网站</button>
+        </a>
+         <a :href="tokenDetails" target="_blank">
+          <button class="el-button el-button--primary el-button-lg">代币详情</button>
+        </a>
       </div>
       <div class="el-content-pannel" v-if="loggedIn">
         <h3 class="el-content-title">

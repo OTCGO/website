@@ -208,7 +208,7 @@
   }
 
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .1.5s ease;
+    transition: opacity .2s ease;
   }
 
   .fade-enter, .fade-leave-active {

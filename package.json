@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --port 8081",
-    "build": "cross-env NODE_ENV=production webpack --progress --colors --profile --display-modules --sort-modules-by size --json > stats.json",
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:loccal": "cross-env NODE_ENV=production webpack --progress --colors --profile --display-modules --sort-modules-by size --json > stats.json",
     "svg": "vsvg -s ./src/images/svgs -t ./src/images/compiled-icons",
     "standard": "standard --fix"
   },
