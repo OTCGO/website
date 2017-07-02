@@ -97,7 +97,6 @@ export default {}
 
 #footer {
     background-color: #eee;
-    width: 1224px;
 }
 .footer-top{
     padding: 80px;
