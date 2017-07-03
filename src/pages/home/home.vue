@@ -68,6 +68,12 @@
   .el-table__header .is-leaf
     text-align: center
 
+@media (max-width: 500px)
+  .el-carousel
+    display none
+  form.navbar-right
+    display none
+
   .el-carousel__item img
     width: 100%
     height: 400px
