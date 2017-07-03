@@ -338,8 +338,9 @@
 
       // 撤销买卖单
       cancel (item) {
+        this.cancelStatus = false
+
         if (this.loggedIn) {
-          this.cancelStatus = false
 
           this.$store.dispatch('CANCEL', {
             id: item.id.value
