@@ -74,7 +74,8 @@
         sellNum: '', // 卖出的数量
         sellAnsPrice: '', // 卖出的价格
         bidLoading: false,
-        askLoading: false
+        askLoading: false,
+        cancelStatus: true
       }
     },
 
@@ -255,6 +256,7 @@
             if (data.hasOwnProperty('result') && data.result) this.$message.success('挂买单成功')
             if (data.error) this.$message.warning(data.error)
             this.bidLoading = false
+            this.payAnsPrice = this.payNum = ''
           }).catch(err => {
             this.$message.error(JSON.parse(err.bodyText).error)
             this.bidLoading = false
@@ -279,6 +281,7 @@
                 if (data.hasOwnProperty('result') && data.result) this.$message.success('挂卖单成功')
                 if (data.error) this.$message.warning(data.error)
                 this.askLoading = false
+                this.sellAnsPrice = this.sellNum = ''
               })
               .catch(err => {
                 this.$message.error(JSON.parse(err.bodyText).error)
@@ -335,17 +338,19 @@
 
       // 撤销买卖单
       cancel (item) {
-        this.loggedIn
-        ? this.$store.dispatch('CANCEL', {
-          id: item.id.value
-        })
-        .then(data => {
-          this.$message.success('撤销成功')
-        })
-        .catch(err => this.$message.error(JSON.parse(err.bodyText).error))
-        : window.$router.push({
-          name: 'login'
-        })
+        if (this.loggedIn) {
+          this.cancelStatus = false
+
+          this.$store.dispatch('CANCEL', {
+            id: item.id.value
+          })
+              .then(data => {
+                this.$message.success('撤销成功')
+                this.cancelStatus = true
+              })
+              .catch(err => this.$message.error(JSON.parse(err.bodyText).error))
+        }
+        else window.$router.push({ name: 'login' })
       },
 
       watchChange (to) {

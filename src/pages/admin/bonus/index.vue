@@ -36,12 +36,14 @@
     data: () => ({
       bonusHeader,
       bonusSource: [],
-      claimStatus: true,
       blockChanged: false
     }),
     components: { oTable },
     computed: {
-      ...mapGetters(['balances', 'blockHeight'])
+      ...mapGetters(['balances', 'blockHeight']),
+      claimStatus() {
+        return this.bonusSource[0].enable > 0
+      }
     },
     methods: {
       getClaim() {
@@ -55,18 +57,18 @@
             btnClass: 'btn-blue',
             value: '提取',
             render: true,
-            hide: item.enable <= 0,
+            hide: false,
             event: cb => this.claim(cb)
           }
         }), [])
       },
       claim(cb) {
         cb(false)
-        this.claimStatus = false
         this.$store.dispatch('DO_CLAIM')
             .then(r => {
               if (r.hasOwnProperty('result') && r.result) this.$message.success('提取成功')
               if (r.error) this.$message.warning(r.error)
+              this.$store.dispatch('GET_ASSET')
             })
             .catch(e => {
               this.$message.error(JSON.parse(e.bodyText).error)
