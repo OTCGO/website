@@ -1,9 +1,12 @@
 import { mapGetters } from 'vuex'
+import { findBalances } from '~utils/util'
 
 export default {
   data: () => ({
     onHistory: false,
-    onOrder: false
+    onOrder: false,
+    onBonus: false,
+    loading: false
   }),
 
   beforeRouteEnter (to, from, next) {
@@ -11,7 +14,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['loggedIn'])
+    ...mapGetters(['loggedIn', 'balances', 'wa'])
   },
 
   watch: {
@@ -22,13 +25,26 @@ export default {
 
   methods: {
     handleNav (str) {
-      if (typeof str === 'string') {
+      if (str === 'bonus') this.onBonus = true
+      else if (typeof str === 'string') {
         const arrStr = str.split('')
         const capitalizeStr = arrStr[0].toUpperCase() + str.substr(str.indexOf(arrStr[0]) + 1)
         this['on' + capitalizeStr] = !this['on' + capitalizeStr]
-      } else {
-        this.onHistory = this.onOrder = false
       }
+      else {
+        this.loading = this.onBonus = this.onHistory = this.onOrder = false
+      }
+    },
+    claimTransfer() {
+      this.loading = true
+      const [{ assetId, valid }] = findBalances(this.balances, 'ans')
+      const dest = this.wa('address')
+      this.$store.dispatch('TRANSFER', { assetId, dest, amount: valid })
+          .then(() => {
+            this.loading = false
+            this.$message.success('转账成功！')
+          })
+          .catch(e => this.$message.error(e.body.error))
     }
   },
 

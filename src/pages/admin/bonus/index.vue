@@ -29,7 +29,10 @@
     created() {
       this.getClaim()
 
-      this.claimTimer = setInterval(() => this.getClaim(), 2000)
+      this.claimTimer = setInterval(
+          () => this.$store.dispatch('GET_ASSET')
+                    .then(() => this.getClaim())
+          , 2000)
 
       this.$store.watch(state => state.blockHeight, (newVal, oldVal) => {
         if (newVal !== oldVal) this.blockChanged = true
@@ -71,7 +74,7 @@
             .then(r => {
               if (r.hasOwnProperty('result') && r.result) this.$message.success('提取成功')
               if (r.error) this.$message.warning(r.error)
-              this.$store.dispatch('GET_ASSET')
+              this.$store.dispatch('GET_ASSET').then(() => this.getClaim())
             })
             .catch(e => {
               this.$message.error(JSON.parse(e.bodyText).error)
