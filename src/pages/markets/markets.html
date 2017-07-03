@@ -42,7 +42,7 @@
           <input class="form-control" type="number" v-model.trim.number="payNum" placeholder="请输入购买数量" />
         </div>
         <div class="bk-margin-top-10">
-          <input class="form-control" type="number" v-model.trim.number="payAnsPrice" :placeholder="buyPlaceHolder" />
+          <input class="form-control" type="number" v-model.trim.number="payAnsPrice" :placeholder="buyPlaceHolder"  @keydown.enter.once="bidAction" />
         </div>
         <p class="font-12 bk-margin-top-10">订单总额：<span class="red-span font-14">{{ totoalMoney }} {{ receiveCurrency }}</span></p>
         <el-button type="danger" @click="bidAction"
