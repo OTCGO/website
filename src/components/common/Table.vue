@@ -19,11 +19,17 @@
               width: items.width || '20%'
             }" v-for="items in item" v-if="items.render" :class="[items.class ? items.class : '']">
               <span v-if="!items.event">{{ items.value }}</span>
-              <a v-if="items.event && !items.hide" :class="['btn-trade', items.btnClass, buttonStatus ? '' : 'disabled']" @click="buttonEvent(items.event)">
+              <a v-if="items.event && !items.hide"
+                 :class="['btn-trade', items.btnClass, buttonStatus ? '' : 'disabled']"
+                 @click="buttonEvent(items.event)">
                 {{ status ? items.value : '执行中' }}
               </a>
             </td>
-            <td v-if="show" @click="cancel(item)"><a class="red-span bk-point-cursor">撤销</a></td>
+            <td v-if="show" @click="cancel(item)">
+              <a class="red-span bk-point-cursor"
+                 :class="cancelStatus ? '' : 'disabled'"
+              >{{ cancelStatus ? '撤销' : '执行中' }}</a>
+            </td>
           </tr>
           
           <tr v-if="!dataSource.length">
@@ -76,6 +82,10 @@ export default {
     nodata: {
       type: String,
       default: '暂无数据'
+    },
+    cancelStatus: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -161,6 +171,9 @@ export default {
   background: #c9c9c9;
   border: 1px solid #f8f8f8;
   color: #fff;
+}
+a.disabled {
+  cursor: default;
 }
 .table.table-lg > thead > tr > th,
 .table.table-lg > tbody > tr > th,
