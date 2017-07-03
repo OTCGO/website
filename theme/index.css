@@ -3508,7 +3508,7 @@
     margin-right: 10px;
 }
 .el-submenu .el-menu {
-    background-color: rgb(228, 232, 241);
+    background-color: #000;
 }
 .el-submenu .el-menu-item {
     height: 50px;
