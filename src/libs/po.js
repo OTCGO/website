@@ -1,11 +1,10 @@
 /**
  * Created by Amagi on 5/29/2017.
  */
-(function(exports) {
-
+(function (exports) {
   const CONSTRUCT = {}
 
-  function LJBigInteger(n, s, token) {
+  function LJBigInteger (n, s, token) {
     if (token !== CONSTRUCT) {
       if (n instanceof LJBigInteger) {
         return n
@@ -23,7 +22,7 @@
     this._s = n.length ? (s || 1) : 0
   }
 
-  LJBigInteger._construct = function(n, s) {
+  LJBigInteger._construct = function (n, s) {
     return new LJBigInteger(n, s, CONSTRUCT)
   }
 

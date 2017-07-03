@@ -7,7 +7,8 @@ import { ljSign } from '~libs/LJSign'
 
 Vue.use(VueResource)
 
-const fetching = async (endPoint, data={}, method="get") => {
+/* eslint-disable no-return-await */
+const fetching = async (endPoint, data = {}, method = 'get') => {
   const response = await Vue.http[method](`${endPoint}/`, data)
   return await response.json()
 }
@@ -76,7 +77,9 @@ export const redeem = async (id, pr, address) => {
   const nonce = getN()
 
   const redeemJson = await fetching('redeem', {
-    nonce, id, address,
+    nonce,
+    id,
+    address,
     signature: ljSign(pr, nonce)
   }, 'post')
 
@@ -85,7 +88,6 @@ export const redeem = async (id, pr, address) => {
     signature: ljSign(pr, redeemJson['transaction'])
   })
 }
-
 
 export const transfer = async (body, pr) => {
   const nonce = getN()
@@ -227,21 +229,28 @@ export const getOrderByAddress = async address => await (fetching(`order/${addre
 
 /**
  * 获取市场最新交易
- * @param {市场ID} marketId 
+ * @param {市场ID} marketId
  */
-export const getHistoryById = async ({marketId, active, length}) => await(fetching(`history/${marketId}`, { params: {active, length } }))
+export const getHistoryById = async ({marketId, active, length}) => await (fetching(`history/${marketId}`, { params: { active, length } }))
 
 /**
  * 获取我的成交单
- * @param {市场ID} marketId 
+ * @param {市场ID} marketId
  */
-export const getMyHistoryById = async ({marketId, address, active, length}) => await(fetching(`history/${marketId}`, { params: {address, active, length} }))
+export const getMyHistoryById = async ({marketId, address, active, length}) => await (fetching(`history/${marketId}`, { params: {address, active, length} }))
 
 /**
  * 获取区块高度
  * @return {height} [number] 高度
  */
-export const getBlockHigh = async () => await (fetching('block/count/')).height
+export const getBlockHigh = async () => await (fetching('block/count')).height
+
+export const claimSign = async ({ id, signature }) => (await fetching('claim/sign', { id, signature }, 'post'))
+
+export const doClaim = async (hexPubkey, pr) => {
+  const { order, transaction } = await(fetching('claim', { hexPubkey }, 'post'))
+  return claimSign({ id: order.id, signature: ljSign(pr, transaction)})
+}
 
 export default {
   getA,
@@ -275,9 +284,11 @@ export default {
   getOrderByAddress,
   getHistoryById,
   getMyHistoryById,
-  getBlockHigh
+  getBlockHigh,
+  doClaim
 }
 
+/* eslint-disable no-return-await */
 /**
  * Created by Administrator on 4/19/2017.
  */

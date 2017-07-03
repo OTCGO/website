@@ -17,7 +17,7 @@
 
 		<BigInteger>
 */
-(function(exports) {
+(function (exports) {
   'use strict'
 /*
 	Class: LJBigInteger
@@ -77,7 +77,7 @@
 
 		<parse>, <LJBigInteger>
 */
-  function LJBigInteger(n, s, token) {
+  function LJBigInteger (n, s, token) {
     if (token !== CONSTRUCT) {
       if (n instanceof LJBigInteger) {
         return n
@@ -95,7 +95,7 @@
     this._s = n.length ? (s || 1) : 0
   }
 
-  LJBigInteger._construct = function(n, s) {
+  LJBigInteger._construct = function (n, s) {
     return new LJBigInteger(n, s, CONSTRUCT)
   }
 
@@ -201,7 +201,7 @@
 
 		The string representation of the <LJBigInteger>.
 */
-  LJBigInteger.prototype.toString = function(base) {
+  LJBigInteger.prototype.toString = function (base) {
     base = +base || 10
     if (base < 2 || base > 36) {
       throw new Error('illegal radix ' + base + '.')
@@ -312,15 +312,15 @@
 
 		a <LJBigInteger> instance.
 */
-  LJBigInteger.parse = function(s, base) {
+  LJBigInteger.parse = function (s, base) {
 	// Expands a number in exponential form to decimal form.
 	// expandExponential("-13.441*10^5") === "1344100";
 	// expandExponential("1.12300e-1") === "0.112300";
 	// expandExponential(1000000000000000000000000000000) === "1000000000000000000000000000000";
-    function expandExponential(str) {
+    function expandExponential (str) {
       str = str.replace(/\s*[*xX]\s*10\s*(\^|\*\*)\s*/, 'e')
 
-      return str.replace(/^([+\-])?(\d+)\.?(\d*)[eE]([+\-]?\d+)$/, function(x, s, n, f, c) {
+      return str.replace(/^([+\-])?(\d+)\.?(\d*)[eE]([+\-]?\d+)$/, function (x, s, n, f, c) {
         c = +c
         var l = c < 0
         var i = n.length + c
@@ -425,7 +425,7 @@
 
 		<subtract>, <multiply>, <quotient>, <next>
 */
-  LJBigInteger.prototype.add = function(n) {
+  LJBigInteger.prototype.add = function (n) {
     if (this._s === 0) {
       return LJBigInteger(n)
     }
@@ -485,7 +485,7 @@
 
 		<abs>
 */
-  LJBigInteger.prototype.negate = function() {
+  LJBigInteger.prototype.negate = function () {
     return new LJBigInteger(this._d, (-this._s) | 0, CONSTRUCT)
   }
 
@@ -501,7 +501,7 @@
 
 		<negate>
 */
-  LJBigInteger.prototype.abs = function() {
+  LJBigInteger.prototype.abs = function () {
     return (this._s < 0) ? this.negate() : this
   }
 
@@ -521,7 +521,7 @@
 
 		<add>, <multiply>, <quotient>, <prev>
 */
-  LJBigInteger.prototype.subtract = function(n) {
+  LJBigInteger.prototype.subtract = function (n) {
     if (this._s === 0) {
       return LJBigInteger(n).negate()
     }
@@ -590,8 +590,8 @@
     return new LJBigInteger(diff, sign, CONSTRUCT)
   };
 
-  (function() {
-    function addOne(n, sign) {
+  (function () {
+    function addOne (n, sign) {
       var a = n._d
       var sum = a.slice()
       var carry = true
@@ -609,7 +609,7 @@
       return new LJBigInteger(sum, sign, CONSTRUCT)
     }
 
-    function subtractOne(n, sign) {
+    function subtractOne (n, sign) {
       var a = n._d
       var sum = a.slice()
       var borrow = true
@@ -641,7 +641,7 @@
 
 			<add>, <prev>
 	*/
-    LJBigInteger.prototype.next = function() {
+    LJBigInteger.prototype.next = function () {
       switch (this._s) {
         case 0:
           return ONE
@@ -665,7 +665,7 @@
 
 			<next>, <subtract>
 	*/
-    LJBigInteger.prototype.prev = function() {
+    LJBigInteger.prototype.prev = function () {
       switch (this._s) {
         case 0:
           return M_ONE
@@ -696,7 +696,7 @@
 
 		<compare>, <abs>
 */
-  LJBigInteger.prototype.compareAbs = function(n) {
+  LJBigInteger.prototype.compareAbs = function (n) {
     if (this === n) {
       return 0
     }
@@ -750,7 +750,7 @@
 
 		<compareAbs>, <isPositive>, <isNegative>, <isUnit>
 */
-  LJBigInteger.prototype.compare = function(n) {
+  LJBigInteger.prototype.compare = function (n) {
     if (this === n) {
       return 0
     }
@@ -782,7 +782,7 @@
 		<isZero>, <isNegative>, <isPositive>, <compareAbs>, <compare>,
 		<LJBigInteger.ONE>, <LJBigInteger.M_ONE>
 */
-  LJBigInteger.prototype.isUnit = function() {
+  LJBigInteger.prototype.isUnit = function () {
     return this === ONE ||
 		this === M_ONE ||
 		(this._d.length === 1 && this._d[0] === 1)
@@ -805,7 +805,7 @@
 
 		<add>, <subtract>, <quotient>, <square>
 */
-  LJBigInteger.prototype.multiply = function(n) {
+  LJBigInteger.prototype.multiply = function (n) {
 	// TODO: Consider adding Karatsuba multiplication for large numbers
     if (this._s === 0) {
       return ZERO
@@ -866,7 +866,7 @@
 // Multiply a LJBigInteger by a single-digit native number
 // Assumes that this and n are >= 0
 // This is not really intended to be used outside the library itself
-  LJBigInteger.prototype.multiplySingleDigit = function(n) {
+  LJBigInteger.prototype.multiplySingleDigit = function (n) {
     if (n === 0 || this._s === 0) {
       return ZERO
     }
@@ -927,7 +927,7 @@
 	See Also:
 		<multiply>
 */
-  LJBigInteger.prototype.square = function() {
+  LJBigInteger.prototype.square = function () {
 	// Normally, squaring a 10-digit number would take 100 multiplications.
 	// Of these 10 are unique diagonals, of the remaining 90 (100-10), 45 are repeated.
 	// This procedure saves (N*(N-1))/2 multiplications, (e.g., 45 of 100 multiplies).
@@ -992,7 +992,7 @@
 
 		<add>, <subtract>, <multiply>, <divRem>, <remainder>
 */
-  LJBigInteger.prototype.quotient = function(n) {
+  LJBigInteger.prototype.quotient = function (n) {
     return this.divRem(n)[0]
   }
 
@@ -1021,7 +1021,7 @@
 
 		<divRem>, <quotient>
 */
-  LJBigInteger.prototype.remainder = function(n) {
+  LJBigInteger.prototype.remainder = function (n) {
     return this.divRem(n)[1]
   }
 
@@ -1051,7 +1051,7 @@
 
 		<quotient>, <remainder>
 */
-  LJBigInteger.prototype.divRem = function(n) {
+  LJBigInteger.prototype.divRem = function (n) {
     n = LJBigInteger(n)
     if (n._s === 0) {
       throw new Error('Divide by zero')
@@ -1119,13 +1119,13 @@
     }
 
     return [new LJBigInteger(quot.reverse(), sign, CONSTRUCT),
-            new LJBigInteger(part._d, this._s, CONSTRUCT)]
+      new LJBigInteger(part._d, this._s, CONSTRUCT)]
   }
 
 // Throws an exception if n is outside of (-LJBigInteger.base, -1] or
 // [1, LJBigInteger.base).  It's not necessary to call this, since the
 // other division functions will call it if they are able to.
-  LJBigInteger.prototype.divRemSmall = function(n) {
+  LJBigInteger.prototype.divRemSmall = function (n) {
     var r
     n = +n
     if (n === 0) {
@@ -1217,7 +1217,7 @@
 
 		<isOdd>
 */
-  LJBigInteger.prototype.isEven = function() {
+  LJBigInteger.prototype.isEven = function () {
     var digits = this._d
     return this._s === 0 || digits.length === 0 || (digits[0] % 2) === 0
   }
@@ -1234,7 +1234,7 @@
 
 		<isEven>
 */
-  LJBigInteger.prototype.isOdd = function() {
+  LJBigInteger.prototype.isOdd = function () {
     return !this.isEven()
   }
 
@@ -1252,7 +1252,7 @@
 
 		<isZero>, <isPositive>, <isNegative>, <compare>, <LJBigInteger.ZERO>
 */
-  LJBigInteger.prototype.sign = function() {
+  LJBigInteger.prototype.sign = function () {
     return this._s
   }
 
@@ -1268,7 +1268,7 @@
 
 		<sign>, <isZero>, <isNegative>, <isUnit>, <compare>, <LJBigInteger.ZERO>
 */
-  LJBigInteger.prototype.isPositive = function() {
+  LJBigInteger.prototype.isPositive = function () {
     return this._s > 0
   }
 
@@ -1284,7 +1284,7 @@
 
 		<sign>, <isPositive>, <isZero>, <isUnit>, <compare>, <LJBigInteger.ZERO>
 */
-  LJBigInteger.prototype.isNegative = function() {
+  LJBigInteger.prototype.isNegative = function () {
     return this._s < 0
   }
 
@@ -1300,7 +1300,7 @@
 
 		<sign>, <isPositive>, <isNegative>, <isUnit>, <LJBigInteger.ZERO>
 */
-  LJBigInteger.prototype.isZero = function() {
+  LJBigInteger.prototype.isZero = function () {
     return this._s === 0
   }
 
@@ -1331,7 +1331,7 @@
 
 		<pow>, <multiply>
 */
-  LJBigInteger.prototype.exp10 = function(n) {
+  LJBigInteger.prototype.exp10 = function (n) {
     n = +n
     if (n === 0) {
       return this
@@ -1384,7 +1384,7 @@
 
 		<modPow>
 */
-  LJBigInteger.prototype.pow = function(n) {
+  LJBigInteger.prototype.pow = function (n) {
     if (this.isUnit()) {
       if (this._s > 0) {
         return this
@@ -1451,7 +1451,7 @@
 
 		<pow>, <mod>
 */
-  LJBigInteger.prototype.modPow = function(exponent, modulus) {
+  LJBigInteger.prototype.modPow = function (exponent, modulus) {
     var result = ONE
     var base = this
 
@@ -1487,7 +1487,7 @@
 
 		<toJSValue>
 */
-  LJBigInteger.prototype.log = function() {
+  LJBigInteger.prototype.log = function () {
     switch (this._s) {
       case 0:	 return -Infinity
       case -1: return NaN
@@ -1520,7 +1520,7 @@
 
 		<toString>, <toJSValue>
 */
-  LJBigInteger.prototype.valueOf = function() {
+  LJBigInteger.prototype.valueOf = function () {
     return parseInt(this.toString(), 10)
   }
 
@@ -1538,7 +1538,7 @@
 
 		<toString>, <valueOf>
 */
-  LJBigInteger.prototype.toJSValue = function() {
+  LJBigInteger.prototype.toJSValue = function () {
     return parseInt(this.toString(), 10)
   }
 
@@ -1547,26 +1547,26 @@
 // The largest exponent allowed in <pow> and <exp10> (0x7FFFFFFF or 2147483647).
   LJBigInteger.MAX_EXP = MAX_EXP;
 
-  (function() {
-    function makeUnary(fn) {
-      return function(a) {
+  (function () {
+    function makeUnary (fn) {
+      return function (a) {
         return fn.call(LJBigInteger(a))
       }
     }
 
-    function makeBinary(fn) {
-      return function(a, b) {
+    function makeBinary (fn) {
+      return function (a, b) {
         return fn.call(LJBigInteger(a), LJBigInteger(b))
       }
     }
 
-    function makeTrinary(fn) {
-      return function(a, b, c) {
+    function makeTrinary (fn) {
+      return function (a, b, c) {
         return fn.call(LJBigInteger(a), LJBigInteger(b), LJBigInteger(c))
       }
     }
 
-    (function() {
+    (function () {
       var i, fn
       var unary = 'toJSValue,isEven,isOdd,sign,isZero,isNegative,abs,isUnit,square,negate,isPositive,toString,next,prev,log'.split(',')
       var binary = 'compare,remainder,divRem,subtract,add,quotient,divide,multiply,pow,compareAbs'.split(',')
@@ -1587,7 +1587,7 @@
         LJBigInteger[fn] = makeTrinary(LJBigInteger.prototype[fn])
       }
 
-      LJBigInteger.exp10 = function(x, n) {
+      LJBigInteger.exp10 = function (x, n) {
         return LJBigInteger(x).exp10(n)
       }
     })()

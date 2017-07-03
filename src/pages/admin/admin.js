@@ -6,7 +6,7 @@ export default {
     onOrder: false
   }),
 
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     next(vm => vm.$store.getters.loggedIn ? next() : next('/login'))
   },
 
@@ -15,13 +15,13 @@ export default {
   },
 
   watch: {
-    loggedIn(val) {
+    loggedIn (val) {
       if (!val) this.$router.push('/login')
     }
   },
 
   methods: {
-    handleNav(str) {
+    handleNav (str) {
       if (typeof str === 'string') {
         const arrStr = str.split('')
         const capitalizeStr = arrStr[0].toUpperCase() + str.substr(str.indexOf(arrStr[0]) + 1)
@@ -32,7 +32,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted () {
     if (!this.loggedIn) {
       this.$router.push('/login')
     }

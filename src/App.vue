@@ -3,7 +3,6 @@
     <top-nav></top-nav>
     <div class="pageDiv container" style="background-color:#fff;">
       <h></h>
-
       <o-nav></o-nav>
 
 
@@ -19,6 +18,7 @@
         Copyright &copy; 2017 &nbsp;<a href="https://otcgo.cn/">otcgo.cn</a>&nbsp; 版权所有 湘ICP备16019051号-1
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -208,7 +208,7 @@
   }
 
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s ease;
+    transition: opacity .2s ease;
   }
 
   .fade-enter, .fade-leave-active {

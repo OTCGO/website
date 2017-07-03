@@ -2,9 +2,8 @@ import { img } from '~utils/config'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import { decrypt, doValidatePwd } from '~utils/ljsign'
 
-
 export default {
-  data() {
+  data () {
     return {
       img,
       filename: '',
@@ -25,7 +24,7 @@ export default {
   },
 
   methods: {
-    login() {
+    login () {
       this.loading = true
       try {
         const privateKey = decrypt(this.wallet['privateKeyEncrypted'], this.password)
@@ -52,7 +51,7 @@ export default {
         this.$message.error('验证失败，请检查钱包文件与密码重试!')
       }
     },
-    readFile(file) {
+    readFile (file) {
       const reader = new window.FileReader()
       let vm = this
 
@@ -68,28 +67,27 @@ export default {
       }
       reader.readAsText(file)
     },
-    checkFile(file, filename) {
+    checkFile (file, filename) {
       if (!file.hasOwnProperty('publicKey') || !file.hasOwnProperty('publicKeyCompressed') ||
-          !file.hasOwnProperty('privateKeyEncrypted') || !file.hasOwnProperty('address') ||
-          !/.*\.json/.test(filename)) return false
+          !file.hasOwnProperty('privateKeyEncrypted') || !file.hasOwnProperty('address')) return false
       this.filename = filename
       this.filenameError = ''
       return true
     },
-    selectAll(e) {
+    selectAll (e) {
       setTimeout(() => e.target.select(), 0)
     }
   },
 
   computed: {
-    loggedIn() {
+    loggedIn () {
       return this.$store.getters['loggedIn']
     }
   },
 
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.loggedIn ? next('/admin') : next()
+      vm.loggedIn ? next('/admin/balances') : next()
     })
   }
 }

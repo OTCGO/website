@@ -6,8 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --port 8081",
-    "build": "cross-env NODE_ENV=production webpack --progress --colors --profile --display-modules --sort-modules-by size --json > stats.json",
-    "svg": "vsvg -s ./src/images/svgs -t ./src/images/compiled-icons"
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:loccal": "cross-env NODE_ENV=production webpack --progress --colors --profile --display-modules --sort-modules-by size --json > stats.json",
+    "svg": "vsvg -s ./src/images/svgs -t ./src/images/compiled-icons",
+    "standard": "standard --fix"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -53,9 +55,12 @@
     "file-loader": "^0.10.1",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.0",
+    "pre-commit": "^1.2.2",
+    "pre-git": "^3.15.0",
     "pug": "^2.0.0-beta11",
     "pug-loader": "^2.3.0",
     "sass-loader": "^4.1.1",
+    "secp256k1": "^3.3.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
@@ -66,5 +71,25 @@
     "vuelidate": "^0.4.3",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
+  },
+  "standard": {
+    "ignore": [
+      "doc",
+      "src/libs",
+      "src/polyfill"
+    ]
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "",
+      "pre-commit": [
+        "npm run standard",
+        "git add ."
+      ],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkou": [],
+      "post-merge": []
+    }
   }
 }
