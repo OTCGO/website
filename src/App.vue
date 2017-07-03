@@ -69,7 +69,6 @@
   }
 
   .pageDiv {
-    min-width: 1224px;
     padding: 0;
   }
 
@@ -87,10 +86,7 @@
     border: none !important;
   }
 
-  .container-fluid {
-    width: 1200px;
-    margin: 0 auto;
-  }
+
 
   .nav {
     width: 65%;
