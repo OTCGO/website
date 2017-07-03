@@ -199,8 +199,8 @@
             (acc, item) => acc.concat({
               type: {
                 render: true,
-                value: item.ways ? '卖出' : '买入',
-                class: item.ways ? 'green-span' : 'red-span'
+                value: item.way ? '卖出' : '买入',
+                class: item.way ? 'green-span' : 'red-span'
               },
               price: {
                 render: true,

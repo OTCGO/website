@@ -3,7 +3,7 @@
 <template>
   <div id="topNav" class="navbar navbar-default navbar-static-top accounts topNav">
     <div class="navbar-collapse account-collapse collapse">
-      <div class="">
+      <div class="container">
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="//antchain.xyz" target="_blank">
