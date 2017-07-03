@@ -71,7 +71,7 @@
         :nodata="loggedIn ? '暂无' : '请登陆后查看'"
         class="bk-margin-top-10"
         :dataSource="actionDataSource"
-        show
+        show :cancelStatus="cancelStatus"
         @cancel-click="cancel">
         <span slot="table-left" class="font-14">我的委托单:</span>
       </table-container>
