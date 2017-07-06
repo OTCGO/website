@@ -1,10 +1,10 @@
 <template>
   <div class="app">
     <top-nav></top-nav>
+
     <div class="pageDiv container" style="background-color:#fff;">
       <h></h>
       <o-nav></o-nav>
-
 
       <transition name="fade" mode="out-in">
         <keep-alive>

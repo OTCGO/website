@@ -3,7 +3,9 @@ import VueResource from 'vue-resource'
 import Base58 from 'bs58'
 import CryptoJS from 'crypto-js'
 
-import { ljSign } from '~libs/LJSign'
+import Wallet from '~libs/wallet'
+
+const ljSign = (new Wallet()).signatureData
 
 Vue.use(VueResource)
 
@@ -27,7 +29,7 @@ export const getU = async add => (await fetching(`uid/${add}`))
 export const getH = async (name, add, params) => {
   if (name === 'redeem') return await fetching(`redeem/${add}`, { params })
   if (name === 'transfer') return await fetching(`balances/transfer/history/${add}`, { params })
-  throw new Error('No name accepted')
+  return await fetching(`redeem/${add}/`, { params: {options: name} })
 }
 
 export const getB = async () => await fetching('block/count')
@@ -156,11 +158,10 @@ export const getMarketsById = async marketId => await (fetching(`markets/${marke
  */
 
 export const sendAsk = async ({ assetId, valueId, price, amount, hexPubkey }, pr) => {
-  const { transaction, order } = await (fetching('otc/ask', { assetId, valueId, price, amount, hexPubkey }, 'post'))
-  return otcSign({
-    id: order.id,
-    signature: ljSign(pr, transaction)
-  })
+  const { transaction, order: { id } } = await (fetching('otc/ask', { assetId, valueId, price, amount, hexPubkey }, 'post'))
+
+  const signature = ljSign(pr, transaction)
+  return otcSign({ id, signature })
 }
 
 /**
@@ -168,13 +169,11 @@ export const sendAsk = async ({ assetId, valueId, price, amount, hexPubkey }, pr
  */
 
 export const sendBid = async ({ assetId, valueId, price, amount, hexPubkey }, pr) => {
-  const { transaction, order } = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
+  const { transaction, order: { id }} = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
   // 不需要随机字符
   // const nonce = getNonce()
-  return otcSign({
-    id: order.id,
-    signature: ljSign(pr, transaction)
-  })
+  const signature = ljSign(pr, transaction)
+  return otcSign({ id, signature })
 }
 
 /**
@@ -231,21 +230,25 @@ export const getOrderByAddress = async address => await (fetching(`order/${addre
  * 获取市场最新交易
  * @param {市场ID} marketId
  */
-export const getHistoryById = async ({marketId, active, length}) => await (fetching(`history/${marketId}`, { params: { active, length } }))
+export const getHistoryById = async ({ marketId, active, length}) =>
+    await (fetching(`history/${marketId}`, { params: { active, length } }))
 
 /**
  * 获取我的成交单
  * @param {市场ID} marketId
  */
-export const getMyHistoryById = async ({marketId, address, active, length}) => await (fetching(`history/${marketId}`, { params: {address, active, length} }))
+export const getMyHistoryById = async ({marketId, address, active, length}) =>
+    await (fetching(`history/${marketId}`, { params: {address, active, length} }))
 
 /**
  * 获取区块高度
  * @return {height} [number] 高度
  */
-export const getBlockHigh = async () => await (fetching('block/count')).height
+export const getBlockHigh = async () =>
+    await (fetching('block/count')).height
 
-export const claimSign = async ({ id, signature }) => (await fetching('claim/sign', { id, signature }, 'post'))
+export const claimSign = async ({ id, signature }) =>
+    (await fetching('claim/sign', { id, signature }, 'post'))
 
 export const doClaim = async (hexPubkey, pr) => {
   const { order, transaction } = await (fetching('claim', { hexPubkey }, 'post'))

@@ -39,7 +39,7 @@ Vue.http.options.root = '/api/v1'
 Vue.http.options.emulateJSON = true
 
 Vue.component('icon', Icon)
-Vue.component('Vuetable', require('vuetable-2/src/components/Vuetable.vue'))
+// Vue.component('Vuetable', require('vuetable-2/src/components/Vuetable.vue'))
 
 const app = new Vue({
   el: '#app',

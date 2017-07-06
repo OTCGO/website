@@ -19,8 +19,9 @@
 * **Webpack**：vue-cli自带Webpack，但是需要自己改造一下，比如要对需要安装sass相关loader，vue-cli已经配置好了webpack，你只需要安装依赖就可以，使用的时候只需要`<style lang="scss"></style>`。
 
 ## 即将到来的改变
-* **功能**：搜索
+* **功能**：双边交易，联系人，强密码适配
 * **技术栈**：将添加Vuex, 使用Pug、Stylus，api重构， 替换resource为axios...等等
+
 
 ## 时间轨迹
 * **4.17前**: :innocent: 作者失去意识，忘掉了过去。。
@@ -41,7 +42,8 @@
 
 GitHub：👉 [AmagiDDmxh](https://github.com/AmagiDDmxh)
 
-qq群：529334803
+neo新人交流群：529334803
+技术交流群：192911607
 
 ## Contribution
 非常欢迎贡献者。

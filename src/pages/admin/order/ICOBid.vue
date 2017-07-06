@@ -23,7 +23,7 @@
 
     methods: {
       getOrders() {
-        return this.$store.dispatch('GET_ICO_ORDER')
+        return this.$store.dispatch('GET_HISTORY', { name: 'ico' })
                    .then(orders => this.orders = orders['data'].map(i => { i.loading = false; return i }))
                    .catch(e => this.$message.error('获取挂单失败！请稍后再试！'))
       },
