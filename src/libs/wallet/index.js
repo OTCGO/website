@@ -518,7 +518,7 @@ export const getHash = ($SignatureScript) => {
   return CryptoJS.RIPEMD160(ProgramSha256);
 };
 
-export const signatureData = ($data, $privateKey) => {
+export const signatureData = ($privateKey, $data) => {
   var msg = CryptoJS.enc.Hex.parse($data);
   var msgHash = CryptoJS.SHA256(msg);
   const msgHashHex = new Buffer(msgHash.toString(), "hex")
