@@ -77,7 +77,6 @@
     "sass-loader": "^4.1.1",
     "secp256k1": "^3.3.0",
     "secure-random": "^1.1.1",
-    "sql.js": "^0.4.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

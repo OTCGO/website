@@ -74,15 +74,17 @@
             this.password.length > 16 || this.passwordConfirmed.length > 16) return
 
         // 生成公私钥对
+        let publicKey, privateKey, keyPair
+
         if (this.wif) {
           if (!/[a-z0-9A-Z]{52}/.test(this.wif)) { this.wifError = !this.wifError; return }
 
-          var publicKey = ljWifkeyToPubkey(this.wif)
-          var privateKey = ljWifkeyToHexkey(this.wif)
+          publicKey = ljWifkeyToPubkey(this.wif)
+          privateKey = ljWifkeyToHexkey(this.wif)
         } else {
-          var keyPair = genKeyPairHex()
-          var publicKey = keyPair['pubhex']
-          var privateKey = keyPair['prvhex']
+          keyPair = genKeyPairHex()
+          publicKey = keyPair['pubhex']
+          privateKey = keyPair['prvhex']
         }
         const privateKeyEncrypted = encryptPrivateKey(privateKey, this.passwordConfirmed)
         const publicKeyCompressed = getCompressedPubHex(publicKey)
@@ -90,7 +92,7 @@
         this.loading = true
         this.$store.commit('SET_FILE_NAME', `${this.username}.json`)
         this.$store.dispatch('SIGN_UP', { publicKeyCompressed, publicKey, privateKeyEncrypted, privateKey })
-            .then(() => { this.loading = false; this.$router.push('/signUpNext'); },
+            .then(() => { this.loading = false; this.$router.push('/signUpNext') },
                   () => { this.loading = false; this.$message.error('创建钱包失败，请重试') })
       }
     }

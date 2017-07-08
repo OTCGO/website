@@ -3,9 +3,7 @@ import VueResource from 'vue-resource'
 import Base58 from 'bs58'
 import CryptoJS from 'crypto-js'
 
-import Wallet from '~libs/wallet'
-
-const ljSign = (new Wallet()).signatureData
+import { signatureData as ljSign } from '~libs/wallet'
 
 Vue.use(VueResource)
 
