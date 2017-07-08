@@ -178,13 +178,13 @@
       officialSite() {
         switch (this.deliverCurrency) {
           case 'ANS' || 'ANC':
-            return 'https://www.antshares.org/'
+            return '//www.antshares.org/'
           case 'LZG' || 'LZJ':
-            return 'http://www.jieshu.ren/'
+            return '//www.jieshu.ren/'
           case 'KAC':
-            return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
+            return '//www.kaipaicollege.com/kpxy-pc/index.html'
           default:
-            return 'https://www.antshares.org/'
+            return '//www.antshares.org/'
         }
       },
       tokenDetails() {
