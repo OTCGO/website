@@ -120,8 +120,9 @@
           :tableHeader="mytradeHeader"
           :dataSource="tradeDataSource">
           <span slot="table-left" class="font-14 table-left font-emphasize">最新成交:</span>
-          <a slot="table-right" class="bk-point-cursor font-14 blue-span table-right" @click="getMyHistory">
-            交易记录</a>
+          <router-link slot="table-right"
+                       class="bk-point-cursor font-14 blue-span table-right"
+                       to="/admin/history/transaction">交易记录</router-link>
         </table-container>
       </div>
     </div>

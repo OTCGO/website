@@ -231,16 +231,6 @@
         })
         .catch(err => this.$message.error(JSON.parse(err.bodyText).error))
       },
-      getMyHistory () {
-        // 获取最新交易
-        this.loggedIn
-        ? window.$router.push({
-          name: 'transactionH'
-        })
-        : window.$router.push({
-          name: 'login'
-        })
-      },
       // 挂买单
       bidAction () {
         if (this.loggedIn) {

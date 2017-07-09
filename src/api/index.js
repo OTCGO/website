@@ -27,7 +27,7 @@ export const getU = async add => (await fetching(`uid/${add}`))
 export const getH = async (name, add, params) => {
   if (name === 'redeem') return await fetching(`redeem/${add}`, { params })
   if (name === 'transfer') return await fetching(`balances/transfer/history/${add}`, { params })
-  return await fetching(`redeem/${add}/`, { params: {options: name} })
+  return await fetching(`redeem/${add}`, { params: {option: name} })
 }
 
 export const getB = async () => await fetching('block/count')
