@@ -9,7 +9,7 @@
 欢迎大家star和fork😄
 
 ## 预览
-在线预览地址：👉 http://testnet.otcgo.com/
+在线预览地址：👉 http://future.otcgo.cn
 
 ## 技术栈
 * **Vue2.0**：前端页面展示。
@@ -36,7 +36,7 @@
 * **CSS**：css的整体重构优化与加强
 
 ## About
-源代码地址：👉 [GitHub](https://github.com/AmagiDDmxh/otcgo)
+源代码地址：👉 [GitHub](https://github.com/OTCGO/website)
 
 白皮书： [中文]() -**等待更新**
 
@@ -52,7 +52,7 @@ neo新人交流群：529334803
 
 ``` bash
 # clone the project
-git clone https://github.com/AmagiDDmxh/otcgo.git
+git clone https://github.com/OTCGO/website.git
 
 # install dependencies
 npm install
