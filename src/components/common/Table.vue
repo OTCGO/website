@@ -26,10 +26,8 @@
                 {{ status ? items.value : '等待下一区块' }}
               </button>
             </td>
-            <td v-if="show" @click="cancel(item)">
-              <a class="green-span bk-point-cursor"
-                 :class="cancelStatus ? '' : 'disabled'"
-              >{{ cancelStatus ? '撤销' : '执行中' }}</a>
+            <td @click="cancel(item)">
+              <a v-show="showCancel" class="green-span bk-point-cursor">撤销</a>
             </td>
           </tr>
           
@@ -64,7 +62,7 @@ export default {
       type: Boolean,
       default: false
     },
-    show: {
+    showCancel: {
       type: Boolean,
       default: false
     },

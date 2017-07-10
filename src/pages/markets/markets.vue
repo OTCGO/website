@@ -75,7 +75,8 @@
         sellAnsPrice: '', // 卖出的价格
         bidLoading: false,
         askLoading: false,
-        cancelStatus: true
+        cancelStatus: true,
+        cancelDisplay: true
       }
     },
 
@@ -328,7 +329,7 @@
 
       // 撤销买卖单
       cancel (item) {
-        this.cancelStatus = false
+        this.cancelDisplay = this.cancelStatus = false
 
         if (this.loggedIn) {
 
@@ -337,9 +338,12 @@
           })
               .then(data => {
                 this.$message.success('撤销成功')
-                this.cancelStatus = true
+                this.cancelDisplay = this.cancelStatus = true
               })
-              .catch(err => this.$message.error(JSON.parse(err.bodyText).error))
+              .catch(err => {
+                this.$message.error(JSON.parse(err.bodyText).error)
+                this.cancelDisplay = this.cancelStatus = true
+              })
         }
         else window.$router.push({ name: 'login' })
       },
