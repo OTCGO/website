@@ -44,12 +44,12 @@
 
     created() {
       this.getAsset()
-      window.balancesTimer = window.setInterval(() => this.getAsset(), 1000 * 2)
+      this.balancesTimer = window.setInterval(() => this.getAsset(), 1000 * 2)
       this.getUID()
     },
 
     destroyed() {
-      window.clearInterval(window.balancesTimer)
+      window.clearInterval(this.balancesTimer)
     }
   }
 </script>

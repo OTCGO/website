@@ -26,8 +26,8 @@
                 {{ status ? items.value : '等待下一区块' }}
               </button>
             </td>
-            <td @click="cancel(item)">
-              <a v-show="showCancel" class="green-span bk-point-cursor">撤销</a>
+            <td>
+              <a @click="cancel(item)" v-show="showCancel" class="green-span bk-point-cursor">撤销</a>
             </td>
           </tr>
           
