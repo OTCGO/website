@@ -9,24 +9,31 @@ red = #df2626
   align-items: center
   height: 100vh
 
-@media screen and (max-width: 500px)
-  .admin-group
-    align-items: baseline
 
 
-@media(max-width:768px)
+@media (min-width: 768px)
   .hidden-xs
     display: none !important
   .visible-xs
     display: block
+  .container-fluid 
+    width: 750px
+    margin: 0 auto
 
-@media(min-width:768px) and (max-width:1180px)
+@media (min-width: 992px)
   .visible-xs
     display: none
+  .container-fluid 
+    width: 9800px
+    margin: 0 auto  
 
-@media(min-width:1180px)
+@media (min-width: 1200px)
   .visible-xs
     display: none
+  .container-fluid 
+    width: 1180px
+    margin: 0 auto
+  
 
 .text-error
   display: inline-block
@@ -261,6 +268,9 @@ red = #df2626
   font-size: 12px
 .font-14
   font-size: 14px
+.font-emphasize
+  font-weight: bold
+  font-size: 16px
 .el-button--fill
   width: 100%
 .el-flex-between
@@ -272,6 +282,7 @@ red = #df2626
   padding: 8px 15px
   outline: none
   background-color: #fff
+
 
 .bk-point-cursor
   cursor: pointer

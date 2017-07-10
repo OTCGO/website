@@ -3,13 +3,8 @@
     .index
       el-carousel(:interval="5000", height="400px")
         el-carousel-item(v-for="banner in banners")
-          router-link(:to="banner.route").progressive
-            img.preview(
-            v-progressive="banner.src",
-            :src="banner.preview",
-            :alt="banner.dec",
-            :data-src="banner.src"
-            )
+          router-link(:to="banner.route")
+            img(:src="banner.src", :alt="banner.dec")
       o-content
 </template>
 
@@ -41,23 +36,7 @@
         }
       ],
       loading: false
-    }),
-
-    methods: {
-      handleOpen(a, b) {
-        console.log('[open]: ', a, b)
-      },
-
-      handleClose(a, b) {
-        console.log('[close]: ', a, b)
-      },
-
-      hand() {
-        this.loading = true
-        this.$store.dispatch('GET_ASSET')
-            .then(() => this.loading = false)
-      }
-    }
+    })
   }
 </script>
 
@@ -67,6 +46,12 @@
 
   .el-table__header .is-leaf
     text-align: center
+
+@media (max-width: 500px)
+  .el-carousel
+    display none
+  form.navbar-right
+    display none
 
   .el-carousel__item img
     width: 100%

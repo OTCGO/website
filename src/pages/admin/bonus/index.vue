@@ -29,20 +29,25 @@
     created() {
       this.getClaim()
 
+      this.claimTimer = setInterval(
+          () => this.$store.dispatch('GET_ASSET')
+                    .then(() => this.getClaim())
+          , 2000)
+
       this.$store.watch(state => state.blockHeight, (newVal, oldVal) => {
-        if (newVal !== oldVal) this.claimStatus = true
+        if (newVal !== oldVal) this.blockChanged = true
       })
     },
     data: () => ({
       bonusHeader,
       bonusSource: [],
-      blockChanged: false
+      blockChanged: true
     }),
     components: { oTable },
     computed: {
       ...mapGetters(['balances', 'blockHeight']),
       claimStatus() {
-        return this.bonusSource[0].enable > 0
+        return this.bonusSource[0].enable.value > 0 && this.blockChanged
       }
     },
     methods: {
@@ -64,11 +69,12 @@
       },
       claim(cb) {
         cb(false)
+        this.blockChanged = false
         this.$store.dispatch('DO_CLAIM')
             .then(r => {
               if (r.hasOwnProperty('result') && r.result) this.$message.success('提取成功')
               if (r.error) this.$message.warning(r.error)
-              this.$store.dispatch('GET_ASSET')
+              this.$store.dispatch('GET_ASSET').then(() => this.getClaim())
             })
             .catch(e => {
               this.$message.error(JSON.parse(e.bodyText).error)
@@ -79,6 +85,9 @@
           this.getClaim()
         }
       }
+    },
+    destroyed() {
+      window.clearInterval(this.claimTimer)
     }
   }
 </script>

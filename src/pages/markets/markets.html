@@ -42,7 +42,7 @@
           <input class="form-control" type="number" v-model.trim.number="payNum" placeholder="请输入购买数量" />
         </div>
         <div class="bk-margin-top-10">
-          <input class="form-control" type="number" v-model.trim.number="payAnsPrice" :placeholder="buyPlaceHolder" />
+          <input class="form-control" type="number" v-model.trim.number="payAnsPrice" :placeholder="buyPlaceHolder" @keydown.enter="bidAction" />
         </div>
         <p class="font-12 bk-margin-top-10">订单总额：<span class="red-span font-14">{{ totoalMoney }} {{ receiveCurrency }}</span></p>
         <el-button type="danger" @click="bidAction"
@@ -60,7 +60,7 @@
           <input class="form-control" type="number" v-model.trim.number="sellNum" placeholder="请输入卖出数量" />
         </div>
         <div class="bk-margin-top-10">
-          <input class="form-control" type="number" v-model.trim.number="sellAnsPrice" :placeholder="sellPlaceHolder" />
+          <input class="form-control" type="number" v-model.trim.number="sellAnsPrice" @keyup.enter="askAction" :placeholder="sellPlaceHolder" />
         </div>
         <p class="font-12 bk-margin-top-10">订单总额：<span class="green-span font-14">{{ totoalSellMoney }} {{ receiveCurrency }}</span></p>
         <el-button type="success" :loading="askLoading" @click="askAction" class="btn-block bk-margin-top-10">卖出</el-button>
@@ -71,9 +71,9 @@
         :nodata="loggedIn ? '暂无' : '请登陆后查看'"
         class="bk-margin-top-10"
         :dataSource="actionDataSource"
-        show :cancelStatus="cancelStatus"
+        :showCancel="cancelDisplay" :cancelStatus="cancelStatus"
         @cancel-click="cancel">
-        <span slot="table-left" class="font-14">我的委托单:</span>
+        <span slot="table-left" class="font-14 font-emphasize">我的委托单:</span>
       </table-container>
     </div>
     <div class="el-content-right">
@@ -119,9 +119,10 @@
           class="bk-margin-top-30"
           :tableHeader="mytradeHeader"
           :dataSource="tradeDataSource">
-          <span slot="table-left" class="font-14 table-left">最新成交:</span>
-          <a slot="table-right" class="bk-point-cursor font-14 blue-span table-right" @click="getMyHistory">
-            交易记录</a>
+          <span slot="table-left" class="font-14 table-left font-emphasize">最新成交:</span>
+          <router-link slot="table-right"
+                       class="bk-point-cursor font-14 blue-span table-right"
+                       to="/admin/history/transaction">交易记录</router-link>
         </table-container>
       </div>
     </div>

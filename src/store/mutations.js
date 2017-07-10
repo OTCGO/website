@@ -69,6 +69,8 @@ export default {
     aLink.href = window.URL.createObjectURL(file)
     aLink.download = state.fileName
     aLink.click()
+
+    window.URL.revokeObjectURL(aLink.href)
   },
   [type.setFileName] (state, fileName) {
     state.fileName = fileName

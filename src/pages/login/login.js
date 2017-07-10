@@ -87,7 +87,7 @@ export default {
 
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.loggedIn ? next('/admin/balances') : next()
+      vm.loggedIn ? next('/admin/balances') : next('/login')
     })
   }
 }

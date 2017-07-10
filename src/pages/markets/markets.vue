@@ -75,7 +75,8 @@
         sellAnsPrice: '', // 卖出的价格
         bidLoading: false,
         askLoading: false,
-        cancelStatus: true
+        cancelStatus: true,
+        cancelDisplay: true
       }
     },
 
@@ -178,13 +179,13 @@
       officialSite() {
         switch (this.deliverCurrency) {
           case 'ANS' || 'ANC':
-            return 'https://www.antshares.org/'
+            return '//www.antshares.org/'
           case 'LZG' || 'LZJ':
-            return 'http://www.jieshu.ren/'
+            return '//www.jieshu.ren/'
           case 'KAC':
-            return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
+            return '//www.kaipaicollege.com/kpxy-pc/index.html'
           default:
-            return 'https://www.antshares.org/'
+            return '//www.antshares.org/'
         }
       },
       tokenDetails() {
@@ -199,8 +200,8 @@
             (acc, item) => acc.concat({
               type: {
                 render: true,
-                value: item.ways ? '卖出' : '买入',
-                class: item.ways ? 'green-span' : 'red-span'
+                value: item.way ? '卖出' : '买入',
+                class: item.way ? 'green-span' : 'red-span'
               },
               price: {
                 render: true,
@@ -230,16 +231,6 @@
           success(data)
         })
         .catch(err => this.$message.error(JSON.parse(err.bodyText).error))
-      },
-      getMyHistory () {
-        // 获取最新交易
-        this.loggedIn
-        ? window.$router.push({
-          name: 'transactionH'
-        })
-        : window.$router.push({
-          name: 'login'
-        })
       },
       // 挂买单
       bidAction () {
@@ -338,17 +329,21 @@
 
       // 撤销买卖单
       cancel (item) {
+        this.cancelDisplay = this.cancelStatus = false
+
         if (this.loggedIn) {
-          this.cancelStatus = false
 
           this.$store.dispatch('CANCEL', {
             id: item.id.value
           })
               .then(data => {
                 this.$message.success('撤销成功')
-                this.cancelStatus = true
+                this.cancelDisplay = this.cancelStatus = true
               })
-              .catch(err => this.$message.error(JSON.parse(err.bodyText).error))
+              .catch(err => {
+                this.$message.error(JSON.parse(err.bodyText).error)
+                this.cancelDisplay = this.cancelStatus = true
+              })
         }
         else window.$router.push({ name: 'login' })
       },

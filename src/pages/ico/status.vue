@@ -153,7 +153,6 @@
               setTimeout(() => this.loading = false, 2000)
             })
             .catch(e => {
-              console.log(e)
               setTimeout(() => this.loading = false, 2000)
             })
       },
@@ -181,8 +180,12 @@
     },
 
     destroyed() {
-      clearInterval(this.icoTimer)
-      clearInterval(this.countdownTimer)
+      window.clearInterval(this.icoTimer)
+      window.clearInterval(this.countdownTimer)
+    },
+
+    beforeRouteLeave(to, from, next) {
+      next(vm => vm.$destroy())
     }
   }
 </script>

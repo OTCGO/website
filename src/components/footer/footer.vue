@@ -1,7 +1,7 @@
 <template lang="html">
     <div id="footer">
         <div class="row footer-top" >
-            <div class="col-lg-3 col-sm-3 col-md-3 bg-li">
+            <div class="col-lg-3 col-md-6 col-sm-12  bg-li">
                 <span class="bg-blue  bg-blue1">
           </span>
                 <div class="foot-li" style="">
@@ -9,7 +9,7 @@
                     <p class="foot-des">智能合约点对点结算</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-3 col-md-3 bg-li">
+            <div class="col-lg-3 col-md-6 col-sm-12 bg-li">
                 <span class="bg-blue  bg-blue2">
           </span>
                 <div class="foot-li" style="">
@@ -17,7 +17,7 @@
                     <p class="foot-des">无确认的信息撮合效率</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-3 col-md-3 bg-li">
+            <div class="col-lg-3 col-md-6 col-sm-12 bg-li">
                 <span class="bg-blue bg-blue3">
           </span>
                 <div class="foot-li" style="">
@@ -25,7 +25,7 @@
                     <p class="foot-des">交易手续费全网最低</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-3 col-md-3 bg-li" style="background-image:none">
+            <div class="col-lg-3 col-md-6 col-sm-12 bg-li" style="background-image:none">
                 <span class="bg-blue bg-blue4">
           </span>
                 <div class="foot-li" style="">
@@ -39,7 +39,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="row about">
                     <div class="col-lg-10 col-md-10  row">
-                        <div class="col-lg-3  col-md-3 text-center">
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center">
                             <h4 class="text-color text-type2">合作伙伴</h4>
                             <!--  <ul class="list-unstyled">
                       <li><router-link class="text-color2" to="/time-entries">小蚁区快链</router-link></li>
@@ -48,7 +48,7 @@
                     <li><router-link class="text-color2" to="/time-entries">巴比特</router-link></li>
                     </ul> -->
                         </div>
-                        <div class="col-lg-3 col-md-3 text-center">
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center">
                             <router-link to="/about">
                               <h4 class="text-color text-type2">了解我们</h4>
                             </router-link>
@@ -59,7 +59,7 @@
                     <li><router-link class="text-color2" to="/time-entries">联系我们</router-link></li>
                     </ul> -->
                         </div>
-                        <div class="col-lg-3 col-md-3 text-center">
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center">
                             <h4 class="text-color text-type2">帮助中心</h4>
                             <!--  <ul class="list-unstyled">
                     <li><router-link class="text-color2" to="/time-entries">投资流程</router-link></li>
@@ -68,7 +68,7 @@
                     <li><router-link class="text-color2" to="/time-entries">常见问题</router-link></li>
                     </ul> -->
                         </div>
-                        <div class="col-lg-3 col-md-3 text-center">
+                        <div class="col-lg-3 col-md-6 col-sm-12 text-center">
                             <h4 class="text-color text-type2">友情链接</h4>
                             <!--  <ul class="list-unstyled">
                       <li><router-link class="text-color2" to="/time-entries">小蚁官网</router-link></li>
@@ -97,7 +97,6 @@ export default {}
 
 #footer {
     background-color: #eee;
-    width: 1224px;
 }
 .footer-top{
     padding: 80px;
@@ -137,7 +136,7 @@ export default {}
 .foot-li {
     display: inline-block;
     font-family: '黑体';
-    padding-left: 12px;
+    padding-left: 0;
     vertical-align: top;
     padding-top: 4px;
 }

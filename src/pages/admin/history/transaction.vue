@@ -76,7 +76,8 @@
           name: 'redeem',
           params: {
             active: this.currentPage,
-            length: this.pageLength
+            length: this.pageLength,
+            option: 'otc'
           }
         }).then(r => {
           this.histories = r['data'].map(i => {

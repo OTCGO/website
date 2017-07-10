@@ -116,7 +116,7 @@
 /*container*/
 .el-content-right
   float: left
-  width: 850px
+  width: 70%
   padding-right: 20px
   padding-left: 20px
   &-header
@@ -124,15 +124,17 @@
     & h4
       font-weight: lighter !important
       font-size: 20px
+    p
+      font-size: 20px
 
 
 .el-content-left
   float: left
   padding: 0 20px
-  width: 350px
+  width: 300px
   box-sizing: border-box
   .el-button-lg
-    padding: 15px 35px
+    padding: 15px 25px
     font-size: 17px
   .el-content-pannel
     border: 1px solid #ddd
@@ -166,3 +168,8 @@
   &-signup
     color: #7c7c7c
 
+@media (max-width: 1000px)
+  .el-content-right
+    width 100%
+  .el-content-left
+    width 100%

@@ -1,37 +1,161 @@
-const ba58 = require('bs58')
-const CryptoJS = require('crypto-js')
+import chai from 'chai'
+import { ab2str,
+  str2ab,
+  hexstring2ab,
+  ab2hexstring,
+  reverseArray,
+  numStoreInMemory,
+  stringToBytes } from '../src/libs/wallet/utils'
+import Wallet from '../src/libs/wallet/index'
+import axios from 'axios'
+var chaiAsPromised = require('chai-as-promised')
+chai.use(chaiAsPromised)
+const should = chai.should()
 
-/**
- * Created by Amagi on 5/13/2017.
- */
+describe('Wallet', () => {
+  let wallet
+  const testnet = {
+    hostName: 'Testnet otcgo',
+    hostProvider: 'otcgo.cn',
+    restapi_host: 'http://api.otcgo.cn',
+    restapi_port: '20332',
+    webapi_host: 'http://testnet.antchain.org',
+    webapi_port: '80'
+  }
 
-function translateW (publicKeyCompressed) {
-  const redeem = '21' + publicKeyCompressed + 'ac'
-  const unhex = CryptoJS.enc.Hex.parse(redeem)
-  const scriptHash = CryptoJS.enc.Hex.parse('17' + CryptoJS.RIPEMD160(CryptoJS.SHA256(unhex)).toString())
-  const address = scriptHash + CryptoJS.SHA256(CryptoJS.SHA256(scriptHash)).toString().substring(0, 8)
-  const bytes = Buffer.from(address, 'hex')
-  return ba58.encode(bytes)
-}
+  const myTestnetWallet = {
+    address1: {
+      address: 'ALfnhLg7rUyL6Jr98bzzoxz5J7m64fbR4s',
+      privKey: '9ab7e154840daca3a2efadaf0df93cd3a5b51768c632f5433f86909d9b994a69',
+      pubKeyEncoded: '021d8e1630ce640966967bc6d95223d21f44304133003140c3b52004dc981349c9',
+      wif: 'L2QTooFoDFyRFTxmtiVHt5CfsXfVnexdbENGDkkrrgTTryiLsPMG'
+    },
 
-const json = {
-  '02467ff70c2c26f51150cef52971705b2ea3f02cbd0d15febbc136d1e472527fd7': 'AJfLiQuzWR1Eba7WRsVpi1mm81cLYd22Kf',
-  '03f5330ebf04f3865ee29d03659afef296c74312f4208d4459f7ecb3d8111b69b0': 'ANXwnGms3HsCasDRVJkHTSkDodKVkHZ1bx',
-  '030ea1e1beac3690d8577fc31b13b80b5545ea2fce8256677c043ba4327018427a': 'ARNJq921QUk7qTe2G3Z4as8WWqoruuH5Re',
-  '022853a8d10b77e59b9feac00bf8101736eeee286e648f4b084e0a160f610349e8': 'AZKeNwfiqm7ff3jV7nLrcMbLhVFdrM1KNH',
-  '03ecc5523800f95fa87f5150f37453e6a70494747e1a81d687556c374080bc2035': 'AcmPw3KUjfH7XRZiH588LhDVA9ArSHLis9',
-  '036d5d3466706c8451a2db8003462a318e0a4f02d85789f709f9bd1f8f8ec85a50': 'AM6PhPEK3VXb81eVmJwBZNgDMRzrkbyhkb',
-  '02fc03c67530e8358377ab3bed8578f76cfccb54a70d7d9a7aa7bf83196a054055': 'AVuUkfMX4YPivApYWUVqCNnm7mUivGyXfr',
-  '03a51482ce5299652d787f02422e4d57f647848392f024b8580fa39137a2342a7f': 'AJnNUn6HynVcco1p8LER72s4zXtNFYDnys',
-  '02b0b345cc7fa6552d14e1af28deb1713e345057705410ed6cbf46c9342dd515e9': 'AZepCd95jtuk3zaMXmQ1ACJFc3pKVMB5fA',
-  '031ca6107ddee378d6c3e8c68ac61c3e82024de357cbcacc04d935780695308200': 'AHY2D4ahdFjhk5pos4jeDd8RP9hL3ARvzY',
-  '03fa02cf9f618b97be144a3f2f4a86ea289c70e6e9150d2aac8670fc80a94ea851': 'AdBZW1EaB18PM9r3wPTZBH5naR8EwEMJf4',
-  '02845ae7c192aeddf1ed7ab102ef1bf8807acdaa496c6143f69ba9113a4d244076': 'Ada4yLLMGugaWe71BYJbLtoYfdnJq8BXB9',
-  '033ce7165f4d798296bff5327e16ca82eed79f9143fa23ee535a54fb768991d9a9': 'ASE3wkPQR4mFHwpwkdNqbSZps6D3wPZjCg'
-}
+    address2: {
+      address: 'AVf4UGKevVrMR1j3UkPsuoYKSC4ocoAkKx',
+      privKey: '3edee7036b8fd9cef91de47386b191dd76db2888a553e7736bb02808932a915b',
+      pubKeyEncoded: '02232ce8d2e2063dce0451131851d47421bfc4fc1da4db116fca5302c0756462fa',
+      wif: 'KyKvWLZsNwBJx5j9nurHYRwhYfdQUu9tTEDsLCUHDbYBL8cHxMiG'
+    }
+  }
 
-Object.keys(json).forEach((pubKeyCom, i) => {
-  console.log(`[${i}]: ${translateW(pubKeyCom) === json[pubKeyCom]}`)
+  const rpcEndpoint = testnet.restapi_host + ':' + testnet.restapi_port
+  const apiEndpoint = testnet.webapi_host
+
+  beforeEach((done) => {
+    wallet = new Wallet()
+    done()
+  })
+
+  it('should connect to the testnet node and get block count', (done) => {
+    var instance = axios.create({
+      headers: { 'Content-Type': 'application/json' }
+    })
+
+    const jsonRpcData = { 'jsonrpc': '2.0', 'method': 'getblockcount', 'params': [], 'id': 4 }
+    instance.post(rpcEndpoint, jsonRpcData)
+            .then((res) => {
+              res.status.should.equal(200)
+              res.data.result.should.be.a('number')
+              done()
+            })
+  })
+
+  it('should generate a new private key', (done) => {
+    const privateKey = ab2hexstring(wallet.generatePrivateKey())
+    privateKey.should.have.length(64)
+    done()
+  })
+
+  it('should generate new wallet from new password', (done) => {
+    const password = Math.random().toString(36).slice(-8) // generates a random password
+    const privateKey = ab2hexstring(wallet.generatePrivateKey())
+    // console.log(privateKey);
+
+    const walletBlob = wallet.generateWalletFileBlob(privateKey, password)
+    walletBlob.should.be.an('Uint8Array')
+    done()
+  })
+
+  it('should open wallet and get a balance', (done) => {
+    const ret = wallet.GetAccountsFromPrivateKey(myTestnetWallet.address1.privKey)
+    ret.should.not.equal(-1)
+    console.log(ret)
+
+    const address = ret[0].address
+    address.should.be.a('string')
+    // console.log(address);
+
+    axios.get(apiEndpoint + '/api/v1/address/get_unspent/' + address)
+         .then((res) => {
+           console.log(res.data)
+           res.data.should.be.an('array')
+           parseInt(res.data[0].balance).should.be.a('number')
+           done()
+         })
+  })
+
+  it('should create signature data', (done) => {
+    const txData = '8000000121d55c8859b58a36a28a88679f235409ff144ff509576e74f3588e22e108f70e0100029b7cffdaa674beae0f930ebe6085af9093e5fe56b34a5c220ccdcf6efc336fc500e1f505000000009847e26135152874355e324afd5cc99f002acb339b7cffdaa674beae0f930ebe6085af9093e5fe56b34a5c220ccdcf6efc336fc500c6665e7400000035b20010db73bf86371075ddfba4e6596f1ff35d'
+    const privKey = '9ab7e154840daca3a2efadaf0df93cd3a5b51768c632f5433f86909d9b994a69'
+    const sign = wallet.signatureData(txData, privKey)
+    console.log(sign)
+    done()
+  })
+
+  it('should get the public key from private key', (done) => {
+    const publicKey = wallet.getPublicKey(myTestnetWallet.address2.privKey, 'hex').toString('hex')
+    console.log('publicKey', publicKey)
+    publicKey.should.equal(myTestnetWallet.address2.pubKeyEncoded)
+    done()
+  })
+
+  it('should send ANS from address 1 to address 2', (done) => {
+    const from = myTestnetWallet.address1
+    const to = myTestnetWallet.address2
+
+    // this is really just getting your public address e.g. ALfnhLg7rUyL6Jr98bzzoxz5J7m64fbR4s
+    const ret = wallet.GetAccountsFromPrivateKey(from.privKey)
+    ret.should.not.equal(-1)
+
+    const address = ret[0].address
+    address.should.be.a('string')
+    // console.log('address from', address);
+
+    // gets a list of accounts (ANS or ANC) - should really be checkingwhich account is ANC (小蚁币) or ANS (小蚁股)
+    return axios.get(apiEndpoint + '/api/v1/address/get_unspent/' + address)
+                .then((res) => {
+                  // console.log("res.data",  res.data);
+                  var publicKeyEncoded = from.pubKeyEncoded
+                  const toAddress = to.address
+                  var txData = wallet.TransferTransaction(res.data[0], publicKeyEncoded, toAddress, 1)
+                  var privateKey = from.privKey
+                  // console.log('txData', txData);
+                  // console.log('privateKey', privateKey)
+                  var sign = wallet.signatureData(txData, privateKey)
+                  // console.log('sign', sign);
+                  var txRawData = wallet.AddContract(txData, sign, publicKeyEncoded)
+
+                  var instance = axios.create({
+                    headers: { 'Content-Type': 'application/json' }
+                  })
+
+                  const jsonRpcData = { 'jsonrpc': '2.0', 'method': 'sendrawtransaction', 'params': [txRawData], 'id': 4 }
+                  return instance.post(rpcEndpoint, jsonRpcData)
+                }).then((res) => {
+                  console.log(res.status)
+                  console.log(res.data)
+
+          // res.data.result will be true for transaction that went through, or false for failed transaction
+                  if (res.status === 200) {
+                    var txhash = reverseArray(hexstring2ab(wallet.GetTxHash(txData.substring(0, txData.length - 103 * 2))))
+                    console.log('txhash is', txhash)
+                    res.data.result.should.equal(true)
+                  }
+                  done()
+                }).catch((err) => {
+                  console.log('[ERROR]', err)
+                  done(err)
+                })
+  })
 })
-
-console.log(translateW('03f84936879fe91ba51e3e9166a59753cbde6398ad1e53269b896b608495d495a7'))

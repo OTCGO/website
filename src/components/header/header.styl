@@ -15,26 +15,57 @@
   margin-top 20px
 
 
-.logo-right
-  float right
-  padding 10px 20px 0 0
-  margin-top: 15px
-  li
-    list-style none
-    float left
-    border-right 1px solid #dadada
-    .header-a
-      color #7c7c7c
-      margin 0 13px
-      &.active
-        text-decoration: underline
-      &:hover
+
+@media (max-width: 500px)
+  .logo-left
+    width 150px
+  .logo
+    padding 10px
+
+@media (max-width: 768px)
+  .logo-right
+    float none
+    padding 0
+    margin-top: 5px
+    li
+      list-style none
+      float left
+      border-right 1px solid #dadada
+      .header-a
+        color #7c7c7c
+        margin 0 13px
+        &.active
+          text-decoration: underline
+        &:hover
+          color #009cff
+          cursor: pointer
+    .border
+      border-left 1px solid #dadada
+      a
         color #009cff
-        cursor: pointer
-  .border
-    border-left 1px solid #dadada
-    a
-      color #009cff
+    
+
+@media (min-width: 768px)
+  .logo-right
+    float right
+    padding 10px 20px 0 0
+    margin-top: 15px
+    li
+      list-style none
+      float left
+      border-right 1px solid #dadada
+      .header-a
+        color #7c7c7c
+        margin 0 13px
+        &.active
+          text-decoration: underline
+        &:hover
+          color #009cff
+          cursor: pointer
+    .border
+      border-left 1px solid #dadada
+      a
+        color #009cff
 
 .logout
   margin-right: 0

@@ -1,15 +1,13 @@
 <template>
   <div class="app">
     <top-nav></top-nav>
+
     <div class="pageDiv container" style="background-color:#fff;">
       <h></h>
       <o-nav></o-nav>
 
-
       <transition name="fade" mode="out-in">
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
+        <router-view></router-view>
       </transition>
 
 
@@ -69,7 +67,6 @@
   }
 
   .pageDiv {
-    min-width: 1224px;
     padding: 0;
   }
 
@@ -87,10 +84,7 @@
     border: none !important;
   }
 
-  .container-fluid {
-    width: 1200px;
-    margin: 0 auto;
-  }
+
 
   .nav {
     width: 65%;
