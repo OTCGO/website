@@ -6,12 +6,12 @@
   </div>
   <div class="row">
     <div class="el-content-left">
-      <div class="el-flex-between">
-        <a :href="officialSite" target="_blank">
-          <button class="el-button el-button--primary el-button-lg">官方网站</button>
+      <div class="el-flex-between row">
+        <a :href="officialSite" target="_blank" class="col-xs-12 col-sm-12 col-md-6">
+          <button class="el-button el-button--primary el-button-lg btn btn-block">官方网站</button>
         </a>
-         <a :href="tokenDetails" target="_blank">
-          <button class="el-button el-button--primary el-button-lg">代币详情</button>
+         <a :href="tokenDetails" target="_blank" class="col-xs-12 col-sm-12 col-md-6">
+          <button class="el-button el-button--primary el-button-lg btn-block">代币详情</button>
         </a>
       </div>
       <div class="el-content-pannel" v-if="loggedIn">
@@ -78,19 +78,19 @@
     </div>
     <div class="el-content-right">
       <div class="row el-content-right-header">
-        <div class="col-xs-3">
+        <div class="col-md-3 col-xs-6">
           <h4>{{ name }}/{{ receiveName }}</h4>
           <p class="blue-span">{{ deliverCurrency }}/{{ receiveCurrency }}</p>
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3 col-xs-6">
           <h4>最新价</h4>
           <p class="blue-span">{{ currentPrice }}{{ receiveCurrency }}</p>
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3 col-xs-6">
           <h4>24H成交量</h4>
           <p class="blue-span">{{ totalTrade }}{{ deliverCurrency }}</p>
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3 col-xs-6">
           <h4>24H涨跌幅</h4>
           <p :class="[rate > 0 ? 'red-span' : 'green-span']">{{ rate }}%</p>
         </div>

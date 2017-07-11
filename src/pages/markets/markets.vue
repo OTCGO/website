@@ -3,7 +3,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import { findBalances, fillArray } from '../../utils/util'
+  import { findBalances, fillArray, mul } from '../../utils/util'
   import Table from '../../components/common/Table'
 
   const tableHeader = [{
@@ -155,10 +155,10 @@
         }
       },
       totoalMoney () {
-        return this.payNum * this.payAnsPrice
+        return mul(this.payNum, this.payAnsPrice)
       },
       totoalSellMoney () {
-        return this.sellNum * this.sellAnsPrice
+        return mul(this.sellNum, this.sellAnsPrice)
       },
       receiveCurrency() {
         switch (this.$route.query.class) {
@@ -189,7 +189,16 @@
         }
       },
       tokenDetails() {
-        return ''
+        switch (this.deliverCurrency) {
+          case 'ANS' || 'ANC':
+            return '#/about'
+          case 'LZG' || 'LZJ':
+            return '//www.jieshu.ren/'
+          case 'KAC':
+            return '//www.kaipaicollege.com/kpxy-pc/index.html'
+          default:
+            return '//www.antshares.org/'
+        }
       }
     },
 
@@ -213,7 +222,10 @@
               },
               total: {
                 render: true,
-                value: `${Number(item.price.match(/\d+(\.\d+)?/)[0]) * Number(item.amount.match(/\d+(\.\d+)?/)[0])}${this.receiveCurrency}`
+                value: mul(
+                    Number(item.price.match(/\d+(\.\d+)?/)[0]),
+                    Number(item.amount.match(/\d+(\.\d+)?/)[0])
+                ) + this.receiveCurrency
               },
               time: {
                 render: true,
@@ -311,15 +323,16 @@
           this.sellButtonStatus = false
           eventCallBack(true)
           this.$store.dispatch('SEND_FREE_ASK', { id })
-          .then(data => {
-            if (data.hasOwnProperty('result') && data.result) {
-              this.$message.success('卖出成功')
-              eventCallBack(false)
-            }
-          })
-          .catch(err => {
-            this.$message.error(JSON.parse(err.bodyText).error)
-          })
+              .then(data => {
+                if (data.hasOwnProperty('result') && data.result) {
+                  this.$message.success('卖出成功')
+                  eventCallBack(false)
+                }
+              })
+              .catch(err => {
+                this.$message.error(JSON.parse(err.bodyText).error)
+                eventCallBack(false)
+              })
         } else {
           window.$router.push({
             name: 'login'
@@ -329,7 +342,7 @@
 
       // 撤销买卖单
       cancel (item) {
-        this.cancelDisplay = this.cancelStatus = false
+        this.cancelStatus = false
 
         if (this.loggedIn) {
 
@@ -338,11 +351,11 @@
           })
               .then(data => {
                 this.$message.success('撤销成功')
-                this.cancelDisplay = this.cancelStatus = true
+                this.cancelStatus = true
               })
               .catch(err => {
                 this.$message.error(JSON.parse(err.bodyText).error)
-                this.cancelDisplay = this.cancelStatus = true
+                this.cancelStatus = true
               })
         }
         else window.$router.push({ name: 'login' })
@@ -386,12 +399,16 @@
           length: this.pageLength
         }
 
-        this.ownAsset = [
-          findBalances(this.balances, this.deliverCurrency.toLocaleLowerCase())[0],
-          findBalances(this.balances, this.receiveCurrency.toLocaleLowerCase())[0]
-        ]
+        this.$store.dispatch('GET_ASSET').then(() => {
+          this.ownAsset = [
+            findBalances(this.balances, this.deliverCurrency.toLocaleLowerCase())[0],
+            findBalances(this.balances, this.receiveCurrency.toLocaleLowerCase())[0]
+          ]
+        })
+
+
         // 委托单
-        this.loggedIn ? this.$store.dispatch('GET_ORDER_BY_ADDRESS').then(data => {
+        this.loggedIn ? this.$store.dispatch('GET_ORDER_BY_ADDRESS', { marketId: this.type }).then(data => {
           const ask = data['asks'].reduce(
               (acc, item) => acc.concat({
                 id: {
@@ -480,7 +497,7 @@
                     },
                     total: {
                       render: true,
-                      value: isNaN(item.price * item.amount) ? '--' : item.price * item.amount
+                      value: isNaN(item.price * item.amount) ? '--' : mul(item.price, item.amount)
                     },
                     button: {
                       btnClass: 'btn-red',
@@ -515,7 +532,7 @@
                   },
                   total: {
                     render: true,
-                    value: isNaN(item.price * item.amount) ? '--' : item.price * item.amount
+                    value: isNaN(item.price * item.amount) ? '--' : mul(item.price, item.amount)
                   },
                   button: {
                     btnClass: 'btn-blue',

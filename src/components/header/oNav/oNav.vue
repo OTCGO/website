@@ -18,7 +18,7 @@
               <router-link class="text-center pointer" :to="{path: '/markets',
                             query: { 'class': 'kacans' }}" tag="li">开拍币-小蚁股
               </router-link>
-  
+
               <router-link class="text-center pointer" :to="{path: '/markets',
                           query: { 'class': 'lzglzj' }}" tag="li">量子股份-量子积分
               </router-link>
@@ -37,13 +37,13 @@
         </li>
       </ul>
   
-      <form class="navbar-form navbar-right" style="margin-right: 20px;">
+      <form class="col-sm-12 navbar-form navbar-right" style="margin-right: 20px;">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="资产关键词搜索暂未开放" disabled>
         </div>
         <button type="submit" class="btn btn-default" @click.prevent="" disabled>搜索</button>
       </form>
-  
+
     </nav>
     <el-row class="tac">
       <el-col :span="24">
