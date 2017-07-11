@@ -205,11 +205,6 @@ export const sendFreeBid = async ({ id, hexPubkey }, pr) => {
 export const otcSign = async ({ id, signature }) =>
   await (fetching('otc/sign', { id, signature }, 'post'))
 
-/**
- * 获取市场最新价格
- */
-
-export const getPriceById = async marketId => await (fetching(`price/${marketId}`))
 
 /**
  * 获取指定地址的交易记录用于个人成交单查询
@@ -222,7 +217,12 @@ export const getRedeem = async address => await (fetching(`redeem/${address}`))
  * @param {*} param
  */
 
-export const getOrderByAddress = async address => await (fetching(`order/${address}`))
+export const getOrderByAddress = async ({ marketId, address }) => await (
+    fetching(
+        `order/${address}`, {
+          params: { marketId }
+        })
+)
 
 /**
  * 获取市场最新交易
@@ -280,7 +280,6 @@ export default {
   sendFreeAsk,
   sendFreeBid,
   otcSign,
-  getPriceById,
   getRedeem,
   getOrderByAddress,
   getHistoryById,
