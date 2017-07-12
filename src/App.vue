@@ -110,11 +110,6 @@
     display: inline-block;
   }
 
-  .container > div {
-    height: 100%;
-    width: 100%;
-  }
-
   .msg {
     background-color: #f2f2f2;
     margin: 10px auto;
