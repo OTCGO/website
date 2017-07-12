@@ -9,19 +9,13 @@
           <a class="menu">
             交易对
             <ul class="menulist">
-              <router-link class="text-center pointer" :to="{path: '/markets',
-                          query: { 'class': 'anscny' }}" tag="li">小蚁股-人民币
-              </router-link>
-              <router-link class="text-center pointer" :to="{path: '/markets',
-                          query: { 'class': 'anccny' }}" tag="li">小蚁币-人民币
-              </router-link>
-              <router-link class="text-center pointer" :to="{path: '/markets',
-                            query: { 'class': 'kacans' }}" tag="li">开拍币-小蚁股
-              </router-link>
-
-              <router-link class="text-center pointer" :to="{path: '/markets',
-                          query: { 'class': 'lzglzj' }}" tag="li">量子股份-量子积分
-              </router-link>
+              <router-link
+                  v-for="item in marketLists"
+                  class="text-center pointer"
+                  :to="item.link"
+                  tag="li"
+                  v-text="item.name"
+              ></router-link>
             </ul>
           </a>
         </li>
@@ -45,6 +39,7 @@
       </form>
 
     </nav>
+
     <el-row class="tac">
       <el-col :span="24">
         <el-menu default-active="2" class="el-menu-vertical-demo">
@@ -84,11 +79,45 @@
           </el-submenu>
         </el-menu>
       </el-col>
-  
+
     </el-row>
   </div>
 </template>
 
 <script>
-  export default { }
+  export default {
+    data() {
+      return {
+        marketLists: [
+          {
+            link: {
+              path: '/markets',
+              query: { 'class': 'kacans' }
+            },
+            name: '开拍币-小蚁股'
+          },
+          {
+            link: {
+              path: '/markets',
+              query: { 'class': 'lzglzj' }
+            },
+            name: '量子股份-量子积分'
+          }
+        ]
+      }
+    }
+  }
+
+  /*          {
+   link: {
+   path: '/markets', query: { 'class': 'anscny' }
+   },
+   name: '小蚁股-人民币'
+   },
+   {
+   link: {
+   path: '/markets', query: { 'class': 'anccny' }
+   },
+   name: '小蚁币-人民币'
+   },*/
 </script>
