@@ -6,7 +6,8 @@ export default {
     onHistory: false,
     onOrder: false,
     onBonus: false,
-    loading: false
+    loading: false,
+    disabled: false
   }),
 
   beforeRouteEnter (to, from, next) {
@@ -14,7 +15,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['loggedIn', 'balances', 'wa'])
+    ...mapGetters(['loggedIn', 'balances', 'wa', 'blockHeight'])
   },
 
   watch: {
@@ -42,15 +43,24 @@ export default {
       this.$store.dispatch('TRANSFER', { assetId, dest, amount: valid })
           .then(() => {
             this.loading = false
+            this.disabled = true
             this.$message.success('转账成功！')
           })
-          .catch(e => this.$message.error(e.body.error))
+          .catch(e => {
+            this.$message.error(e.body.error)
+            this.disabled = true
+          })
     }
   },
 
   mounted () {
     if (!this.loggedIn) {
       this.$router.push('/login')
+    } else {
+      this.$store.watch(
+          ({ blockHeight }) => blockHeight,
+          () => { this.disabled = false }
+      )
     }
   }
 }

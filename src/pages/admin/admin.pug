@@ -28,6 +28,6 @@
       .col-xs-offset-3
          .admin-footer-line(v-if="onBonus")
            b(style={"color": "#000"}) 提取提示：
-           el-button(type="primary", @click="claimTransfer", v-loading.lock="loading", size="mini") 点击此处
+           el-button(type="primary", @click="claimTransfer", v-loading.lock="loading", size="mini", :disabled="disabled") 点击此处
            |  将自己全部的小蚁股对自己的钱包地址进行一次转账，“不可提取数量” 才能变成 “可提取数量”。
          .admin-footer-line(v-else) 离线钱包由小蚁区块链提供技术支持
