@@ -11,7 +11,7 @@ div.oContent
                   th 代币代码
                   th 资产名称
                   th 发行方
-                  th 最新价格ANS
+                  th 最新价格
                   th 24H成交量
                   th 24H跌涨幅
             tbody(v-if='contentOne')
@@ -25,14 +25,14 @@ div.oContent
             tbody(v-else-if='contentTwo')
                tr
                   td 00001
-                  td 小蚁股ANS
+                  td NEO
                   td 小蚁区块链
                   td {{ anscnyResult.price || '暂未' }}
                   td {{ anscnyResult.volumnOfLast24Hours || '暂未' }}
                   td {{ (anscnyResult.rate + '%' )   || '暂未' }}
                tr
                   td 00002
-                  td 小蚁币ANC
+                  td GAS
                   td 小蚁区块链
                   td {{ kacansResult.price || '暂未'}}
                   td {{ kacansResult.volumnOfLast24Hours || '暂未' }}      

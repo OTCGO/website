@@ -33,7 +33,6 @@ export const fillArray = (array, num, node) => {
   return array
 }
 
-
 export const mul = (a, b) => {
   const s1 = a.toString()
   const s2 = b.toString()

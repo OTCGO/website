@@ -31,12 +31,11 @@ export default {
         const arrStr = str.split('')
         const capitalizeStr = arrStr[0].toUpperCase() + str.substr(str.indexOf(arrStr[0]) + 1)
         this['on' + capitalizeStr] = !this['on' + capitalizeStr]
-      }
-      else {
+      } else {
         this.loading = this.onBonus = this.onHistory = this.onOrder = false
       }
     },
-    claimTransfer() {
+    claimTransfer () {
       this.loading = true
       const [{ assetId, valid }] = findBalances(this.balances, 'ans')
       const dest = this.wa('address')
