@@ -205,7 +205,6 @@ export const sendFreeBid = async ({ id, hexPubkey }, pr) => {
 export const otcSign = async ({ id, signature }) =>
   await (fetching('otc/sign', { id, signature }, 'post'))
 
-
 /**
  * 获取指定地址的交易记录用于个人成交单查询
  * @param {*} param
