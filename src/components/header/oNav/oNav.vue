@@ -94,7 +94,7 @@
               path: '/markets',
               query: { 'class': 'kacans' }
             },
-            name: '开拍币-小蚁股'
+            name: '开拍币-NEO'
           },
           {
             link: {
