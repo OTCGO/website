@@ -15,6 +15,9 @@
       <div class="footer-link">
         Copyright &copy; 2017 &nbsp;<a href="https://otcgo.cn/">otcgo.cn</a>&nbsp; 版权所有 湘ICP备16019051号-1
       </div>
+      <div class="footer">
+        Copyright 2017 <a href="https://otcgo.cn/">otcgo.cn</a> 蓝鲸淘
+      </div>
     </div>
 
   </div>
@@ -207,4 +210,20 @@
   body {
     background-color: #eee;
   }
+
+  .footer{
+    display: none;
+    text-align: center;
+    height: 30px;
+    line-height: 30px
+  }
+
+@media (max-width: 500px) {
+    .footer-link{
+      display: none
+    }
+    .footer{
+     display: block
+    }
+}
 </style>

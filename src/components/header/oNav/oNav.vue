@@ -49,17 +49,7 @@
               <template slot="title">交易对</template>
               <el-menu-item index="1-4-1">
                 <router-link class="text-center pointer" :to="{path: '/markets',
-                          query: { 'class': 'anscny' }}" tag="li">小蚁股-人民币
-                </router-link>
-              </el-menu-item>
-              <el-menu-item index="1-4-1">
-                <router-link class="text-center pointer" :to="{path: '/markets',
-                          query: { 'class': 'anccny' }}" tag="li">小蚁币-人民币
-                </router-link>
-              </el-menu-item>
-              <el-menu-item index="1-4-1">
-                <router-link class="text-center pointer" :to="{path: '/markets',
-                            query: { 'class': 'kacans' }}" tag="li">开拍币-小蚁股
+                            query: { 'class': 'kacneo' }}" tag="li">开拍币-小蚁股
                 </router-link>
               </el-menu-item>
               <el-menu-item index="1-4-1">
@@ -92,7 +82,7 @@
           {
             link: {
               path: '/markets',
-              query: { 'class': 'kacans' }
+              query: { 'class': 'kacneo' }
             },
             name: '开拍币-NEO'
           },
