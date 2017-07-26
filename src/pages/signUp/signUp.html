@@ -4,14 +4,14 @@
       创建离线钱包
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-offset-3">
+  <div class="row" style="text-align:center">
+    <div class="">
       <h3 class="h2">创建离线钱包</h3>
     </div>
   </div>
   <div class="login-body row">
     <!-- Left side Warning: -->
-    <div class="col-xs-3 col-lg-3">
+    <div class="col-xs-12 col-lg-3">
       <div class="ad-tips">
         <ol>
           <li>请输入不超过20个字符的账户名。（可包含中文、英文、下划线，但不能以下划线开头）</li>
@@ -23,20 +23,20 @@
     <!-- Warning End -->
 
     <!-- SignUp account Interface: -->
-    <div class="content col-xs-9 col-lg-9">
+    <div class="content col-xs-12 col-lg-9">
       <div class="creatWallet-body" style="margin-top: 40px;">
         <div class="row">
           <!-- Account -->
-          <div class="col-xs-3 ">
+          <div class="col-xs-3  col-lg-3">
             <p class="text-right" style="line-height: 30px;"> 账户名: </p>
           </div>
 
-          <div class="col-xs-4">
+          <div class="col-xs-9 col-lg-4">
             <input class="form-control" v-model.trim="username" @input="$v.username.$touch()"
                    @blur="$v.username.$touch()"/>
           </div>
 
-          <div class="col-xs-3" style="padding-left:0;">
+          <div class="col-xs-9 col-xs-offset-4 col-lg-3 col-lg-offset-0" style="padding-left:0;">
             <span v-if="!$v.username.maxLength && $v.username.$dirty"
                   class="error-text"> 用户名不能超过20位 </span>
 
@@ -53,11 +53,11 @@
             <p class="text-right" style="line-height: 30px;"> WIF私钥: </p>
           </div>
 
-          <div class="col-xs-4">
+          <div class="col-xs-9 col-lg-4">
             <input v-model="wif" class="form-control" placeholder="若您没有WIF私钥，此栏不用填"/>
           </div>
 
-          <div class="col-xs-3" style="padding-left:0;">
+          <div class="col-xs-9 col-xs-offset-4 col-lg-3 col-lg-offset-0" style="padding-left:0;">
 							<span class="error-text"
                     v-show="wifError"> 私钥验证错误请重试 </span>
           </div>
@@ -68,12 +68,12 @@
             <p class="text-right" style="line-height: 30px;">登录密码: </p>
           </div>
 
-          <div class="col-xs-4">
+          <div class="col-xs-9 col-lg-4">
             <input type="password" class="form-control" v-model="password" @input="$v.password.$touch()"
                    @blur="$v.password.$touch()"/>
           </div>
 
-          <div class="col-xs-3" style="padding-left:0;">
+          <div class="col-xs-9 col-xs-offset-4 col-lg-3 col-lg-offset-0" style="padding-left:0;">
             <span v-if="!$v.password.minLength && $v.password.$dirty" class="error-text"> 密码不能小于8位 </span>
             <span v-else-if="!$v.password.maxLength && $v.password.$dirty" class="error-text"> 密码不能超过20位 </span>
             <span v-else-if="!$v.password.required && $v.password.$dirty" class="error-text"> 密码不能为空 </span>
@@ -85,11 +85,11 @@
           <div class="col-xs-3">
             <p class="text-right" style="line-height: 30px;"> 重复密码: </p>
           </div>
-          <div class="col-xs-4">
+          <div class="col-xs-9 col-lg-4">
             <input type="password" class="form-control" v-model="passwordConfirmed"
                    @input="$v.passwordConfirmed.$touch()"/>
           </div>
-          <div class="col-xs-3" style="padding-left:0;">
+          <div class="col-xs-9 col-xs-offset-4 col-lg-3 col-lg-offset-0" style="padding-left:0;">
             <span v-if="!$v.passwordConfirmed.sameAsPassword && $v.passwordConfirmed.$dirty" class="error-text"> 请您输入相同的登陆密码 </span>
             <span v-else-if="!$v.passwordConfirmed.required && $v.passwordConfirmed.$dirty" class="error-text"> 密码不能为空 </span>
             <span v-else-if="!$v.passwordConfirmed.$invalid && $v.passwordConfirmed.$dirty"> <img
