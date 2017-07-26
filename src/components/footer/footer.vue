@@ -186,4 +186,11 @@ export default {}
 .about {
     margin: 37px 0 60px 0;
 }
+
+@media (max-width: 500px) {
+    .footer-top{
+        padding: 10px;
+        margin: 0 auto;
+    }
+}
 </style>
