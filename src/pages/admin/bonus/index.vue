@@ -30,9 +30,9 @@
       this.getClaim()
 
       this.claimTimer = setInterval(
-          () => this.$store.dispatch('GET_ASSET')
-                    .then(() => this.getClaim())
-          , 2000)
+          () => this.$store.dispatch('GET_ASSET').then(() => this.getClaim()),
+          2000
+      )
 
       this.$store.watch(state => state.blockHeight, (newVal, oldVal) => {
         if (newVal !== oldVal) this.blockChanged = true
@@ -52,7 +52,7 @@
     },
     methods: {
       getClaim() {
-        const anc = findBalances(this.balances, 'anc')
+        const anc = findBalances(this.balances, 'gas')
 
         this.bonusSource = anc.reduce((arr, item) => arr.concat({
           name: { render: true, value: item.name },

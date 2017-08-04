@@ -57,7 +57,7 @@ export default {
     },
 
     toMarkets () {
-      this.$router.push({path: '/markets', query: { class: 'kacans' }})
+      this.$router.push({path: '/markets', query: { class: 'kacneo' }})
     }
   },
   mounted () {

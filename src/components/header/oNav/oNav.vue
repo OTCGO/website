@@ -47,6 +47,16 @@
             <template slot="title">蓝鲸淘</template>
             <el-menu-item-group>
               <template slot="title">交易对</template>
+              <!--<el-menu-item index="1-4-1">
+                <router-link class="text-center pointer" :to="{path: '/markets',
+                          query: { 'class': 'neocny' }}" tag="li">小蚁股-人民币
+                </router-link>
+              </el-menu-item>
+              <el-menu-item index="1-4-1">
+                <router-link class="text-center pointer" :to="{path: '/markets',
+                          query: { 'class': 'gascny' }}" tag="li">小蚁币-人民币
+                </router-link>
+              </el-menu-item>-->
               <el-menu-item index="1-4-1">
                 <router-link class="text-center pointer" :to="{path: '/markets',
                             query: { 'class': 'kacneo' }}" tag="li">开拍币-小蚁股
@@ -82,14 +92,16 @@
           {
             link: {
               path: '/markets',
-              query: { 'class': 'kacneo' }
+              query: { 'class': 'kacneo' },
+              render: true
             },
             name: '开拍币-NEO'
           },
           {
             link: {
               path: '/markets',
-              query: { 'class': 'lzglzj' }
+              query: { 'class': 'lzglzj' },
+              render: true
             },
             name: '量子股份-量子积分'
           }

@@ -37,13 +37,13 @@ export default {
     },
     claimTransfer () {
       this.loading = true
-      const [{ assetId, valid }] = findBalances(this.balances, 'ans')
+      const [{ assetId, valid }] = findBalances(this.balances, 'neo')
       const dest = this.wa('address')
       this.$store.dispatch('TRANSFER', { assetId, dest, amount: valid })
           .then(() => {
             this.loading = false
             this.disabled = true
-            this.$message.success('转账成功！')
+            this.$message.success('转账成功！请等待区块确认完毕后领取GAS！')
           })
           .catch(e => {
             this.$message.error(e.body.error)

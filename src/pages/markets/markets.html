@@ -50,7 +50,7 @@
                    :loading="bidLoading">买入</el-button>
                 <!--class="el-button el-button&#45;&#45;danger el-button&#45;&#45;fill bk-margin-top-10"-->
 
-        <p class="font-12 weak-span bk-margin-top-10" v-if="deliverCurrency === 'ANS'">友情提示：由于小蚁股不可分割，请确保买入总价（买入量*买入价）为整数！</p>
+        <p class="font-12 weak-span bk-margin-top-10" v-if="deliverCurrency === 'ANS'">友情提示：由于NEO不可分割，请确保买入总价（买入量*买入价）为整数！</p>
       </div>
       <div class="el-content-pannel">
         <h3 class="el-content-title green-span">
@@ -64,7 +64,7 @@
         </div>
         <p class="font-12 bk-margin-top-10">订单总额：<span class="green-span font-14">{{ totoalSellMoney }} {{ receiveCurrency }}</span></p>
         <el-button type="success" :loading="askLoading" @click="askAction" class="btn-block bk-margin-top-10">卖出</el-button>
-        <p class="font-12 weak-span bk-margin-top-10" v-if="deliverCurrency === 'ANS'">友情提示：由于小蚁股不可分割，请确保买入总价（买入量*买入价）为整数！</p>
+        <p class="font-12 weak-span bk-margin-top-10" v-if="deliverCurrency === 'ANS'">友情提示：由于NEO不可分割，请确保买入总价（买入量*买入价）为整数！</p>
       </div>
       <table-container
         :tableHeader="tableHeader"
@@ -72,7 +72,8 @@
         class="bk-margin-top-10"
         :dataSource="actionDataSource"
         :showCancel="cancelDisplay" :cancelStatus="cancelStatus"
-        @cancel-click="cancel">
+        @cancel-click="cancel"
+      >
         <span slot="table-left" class="font-14 font-emphasize">我的委托单:</span>
       </table-container>
     </div>

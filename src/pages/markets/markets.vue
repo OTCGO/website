@@ -98,7 +98,7 @@
       ...mapGetters(['loggedIn', 'deliver', 'receive', 'balances', 'blockHeight']),
       deliverCurrency() {
         switch (this.$route.query.class) {
-          case 'kacans':
+          case 'kacneo':
             this.tradeHeader = [{
               label: '卖／买'
             }, {
@@ -106,7 +106,7 @@
             }, {
               label: '单价ANS'
             }, {
-              label: '总价ANS'
+              label: '总价NEO'
             }, {
               label: ''
             }]
@@ -124,11 +124,11 @@
               label: ''
             }]
             return 'LZG'
-          case 'anscny':
+          case 'neocny':
             this.tradeHeader = [{
               label: '卖／买'
             }, {
-              label: '数量ANS'
+              label: '数量NEO'
             }, {
               label: '单价CNY'
             }, {
@@ -136,12 +136,12 @@
             }, {
               label: ''
             }]
-            return 'ANS'
-          case 'anccny':
+            return 'NEO'
+          case 'neocny':
             this.tradeHeader = [{
               label: '卖／买'
             }, {
-              label: '数量ANC'
+              label: '数量GAS'
             }, {
               label: '单价CNY'
             }, {
@@ -149,7 +149,7 @@
             }, {
               label: ''
             }]
-            return 'ANC'
+            return 'GAS'
           default:
             return 'KAC'
         }
@@ -162,10 +162,10 @@
       },
       receiveCurrency() {
         switch (this.$route.query.class) {
-          case 'kacans':
-            this.sellPlaceHolder = '请输入卖出单价ANS'
-            this.buyPlaceHolder = '请输入买入单价ANS'
-            return 'ANS'
+          case 'kacneo':
+            this.sellPlaceHolder = '请输入卖出单价NEO'
+            this.buyPlaceHolder = '请输入买入单价NEO'
+            return 'NEO'
           case 'lzglzj':
             this.sellPlaceHolder = '请输入卖出单价LZJ'
             this.buyPlaceHolder = '请输入买入单价LZJ'
@@ -178,7 +178,7 @@
       },
       officialSite() {
         switch (this.deliverCurrency) {
-          case 'ANS' || 'ANC':
+          case 'NEO' || 'GAS':
             return '//www.antshares.org/'
           case 'LZG' || 'LZJ':
             return '//www.jieshu.ren/'
@@ -294,22 +294,51 @@
         else window.$router.push('login')
       },
 
-      buyOrder (id, eventCallBack) {
+      buyOrder ({ id, amount, price }, eventCallBack) {
         if (this.loggedIn) {
           if (!this.buyButtonStatus) return
-          this.buyButtonStatus = false
-          eventCallBack(true)
-          this.$store.dispatch('SEND_FREE_BID', { id })
-              .then(data => {
-                if (data.hasOwnProperty('result') && data.result) {
-                  this.$message.success('买入成功')
+          this.$store.commit('SET_DELIVER', this.deliverCurrency)
+          this.$store.commit('SET_RECEIVE', this.receiveCurrency)
+          const total = mul(amount, price)
+          this.$msgbox({
+            title: '提示',
+            message: `您将要购买总价${total}${this.receiveCurrency}的${this.name}，当前${this.receiveCurrency}可用余额为${this.receive.valid}是否确认下单？`,
+            showCancelButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            beforeClose: async (action, instance, done) => {
+              instance.confirmButtonLoading = false
+              if (action === 'confirm') {
+                if (this.receive.valid < total) {
+                  this.$message.warning(`${this.receive.name}余额不足，请进行充值！`)
                   eventCallBack(false)
+                  done()
+                  return
                 }
-              })
-              .catch(err => {
-                this.$message.error(JSON.parse(err.bodyText).error)
+                instance.confirmButtonLoading = true
+                instance.confirmButtonText = '执行中...'
+                try {
+                  let res = await this.$store.dispatch('SEND_FREE_BID', { id })
+                  if (res.hasOwnProperty('result') && res.result) {
+                    this.$message.success('交易发起成功，请等待验收！')
+                    eventCallBack(false)
+                    done()
+                    this.buyButtonStatus = false
+                    instance.confirmButtonLoading = false
+                  }
+                } catch(e) {
+                  this.$message.error('交易失败，请稍候再试。')
+                  eventCallBack(false)
+                  instance.confirmButtonLoading = false
+                  done()
+                }
+              } else {
                 eventCallBack(false)
-              })
+                done()
+              }
+            }
+          }).catch(() => { eventCallBack(true);this.buyButtonStatus = true })
         } else {
           window.$router.push({
             name: 'login'
@@ -317,22 +346,51 @@
         }
       },
 
-      sellOrder (id, eventCallBack) {
+      sellOrder ({ id, price, amount }, eventCallBack) {
         if (this.loggedIn) {
           if (!this.sellButtonStatus) return
-          this.sellButtonStatus = false
-          eventCallBack(true)
-          this.$store.dispatch('SEND_FREE_ASK', { id })
-              .then(data => {
-                if (data.hasOwnProperty('result') && data.result) {
-                  this.$message.success('卖出成功')
+          this.$store.commit('SET_DELIVER', this.deliverCurrency)
+          this.$store.commit('SET_RECEIVE', this.receiveCurrency)
+          const total = mul(amount, price)
+          this.$msgbox({
+            title: '提示',
+            message: `您将要卖出价值${total}${this.receiveCurrency}的${this.name}，当前${this.receiveCurrency}余额为${this.receive.valid}是否确认下单？`,
+            showCancelButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            beforeClose: async (action, instance, done) => {
+              instance.confirmButtonLoading = false
+              if (action === 'confirm') {
+                if (this.receive.valid < total) {
+                  this.$message.warning(`${this.receive.name}余额不足，请进行充值！`)
                   eventCallBack(false)
+                  done()
+                  return
                 }
-              })
-              .catch(err => {
-                this.$message.error(JSON.parse(err.bodyText).error)
+                instance.confirmButtonLoading = true
+                instance.confirmButtonText = '执行中...'
+                try {
+                  let res = await this.$store.dispatch('SEND_FREE_ASK', { id })
+                  if (res.hasOwnProperty('result') && res.result) {
+                    this.$message.success('交易发起成功，请等待验收！')
+                    eventCallBack(false)
+                    done()
+                    this.sellButtonStatus = false
+                    instance.confirmButtonLoading = false
+                  }
+                } catch(e) {
+                  this.$message.error('交易失败，请稍候再试。')
+                  eventCallBack(false)
+                  instance.confirmButtonLoading = false
+                  done()
+                }
+              } else {
                 eventCallBack(false)
-              })
+                done()
+              }
+            }
+          }).catch(() => { eventCallBack(true);this.sellButtonStatus = true })
         } else {
           window.$router.push({
             name: 'login'
@@ -363,29 +421,21 @@
 
       watchChange (to) {
         switch (to.query.class) {
-          case 'anscny':
+          case 'neocny':
             this.name = '小蚁股'
             this.receiveName = '人民币'
-            this.receiveCurrency = 'CNY'
-            this.deliverCurrency = 'ANS'
             break
-          case 'anccny':
+          case 'neocny':
             this.name = '小蚁币'
             this.receiveName = '人民币'
-            this.receiveCurrency = 'CNY'
-            this.deliverCurrency = 'ANC'
             break
-          case 'kacans':
+          case 'kacneo':
             this.name = '开拍学园币（KAC）'
             this.receiveName = '小蚁股'
-            this.receiveCurrency = 'ANS'
-            this.deliverCurrency = 'KAC'
             break
           case 'lzglzj':
             this.name = '量子股份'
             this.receiveName = '量子积分'
-            this.receiveCurrency = 'LZJ'
-            this.deliverCurrency = 'LZG'
             break
         }
         this.type = to.query.class
@@ -505,7 +555,7 @@
                       render: true,
                       hide: item.isEmpty,
                       event: (eventCallBack) => {
-                        this.buyOrder(item.id, eventCallBack)
+                        this.buyOrder(item, eventCallBack)
                       }
                     }
                   }),
@@ -540,7 +590,7 @@
                     render: true,
                     hide: item.isEmpty,
                     event: (eventCallBack) => {
-                      this.sellOrder(item.id, eventCallBack)
+                      this.sellOrder(item, eventCallBack)
                     }
                   }
                 }),

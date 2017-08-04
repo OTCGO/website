@@ -31,7 +31,7 @@
           dec: '蓝鲸淘正式上线开拍币\\小蚁股交易对',
           route: {
             path: '/markets',
-            query: { 'class': 'kacans' }
+            query: { 'class': 'kacneo' }
           }
         }
       ],
