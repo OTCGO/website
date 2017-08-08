@@ -89,21 +89,13 @@
   },
   "standard": {
     "ignore": [
-      "doc",
-      "src/libs",
-      "src/polyfill",
-      "test/index.js"
+      "/doc",
+      "/src/libs",
+      "/src/polyfill",
+      "/test/index.js"
     ]
   },
-  "config": {
-    "pre-git": {
-      "pre-commit": [
-        
-      ],
-      "pre-push": [],
-      "post-commit": [],
-      "post-checkou": [],
-      "post-merge": []
-    }
+  "release": {
+    "analyzeCommits": "simple-commit-message"
   }
 }

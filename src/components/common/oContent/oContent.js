@@ -61,10 +61,17 @@ export default {
     }
   },
   mounted () {
-    this.priceTimer = setInterval(() => this.getData(), 2000)
+    this.priceTimer = setInterval(() => {
+      try {
+        this.getData()
+      } catch (e) {
+        if (parseInt(e.code) === 404) {
+          window.clearHours(this.priceTimer)
+        }
+      }
+    }, 2000)
   },
   destroyed () {
     clearInterval(this.priceTimer)
   }
-
 }
