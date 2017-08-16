@@ -27,7 +27,7 @@
           <router-link class="menu" to="/ico/status">ICO专区</router-link>
         </li>
         <li>
-          <a class="menu" href="//shang.qq.com/wpa/qunwpa?idkey=24250f89f770858cb6e518fae271a588f847f8bfdc2e604a1ef40dea20b9beae" target="_blank">加入社群</a>
+          <a class="menu" href="//shang.qq.com/wpa/qunwpa?idkey=5f3e197cd2343ba8a56e933064d86ddaf218ecbe837a3e7e0603a7c8c6bf6139 " target="_blank">加入社群</a>
         </li>
       </ul>
   

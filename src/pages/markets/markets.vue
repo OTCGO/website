@@ -181,9 +181,9 @@
           case 'NEO' || 'GAS':
             return '//www.antshares.org/'
           case 'LZG' || 'LZJ':
-            return '//www.jieshu.ren/'
+            return 'http://www.jieshu.ren/'
           case 'KAC':
-            return '//www.kaipaicollege.com/kpxy-pc/index.html'
+            return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
           default:
             return '//www.antshares.org/'
         }
@@ -193,9 +193,9 @@
           case 'ANS' || 'ANC':
             return '#/about'
           case 'LZG' || 'LZJ':
-            return '//www.jieshu.ren/'
+            return 'http://www.jieshu.ren/'
           case 'KAC':
-            return '//www.kaipaicollege.com/kpxy-pc/index.html'
+            return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
           default:
             return '//www.antshares.org/'
         }
