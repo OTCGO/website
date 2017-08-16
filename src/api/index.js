@@ -167,7 +167,7 @@ export const sendAsk = async ({ assetId, valueId, price, amount, hexPubkey }, pr
  */
 
 export const sendBid = async ({ assetId, valueId, price, amount, hexPubkey }, pr) => {
-  const { transaction, order: { id }} = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
+  const { transaction, order: { id } } = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
   // 不需要随机字符
   // const nonce = getNonce()
   const signature = ljSign(pr, transaction)
@@ -227,7 +227,7 @@ export const getOrderByAddress = async ({ marketId, address }) => await (
  * 获取市场最新交易
  * @param {市场ID} marketId
  */
-export const getHistoryById = async ({ marketId, active, length}) =>
+export const getHistoryById = async ({ marketId, active, length }) =>
     await (fetching(`history/${marketId}`, { params: { active, length } }))
 
 /**
