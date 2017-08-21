@@ -110,7 +110,7 @@
             }, {
               label: ''
             }]
-            return 'KAC'
+            return 'kac'
           case 'lzglzj':
             this.tradeHeader = [{
               label: '卖／买'
@@ -151,8 +151,8 @@
             }]
             return 'GAS'
           default:
-            return 'KAC'
-        }
+            return 'kac'
+        } 
       },
       totoalMoney () {
         return mul(this.payNum, this.payAnsPrice)
@@ -297,8 +297,10 @@
       buyOrder ({ id, amount, price }, eventCallBack) {
         if (this.loggedIn) {
           if (!this.buyButtonStatus) return
-          this.$store.commit('SET_DELIVER', this.deliverCurrency)
-          this.$store.commit('SET_RECEIVE', this.receiveCurrency)
+        
+
+          this.$store.commit('SET_DELIVER', this.deliverCurrency)  // kac 
+          this.$store.commit('SET_RECEIVE', this.receiveCurrency) //neo 
           const total = mul(amount, price)
           this.$msgbox({
             title: '提示',
@@ -349,12 +351,14 @@
       sellOrder ({ id, price, amount }, eventCallBack) {
         if (this.loggedIn) {
           if (!this.sellButtonStatus) return
-          this.$store.commit('SET_DELIVER', this.deliverCurrency)
-          this.$store.commit('SET_RECEIVE', this.receiveCurrency)
+          this.$store.commit('SET_DELIVER', this.deliverCurrency ) // neo
+          this.$store.commit('SET_RECEIVE',this.receiveCurrency ) // kac
           const total = mul(amount, price)
+
+          
           this.$msgbox({
             title: '提示',
-            message: `您将要卖出价值${total}${this.receiveCurrency}的${this.name}，当前${this.receiveCurrency}余额为${this.receive.valid}是否确认下单？`,
+            message: `您将要卖出价值${total}${this.receiveCurrency}的${this.name}，当前${this.deliverCurrency}余额为${this.deliver.valid}是否确认下单？`,
             showCancelButton: true,
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -454,6 +458,8 @@
             findBalances(this.balances, this.deliverCurrency.toLocaleLowerCase())[0],
             findBalances(this.balances, this.receiveCurrency.toLocaleLowerCase())[0]
           ]
+
+          console.log('this.ownAsset',this.ownAsset)
         })
 
 
