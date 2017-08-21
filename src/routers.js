@@ -42,7 +42,7 @@ const routes = [
   { path: '/about',
     component: r => require(['~pages/about'], r),
     children: [
-      { path: 'details', component: r => require(['~pages/about/details'], r) },
+      // { path: 'details', component: r => require(['~pages/about/details'], r) },
       { path: 'plans', component: r => require(['~pages/about/plans'], r) },
       { path: 'medias', component: r => require(['~pages/about/medias'], r) },
       { path: '', component: r => require(['~pages/about/details'], r) }

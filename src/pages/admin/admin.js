@@ -6,7 +6,8 @@ export default {
     onHistory: false,
     onOrder: false,
     onBonus: false,
-    loading: false
+    loading: false,
+    disabled: false
   }),
 
   beforeRouteEnter (to, from, next) {
@@ -14,7 +15,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['loggedIn', 'balances', 'wa'])
+    ...mapGetters(['loggedIn', 'balances', 'wa', 'blockHeight'])
   },
 
   watch: {
@@ -30,27 +31,35 @@ export default {
         const arrStr = str.split('')
         const capitalizeStr = arrStr[0].toUpperCase() + str.substr(str.indexOf(arrStr[0]) + 1)
         this['on' + capitalizeStr] = !this['on' + capitalizeStr]
-      }
-      else {
+      } else {
         this.loading = this.onBonus = this.onHistory = this.onOrder = false
       }
     },
-    claimTransfer() {
+    claimTransfer () {
       this.loading = true
-      const [{ assetId, valid }] = findBalances(this.balances, 'ans')
+      const [{ assetId, valid }] = findBalances(this.balances, 'neo')
       const dest = this.wa('address')
       this.$store.dispatch('TRANSFER', { assetId, dest, amount: valid })
           .then(() => {
             this.loading = false
-            this.$message.success('转账成功！')
+            this.disabled = true
+            this.$message.success('转账成功！请等待区块确认完毕后领取GAS！')
           })
-          .catch(e => this.$message.error(e.body.error))
+          .catch(e => {
+            this.$message.error(e.body.error)
+            this.disabled = true
+          })
     }
   },
 
   mounted () {
     if (!this.loggedIn) {
       this.$router.push('/login')
+    } else {
+      this.$store.watch(
+          ({ blockHeight }) => blockHeight,
+          () => { this.disabled = false }
+      )
     }
   }
 }

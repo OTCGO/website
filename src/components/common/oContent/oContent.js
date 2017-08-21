@@ -51,20 +51,27 @@ export default {
      *
      */
     async getData () {
-      this.anccnyResult = (await this.$http.get(`markets/anccny`)).body
-      this.anscnyResult = (await this.$http.get(`markets/anscny`)).body
-      this.kacansResult = (await this.$http.get(`markets/kacans`)).body
+      this.anccnyResult = (await this.$http.get(`markets/neocny`)).body
+      this.anscnyResult = (await this.$http.get(`markets/gascny`)).body
+      this.kacansResult = (await this.$http.get(`markets/kacneo`)).body
     },
 
     toMarkets () {
-      this.$router.push({path: '/markets', query: { class: 'kacans' }})
+      this.$router.push({path: '/markets', query: { class: 'kacneo' }})
     }
   },
   mounted () {
-    this.priceTimer = setInterval(() => this.getData(), 2000)
+    this.priceTimer = setInterval(() => {
+      try {
+        this.getData()
+      } catch (e) {
+        if (parseInt(e.code) === 404) {
+          window.clearHours(this.priceTimer)
+        }
+      }
+    }, 2000)
   },
   destroyed () {
     clearInterval(this.priceTimer)
   }
-
 }

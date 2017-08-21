@@ -167,7 +167,7 @@ export const sendAsk = async ({ assetId, valueId, price, amount, hexPubkey }, pr
  */
 
 export const sendBid = async ({ assetId, valueId, price, amount, hexPubkey }, pr) => {
-  const { transaction, order: { id }} = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
+  const { transaction, order: { id } } = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
   // 不需要随机字符
   // const nonce = getNonce()
   const signature = ljSign(pr, transaction)
@@ -206,12 +206,6 @@ export const otcSign = async ({ id, signature }) =>
   await (fetching('otc/sign', { id, signature }, 'post'))
 
 /**
- * 获取市场最新价格
- */
-
-export const getPriceById = async marketId => await (fetching(`price/${marketId}`))
-
-/**
  * 获取指定地址的交易记录用于个人成交单查询
  * @param {*} param
  */
@@ -222,13 +216,18 @@ export const getRedeem = async address => await (fetching(`redeem/${address}`))
  * @param {*} param
  */
 
-export const getOrderByAddress = async address => await (fetching(`order/${address}`))
+export const getOrderByAddress = async ({ marketId, address }) => await (
+    fetching(
+        `order/${address}`, {
+          params: { marketId }
+        })
+)
 
 /**
  * 获取市场最新交易
  * @param {市场ID} marketId
  */
-export const getHistoryById = async ({ marketId, active, length}) =>
+export const getHistoryById = async ({ marketId, active, length }) =>
     await (fetching(`history/${marketId}`, { params: { active, length } }))
 
 /**
@@ -280,7 +279,6 @@ export default {
   sendFreeAsk,
   sendFreeBid,
   otcSign,
-  getPriceById,
   getRedeem,
   getOrderByAddress,
   getHistoryById,

@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-preset-stage-2": "^6.22.0",
-    "base58": "^0.1.0",
     "bootstrap": "^3.3.7",
     "bs58": "^4.0.0",
     "crypto-js": "^3.1.9-1",
@@ -83,29 +82,32 @@
     "url-loader": "^0.5.7",
     "vue-loader": "^10.0.0",
     "vue-svgicon": "^1.1.8",
-    "vue-template-compiler": "^2.1.0",
+    "vue-template-compiler": "^2.4.2",
     "vuelidate": "^0.4.3",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
-  },
-  "standard": {
-    "ignore": [
-      "doc",
-      "src/libs",
-      "src/polyfill"
-    ]
   },
   "config": {
     "pre-git": {
       "commit-msg": "",
       "pre-commit": [
-        "npm run standard",
-        "git add ."
+        "npm run standard"
       ],
       "pre-push": [],
       "post-commit": [],
       "post-checkou": [],
       "post-merge": []
     }
+  },
+  "standard": {
+    "ignore": [
+      "/doc",
+      "/src/libs",
+      "/src/polyfill",
+      "/test/index.js"
+    ]
+  },
+  "release": {
+    "analyzeCommits": "simple-commit-message"
   }
 }

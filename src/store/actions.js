@@ -127,11 +127,14 @@ export default {
     hexPubkey: state.wa['publicKey']
   }), state.wa['privateKey']),
 
-  [type.getPriceById]: ({ state }, marketId) => service.getPriceById(marketId),
-
   [type.getRedeem]: ({ state }) => service.getRedeem(state['wa'].address),
 
-  [type.getOrderByAddress]: ({ state }) => service.getOrderByAddress(state['wa'].address),
+  [type.getOrderByAddress]: ({ state }, { marketId }) => (
+      service.getOrderByAddress({
+        marketId,
+        address: state['wa'].address
+      })
+  ),
 
   [type.getHistoryById]: ({ state }, { marketId, active, length }) => service.getHistoryById({ marketId, active, length }),
 

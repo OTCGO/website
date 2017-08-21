@@ -32,3 +32,12 @@ export const fillArray = (array, num, node) => {
   }
   return array
 }
+
+export const mul = (a, b) => {
+  const s1 = a.toString()
+  const s2 = b.toString()
+  const l1 = s1.split('.')[1] ? s1.split('.')[1].length : 0
+  const l2 = s2.split('.')[1] ? s2.split('.')[1].length : 0
+  const m = l1 + l2
+  return Number(s1.replace('.', '')) * Number(s2.replace('.', '')) / Math.pow(10, m)
+}

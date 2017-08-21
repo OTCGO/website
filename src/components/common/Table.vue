@@ -23,11 +23,13 @@
                       :class="['btn-trade', items.btnClass, buttonStatus ? '' : 'disabled']"
                       :disabled="!buttonStatus"
                       @click="buttonEvent(items.event)">
-                {{ status ? items.value : '等待下一区块' }}
+                {{ status ? items.value : '执行中' }}
               </button>
             </td>
-            <td>
-              <a @click="cancel(item)" v-show="showCancel" class="green-span bk-point-cursor">撤销</a>
+
+            <td v-if="showCancel">
+              <a @click="cancel(item)"
+                 class="red-span bk-point-cursor">{{ cancelStatus ? '撤销' : '执行中' }}</a>
             </td>
           </tr>
           
@@ -206,12 +208,12 @@ a.disabled {
 
 }
 .table-scroll {
-  max-height: 400px;
-  overflow-y: scroll;
+  max-height: 406px;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .table-scroll::-webkit-scrollbar {
-    display: none;
+  display: auto;
 }
 .table-nodata {
   height: 100px;

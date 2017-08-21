@@ -40,7 +40,7 @@ export default {
     state.waT = wa
   },
 
-  // TODO: Might wanna change the func like a find field in a specific, not just by the name
+  // TODO: Might wanna change the func like a find field in specific, not just by the name
   [type.setReceive] (state, name) {
     state.receive = state.balances.find(i => {
       const arr = Object.values(i)
