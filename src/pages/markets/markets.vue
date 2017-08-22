@@ -182,7 +182,7 @@
             return '//www.antshares.org/'
           case 'LZG' || 'LZJ':
             return 'http://www.jieshu.ren/'
-          case 'KAC':
+          case 'kac':
             return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
           default:
             return '//www.antshares.org/'
@@ -194,7 +194,7 @@
             return '#/about'
           case 'LZG' || 'LZJ':
             return 'http://www.jieshu.ren/'
-          case 'KAC':
+          case 'kac':
             return 'http://www.kaipaicollege.com/kpxy-pc/index.html'
           default:
             return '//www.antshares.org/'
