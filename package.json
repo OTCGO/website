@@ -9,7 +9,6 @@
     "build": "cross-env NODE_ENV=production webpack --progress --colors",
     "build:loccal": "cross-env NODE_ENV=production webpack --progress --colors --profile --display-modules --sort-modules-by size --json > stats.json",
     "svg": "vsvg -s ./src/images/svgs -t ./src/images/compiled-icons",
-    "standard": "standard --fix",
     "test": "mocha --compilers js:babel-core/register --recursive ./test/**.js"
   },
   "dependencies": {
@@ -86,26 +85,6 @@
     "vuelidate": "^0.4.3",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
-  },
-  "config": {
-    "pre-git": {
-      "commit-msg": "",
-      "pre-commit": [
-        "npm run standard"
-      ],
-      "pre-push": [],
-      "post-commit": [],
-      "post-checkou": [],
-      "post-merge": []
-    }
-  },
-  "standard": {
-    "ignore": [
-      "/doc",
-      "/src/libs",
-      "/src/polyfill",
-      "/test/index.js"
-    ]
   },
   "release": {
     "analyzeCommits": "simple-commit-message"

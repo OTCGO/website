@@ -2,7 +2,7 @@
 	.panel.panel-default.panel-state
 		.panel-body  登录离线钱包
 	.row(style="text-align:center")
-		.col-xs-12.col-lg-12
+		.col-xs-12.col-lg-offset-3.col-lg-9.text-left
 			h3.h2 登录离线钱包
 	canvas#particle
 	.login-body.row
@@ -21,7 +21,7 @@
 						| 浏览
 						input(type="file", accept="application/json, .json", @change="readFile($event.target.files[0])")
 					span.error-text(v-show="filenameError", style="display:inline-block;padding-left:10px;")
-						| {{filenameError}}
+						| {{ filenameError }}
 
 				// The primary passwd input
 				.input-group(:class="{ 'has-error': $v.password.$error }")
