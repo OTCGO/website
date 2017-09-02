@@ -22,7 +22,7 @@ const routes = [
       { path: 'balances', component: r => require(['~pages/admin/balances/balances.vue'], r) },
       { path: 'history/transfer', component: r => require(['~pages/admin/history/transfer.vue'], r), name: 'transferH' },
       { path: 'history/transaction', component: r => require(['~pages/admin/history/transaction.vue'], r), name: 'transactionH' },
-      { path: 'order/:type', component: r => require(['~pages/admin/order'], r), name: 'order' },
+      { path: 'history/ico', component: r => require(['~pages/admin/history/ico.vue'], r), name: 'icoH' },
       { path: 'bonus', component: r => require(['~pages/admin/bonus'], r), name: 'bonus' },
       { path: '', component: r => require(['~pages/admin/balances/balances.vue'], r) }
     ]

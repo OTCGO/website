@@ -458,8 +458,6 @@
             findBalances(this.balances, this.deliverCurrency.toLocaleLowerCase())[0],
             findBalances(this.balances, this.receiveCurrency.toLocaleLowerCase())[0]
           ]
-
-          console.log('this.ownAsset',this.ownAsset)
         })
 
 
