@@ -88,18 +88,17 @@
         })
       },
 
-      redeem(history) {
+      async redeem(history) {
         history.loading = true
-        this.$store.dispatch('REDEEM', history)
-            .then(() => {
-              history.redeem = true
-              this.getHistory()
-              this.$message.success('取回成功!')
-            })
-            .catch(e => {
-              history.loading = false
-              this.$message.error('取回失败！', e.non_field_error)
-            })
+        try {
+          this.$store.dispatch('REDEEM', history)
+          history.redeem = true
+          this.getHistory()
+          this.$message.success('取回成功!')
+        } catch(err) {
+          history.loading = false
+          this.$message.error(JSON.parse(err.bodyText).error)
+        }
       }
     },
     mounted() {
