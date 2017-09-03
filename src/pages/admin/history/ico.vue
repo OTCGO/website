@@ -30,15 +30,15 @@
         await this.stopFetch()
         this.$set(item, 'loading', true)
         try {
-          const res = await this.$store.dispatch('REDEEM', { id })
+          const res = await this.$store.dispatch('REDEEM', item)
           if (res) {
             this.startFetch()
             this.$message.success('取回成功！')
           }
           this.$set(item, 'loading', false)
-        } catch(e) {
+        } catch(err) {
           this.startFetch()
-          this.$message.error(e.body.non_field_errors[0])
+          this.$message.error(JSON.parse(err.bodyText).error)
         }
       },
 
