@@ -23,14 +23,14 @@
         <li>
           <router-link class="menu" to="/"> 首 &nbsp; 页 </router-link>
         </li>
-        <li>
+        <!--<li>
           <router-link class="menu" to="/ico/status">ICO专区</router-link>
-        </li>
+        </li>-->
         <li>
           <a class="menu" href="//shang.qq.com/wpa/qunwpa?idkey=5f3e197cd2343ba8a56e933064d86ddaf218ecbe837a3e7e0603a7c8c6bf6139 " target="_blank">加入社群</a>
         </li>
       </ul>
-  
+
       <form class="col-sm-12 navbar-form navbar-right" style="margin-right: 20px;">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="资产关键词搜索暂未开放" disabled>
@@ -72,10 +72,9 @@
             <el-menu-item index="1-4-1">
               <router-link class="menu" to="/"> 首 &nbsp; 页 </router-link>
             </el-menu-item>
-            <el-menu-item index="1-4-1">
+            <!--<el-menu-item index="1-4-1">
               <router-link class="menu" to="/ico/status">ICO专区</router-link>
-            </el-menu-item>
-          </el-submenu>
+            </el-menu-item>-->
           </el-submenu>
         </el-menu>
       </el-col>
