@@ -71,6 +71,7 @@ module.exports = {
     proxy: {
       '/api/*': {
         target: 'http://future.otcgo.cn/',
+        // target: 'https://otcgo.cn/',
         secure: false,
         changeOrigin: true
       }
