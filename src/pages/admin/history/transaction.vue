@@ -24,10 +24,10 @@
           </td>
           <td class="col-md-2" style="vertical-align: middle;">
             <el-button v-if="history['redeem']" class="link-span-seal" :disabled="true">已取回</el-button>
-            <el-button v-else class="btn ljbutton"
+            <el-button v-else
+                       class="btn ljbutton"
                        :loading="history['loading']"
-                       @click="redeem(history)">取回
-            </el-button>
+                       @click="redeem(history)">取回</el-button>
           </td>
         </tr>
       </tbody>
@@ -88,18 +88,17 @@
         })
       },
 
-      redeem(history) {
+      async redeem(history) {
         history.loading = true
-        this.$store.dispatch('REDEEM', history)
-            .then(() => {
-              history.redeem = true
-              this.getHistory()
-              this.$message.success('取回成功!')
-            })
-            .catch(e => {
-              history.loading = false
-              this.$message.error('取回失败！', e.non_field_error)
-            })
+        try {
+          this.$store.dispatch('REDEEM', history)
+          history.redeem = true
+          this.getHistory()
+          this.$message.success('取回成功!')
+        } catch(err) {
+          history.loading = false
+          this.$message.error(JSON.parse(err.bodyText).error)
+        }
       }
     },
     mounted() {
