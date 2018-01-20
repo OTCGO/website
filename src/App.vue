@@ -226,6 +226,4 @@
      display: block
     }
 }
-/* Apply CSS to iOS affected versions only */
-body.iosBugFixCaret.modal-open { position: fixed; width: 100%; }
 </style>
