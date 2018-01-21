@@ -24,6 +24,19 @@
       transfer({ name }) {
         this.$store.commit('SET_DELIVER', name)
         this.transferModal = true
+
+        var ua = navigator.userAgent,
+        iOS = /iPad|iPhone|iPod/.test(ua),
+        iOS11 = /OS 11_0_1|OS 11_0_2|OS 11_0_3|OS 11_1|OS 11_1_1|OS 11_1_2|OS 11_2|OS 11_2_1/.test(ua);
+        //.style.position = 'fixed';
+        //document.getElementsByClassName('tiny-dialog')[0].style.position = 'fixed';
+        console.log('iOS11',iOS11)
+        if (iOS && iOS11) {
+            //document.body.style.position = 'fixed';
+            document.body.style.overflow = 'hidden';
+            document.getElementsByClassName('tiny-dialog')[0].style.position = 'absolute';
+       }
+
       },
       transferSuccess() {
         this.transferModal = false
