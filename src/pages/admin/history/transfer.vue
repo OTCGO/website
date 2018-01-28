@@ -17,7 +17,7 @@
                :href="`//antchain.xyz/tx/hash/${history['txid']}`"
                target="_blank">{{history['dest']}}</a> -->
               <a class="link-interact"
-              :href="`${history['assetId'].length === 40 ? `http://nep5.otcgo.cn/#/tx/hash/${history['txid']}`:`https://neoscan.io/transaction/0x${history['txid']}?locale=zh`}`"
+              :href="`${history['assetId'].length === 40 ? `http://nep5.otcgo.cn/#/tx/hash/0x${history['txid']}`:`https://neoscan.io/transaction/${history['txid']}?locale=zh`}`"
               target="_blank">{{history['dest']}}</a> 
 
           </td>
