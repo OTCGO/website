@@ -13,9 +13,13 @@
         <tr v-for="history in histories">
           <td class="col-md-6"
               style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;vertical-align: middle;text-align: center;">
-            <a class="link-interact"
+            <!-- <a class="link-interact"
                :href="`//antchain.xyz/tx/hash/${history['txid']}`"
-               target="_blank">{{history['dest']}}</a>
+               target="_blank">{{history['dest']}}</a> -->
+              <a class="link-interact"
+              :href="`${history['assetId'].length === 40 ? `http://nep5.otcgo.cn/#/tx/hash/${history['txid']}`:`https://neoscan.io/transaction/${history['txid']}?locale=zh`}`"
+              target="_blank">{{history['dest']}}</a> 
+
           </td>
           <td class="col-md-2" style="vertical-align: middle;">{{history['name']}}</td>
           <td class="col-md-2" style="vertical-align: middle;">{{history['amount']}}</td>
