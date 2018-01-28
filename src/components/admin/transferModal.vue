@@ -115,7 +115,16 @@
           assetId: this.deliver.assetId
         })
             .then(i => {
-              this.$message.success('转账成功！')
+             
+             // this.$message.success('转账成功！')
+              // nep5
+              if(this.deliver.assetId.length === 40 ){
+                this.$message.success('转账已发起，请于1-2个高度后确认余额，期间请勿重复转账!')
+              }else{
+                this.$message.success('转账成功！')
+              }
+
+
               this.$set(this.amount, 'value', '')
               this.$set(this.address, 'value', '')
               this.loading = false
