@@ -1,6 +1,7 @@
 /**
  * Created by Amagi on 7/6/2017.
  */
+const { enc , SHA256 } = require('crypto-js')
 
 const ab2str = buf => { return String.fromCharCode.apply(null, new Uint8Array(buf)); }
 
@@ -20,6 +21,14 @@ const hexstring2ab = str => {
   }
 
   return result;
+}
+
+const hash256 = (hex) => {
+  if (typeof hex !== 'string') throw new Error('reverseHex expects a string')
+  if (hex.length % 2 !== 0) throw new Error(`Incorrect Length: ${hex}`)
+  let hexEncoded = enc.Hex.parse(hex)
+  let ProgramSha256 = SHA256(hexEncoded)
+  return SHA256(ProgramSha256).toString()
 }
 
 const ab2hexstring = arr => {
@@ -127,5 +136,6 @@ export {
   ab2hexstring,
   reverseArray,
   numStoreInMemory,
-  stringToBytes
+  stringToBytes,
+  hash256
 }

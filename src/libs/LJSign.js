@@ -499,9 +499,36 @@ LJSigningKey.prototype.sign = function(msghex) {
 }
 */
 
+const { ab2hexstring, hash256 } = require('./wallet/utils')
+
 export const ljSign = (prvhex, msghex) => (new LJSigningKey(prvhex)).sign(msghex)
 
-export const ljWifkeyToBinkey = wif => Base58.decode(wif).subarray(1, 33)
+export const isWIF = (wif) => {
+  try {
+    if (wif.length !== 52) return false
+    // console.log('isWIF', 1)
+    const hexStr = ab2hexstring(Base58.decode(wif))
+    // console.log('hexStr', hexStr)
+    if (hexStr.substr(0, 2) !== '80' && hexStr.substr(hexStr.length - 10, 2) !== '01') return false
+    // console.log('isWIF', 2)
+    // console.log('isWIF:2', hexStr.substr(0, hexStr.length - 8))
+    const shaChecksum = hash256(hexStr.substr(0, hexStr.length - 8)).toString().substr(0, 8)
+    // console.log('shaChecksum', shaChecksum)
+    // console.log('hexStr', hexStr.substr(hexStr.length - 8, 8))
+    // console.log('isWIF', 3)
+    return shaChecksum === hexStr.substr(hexStr.length - 8, 8)
+
+    // const shaChecksum = hash256(hexStr.substr(0, hexStr.length - 8)).substr(0, 8)
+    // return shaChecksum === hexStr.substr(hexStr.length - 8, 8)
+  } catch (e) {
+    console.log('e', e)
+    return false
+  }
+}
+
+export const ljWifkeyToBinkey = wif => {
+  return Base58.decode(wif).subarray(1, 33)
+}
 
 export const ljWifkeyToHexkey = function (wif) {
   let s = ''

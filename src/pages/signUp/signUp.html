@@ -54,7 +54,7 @@
           </div>
 
           <div class="col-xs-9 col-lg-4">
-            <input v-model="wif" class="form-control" placeholder="若您没有WIF私钥，此栏不用填"/>
+            <input v-model="wif" class="form-control" @blur="checkWif" placeholder="若您没有WIF私钥，此栏不用填"/>
           </div>
 
           <div class="col-xs-9 col-xs-offset-4 col-lg-3 col-lg-offset-0" style="padding-left:0;">
