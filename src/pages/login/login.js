@@ -32,12 +32,15 @@ export default {
 
         if (result) {
           this.wallet['privateKey'] = privateKey
+          this.loading = false
+          this.$message.success('验证成功!')
+          this.$router.push({ path: '/admin/balances' })
           this.$store.dispatch('LOGIN', this.wallet)
               .then(() => {
                 delete this.wallet
-                this.loading = false
-                this.$message.success('验证成功!')
-                this.$router.push({ path: '/admin/balances' })
+                // this.loading = false
+                // this.$message.success('验证成功!')
+                // this.$router.push({ path: '/admin/balances' })
               }, () => {
                 this.$message.error('验证失败，请检查钱包文件与密码重试!')
                 this.loading = false

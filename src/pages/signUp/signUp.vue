@@ -25,8 +25,9 @@
   import protocol from '../protocol/index.vue'
   import { required, maxLength, minLength, sameAs } from 'vuelidate/lib/validators'
   import { genKeyPairHex, encryptPrivateKey, getCompressedPubHex } from '~utils/ljsign'
-  import { ljWifkeyToPubkey, ljWifkeyToHexkey } from '~libs/LJSign'
+  import { ljWifkeyToPubkey, ljWifkeyToHexkey,isWIF } from '~libs/LJSign'
 
+  // 
   export default {
     components: { protocol },
 
@@ -66,8 +67,19 @@
         sameAsPassword: sameAs('password')
       }
     },
-
+    mounted:function(){
+      // console.log('isWIF',isWIF(''))
+    },
     methods: {
+      checkWif(){
+        if(!isWIF(this.wif)){
+          this.wifError = true
+          return 
+        }
+
+        this.wifError = false
+
+      },
       createWallet() {
         if (!this.password || !this.passwordConfirmed ||
             this.password.length < 8 || this.passwordConfirmed.length < 8 ||
@@ -78,9 +90,14 @@
 
         if (this.wif) {
           if (!/[a-z0-9A-Z]{52}/.test(this.wif)) { this.wifError = !this.wifError; return }
-
-          publicKey = ljWifkeyToPubkey(this.wif)
-          privateKey = ljWifkeyToHexkey(this.wif)
+          if(isWIF(this.wif)){
+            publicKey = ljWifkeyToPubkey(this.wif)
+            privateKey = ljWifkeyToHexkey(this.wif)
+          }else{
+            // error this.wif
+            this.wifError = true
+            return
+          }
         } else {
           keyPair = genKeyPairHex()
           publicKey = keyPair['pubhex']
