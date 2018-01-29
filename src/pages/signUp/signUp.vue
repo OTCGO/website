@@ -94,7 +94,6 @@
             publicKey = ljWifkeyToPubkey(this.wif)
             privateKey = ljWifkeyToHexkey(this.wif)
             this.wifError = false
-            return
           }else{
             // error this.wif
             this.wifError = true
