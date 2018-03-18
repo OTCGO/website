@@ -6,7 +6,7 @@
       <div class="container">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="https://neoscan.io/?locale=zh" target="_blank">
+            <a href="http://state.otcgo.cn" target="_blank">
               <el-button :plain="true" type="primary">区块浏览</el-button>
             </a>
           </li>
