@@ -8,7 +8,6 @@
         <span @click="open = !open" class="btn ljbutton">{{open? '关闭':'打开'}}</span>
         <span v-if="open">{{wif}}</span><br>
       </p>
-      <p class="" style="color:red">WIF私钥是您个人资产所有权的唯一凭证，请务必备份保管好</p>
     </div>
   </div>
 </template>
