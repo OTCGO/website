@@ -1,6 +1,8 @@
 <div class="propertylist">
   <!-- UI: table -->
-  <table class="table data-table table-bordred table-striped">
+  <el-button :plain="true"  @click="switchAsset()" type="primary">{{isDisplay ? "隐藏余额为0的资产":"显示所有资产"}}</el-button>
+  <br />
+  <table class="table data-table table-bordred table-striped" style="margin-top:10px">
     <thead>
       <th>资产名称</th>
       <th>总量</th>
@@ -9,7 +11,7 @@
       <th class="tb-btn"></th>
     </thead>
     <tbody>
-      <tr v-for="balance in balances">
+      <tr v-for="balance in balances" v-if="isDisplay ? balance['valid'] : (balance['valid'] != 0)">
         <td v-if="balance['assetType'] !== 'Token'">{{balance['name']}}</td>
         <td v-else>{{balance['name']}}</td>
         <td>{{balance['total']}}</td>

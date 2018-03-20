@@ -27,8 +27,8 @@
           <router-link class="menu" to="/ico/status">ICO专区</router-link>
         </li>-->
         <li>
-          <a class="menu" href="//shang.qq.com/wpa/qunwpa?idkey=5f3e197cd2343ba8a56e933064d86ddaf218ecbe837a3e7e0603a7c8c6bf6139 " target="_blank">加入社群</a>
-        </li>
+          <a class="menu" href="//shang.qq.com/wpa/qunwpa?idkey=9c4d861cd779fca2519f1b302581caebf03b357fdf00acd36b116cf1eff1dfaf " target="_blank" title="蓝鲸淘第四社群">加入社群</a>
+         </li>
       </ul>
 
       <form class="col-sm-12 navbar-form navbar-right" style="margin-right: 20px;">
