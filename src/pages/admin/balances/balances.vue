@@ -13,7 +13,9 @@
       dialogPay: false,
       dialogDisPay: false,
       transferModal: false,
-      askModal: false
+      askModal: false,
+      // btnText:'隐藏余额为0的资产',
+      isDisplay:true
     }),
 
     computed: {
@@ -41,6 +43,11 @@
       transferSuccess() {
         this.transferModal = false
       },
+      // 显示和隐藏按钮
+      switchAsset() {
+        this.isDisplay = ! this.isDisplay
+        console.log('switchAsset')
+      },
       ask({ name }, receiverName) {
         this.$store.commit('SET_DELIVER', name)
         this.$store.commit('SET_RECEIVE', receiverName)
@@ -52,7 +59,7 @@
       ...mapActions({
         getAsset: 'GET_ASSET',
         getUID: 'GET_UID'
-      })
+      }),
     },
 
     created() {

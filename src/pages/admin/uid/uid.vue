@@ -27,6 +27,7 @@
       address() { return this.wa('address') },
       wif() { return this.wa('wif') }
     }
+
   }
 </script>
 
