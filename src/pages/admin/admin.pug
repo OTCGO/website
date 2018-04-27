@@ -18,7 +18,7 @@
                   transition(name='fade', mode='out-in')
                      ul.nav.nav-stacked.nav-pills.drop-menu
                         li(@click="on=true"): router-link(:to="{ name: 'transactionH' }") OTC记录
-                        // li(@click="on=true"): router-link(to="/admin/history/ico") ICO记录
+                        li(@click="on=true"): router-link(to="/admin/history/ico") ICO记录
                         li(@click="on=true"): router-link(:to="{ name: 'transferH' }") 转账记录
                li(@click="handleNav"): router-link(to="/admin/uid") 个人中心
       .col-lg-9.col-md-9.col-sm-12.col-xs-12
