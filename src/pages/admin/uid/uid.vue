@@ -71,19 +71,27 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
       //  console.log('geneNep2')
 
       try {
-        
+        this.loading = true
+        this.disabled = true
 
        if(!this.pwd){
+          this.nep2Modal = true
+          this.loading = false
+          this.disabled = false
+         this.$message.error('验证失败，请重试!')
          return
        }
 
-      this.loading = true
-      this.disabled = true
+
 
       // console.log('privateKeyEncrypted',this.privateKeyEncrypted)
       const privateKey = decrypt(this.privateKeyEncrypted, this.pwd)
 
       if(privateKey !== this.wa('privateKey')){
+         this.nep2Modal = true
+        this.loading = false
+        this.disabled = false
+        this.$message.error('验证失败，请重试!')
         return
       }
 
