@@ -39,6 +39,9 @@ export default {
       this.loading = true
       const [{ assetId, valid }] = findBalances(this.balances, 'neo')
       const dest = this.wa('address')
+      if(!valid){
+        return
+      }
       this.$store.dispatch('TRANSFER', { assetId, dest, amount: valid })
           .then(() => {
             this.loading = false

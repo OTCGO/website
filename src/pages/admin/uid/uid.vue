@@ -96,19 +96,50 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
       }
 
 
+      const prikey = ThinNeo.Helper.GetPrivateKeyFromWIF(this.wa('wif'));
+      const n = 16384;
+      const r = 8;
+      const p = 8
 
-      this.nep2 = wallet.encrypt(this.wa('wif'),this.pwd)
+      // console.log('prikey',prikey)
+      ThinNeo.Helper.GetNep2FromPrivateKey(prikey,this.pwd, n, r, p, (info, result) =>{
+      try {
+        // console.log("info=" + info);
+        // console.log("result=" + result);
+        this.nep2 = result
 
-      this.loading = false
-      this.disabled = false
-      this.nep2Modal = false
-      this.nep2Open = true
-
-      } catch (error) {
-         this.loading = false
+        this.loading = false
         this.disabled = false
         this.nep2Modal = false
         this.nep2Open = true
+      } catch (error) {
+
+        this.loading = false
+        this.disabled = false
+        this.nep2Modal = false
+        this.nep2Open = true
+      }
+
+    });
+
+      
+
+
+
+
+
+      // this.nep2 = wallet.encrypt(this.wa('wif'),this.pwd)
+
+      // this.loading = false
+      // this.disabled = false
+      // this.nep2Modal = false
+      // this.nep2Open = true
+
+      } catch (error) {
+          this.loading = false
+          this.disabled = false
+          this.nep2Modal = false
+          this.nep2Open = true
       }
        // console.log('geneNep2',this.nep2)
       }
@@ -127,6 +158,8 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
     }
 
   }
+
+
 </script>
 
 <style lang="css">
