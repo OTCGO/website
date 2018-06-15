@@ -31,7 +31,7 @@
         playerOptions: {
           height: '500',
           autoplay: false,
-          muted: true,
+          muted: false,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
