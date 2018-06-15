@@ -28,6 +28,9 @@ const routes = [
     ]
   },
 
+   // 视频教程
+   { path: '/video', name: 'video', component: r => require(['~pages/video/video.vue'], r) },
+
   // 创建钱包页面
   { path: '/signUp', component: r => require(['~pages/signUp/signUp.vue'], r) },
   { path: '/signUpNext', component: r => require(['~pages/signUp/signUpNext.vue'], r) },

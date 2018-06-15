@@ -51,9 +51,9 @@ export default {
      *
      */
     async getData () {
-      this.anccnyResult = (await this.$http.get(`markets/neocny`)).body
-      this.anscnyResult = (await this.$http.get(`markets/gascny`)).body
-      this.kacansResult = (await this.$http.get(`markets/kacneo`)).body
+      // this.anccnyResult = (await this.$http.get(`markets/neocny`)).body
+      // this.anscnyResult = (await this.$http.get(`markets/gascny`)).body
+      // this.kacansResult = (await this.$http.get(`markets/kacneo`)).body
     },
 
     toMarkets () {
