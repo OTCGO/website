@@ -27,6 +27,7 @@
     "moment-countdown": "0.0.3",
     "progressive-image": "^1.1.0",
     "vee-validate": "^2.0.0-beta.22",
+    "video.js": "^7.0.3",
     "vue": "^2.1.0",
     "vue-awesome": "^2.3.1",
     "vue-axios": "^1.2.2",
@@ -35,6 +36,7 @@
     "vue-resource": "^1.1.2",
     "vue-router": "^2.2.0",
     "vue-validator": "^3.0.0-alpha.2",
+    "vue-video-player": "^5.0.2",
     "vuetable-2": "^1.6.3",
     "vuex": "^2.2.1"
   },
