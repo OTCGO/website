@@ -6,7 +6,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
         <li class="first">
-          <a class="menu">
+          <!-- <a class="menu">
             交易对
             <ul class="menulist">
               <router-link
@@ -17,11 +17,28 @@
                   v-text="item.name"
               ></router-link>
             </ul>
-          </a>
+          </a> -->
+          <a href="//otcgo.cn/download" target="_blank" class="menu">APP下载</a>
         </li>
   
         <li>
           <router-link class="menu" to="/"> 首 &nbsp; 页 </router-link>
+        </li>
+
+        <li class="first">
+           <a class="menu">
+            视频教程
+            <ul class="menulist">
+              <router-link
+                  v-for="item in videoLists"
+                  v-bind:key="item.name"
+                  class="text-center pointer"
+                  :to="item.link"
+                  tag="li"
+                  v-text="item.name"
+              ></router-link>
+            </ul>
+          </a> 
         </li>
         <!--<li>
           <router-link class="menu" to="/ico/status">ICO专区</router-link>
@@ -45,9 +62,14 @@
         <el-menu default-active="2" class="el-menu-vertical-demo">
           <el-submenu index="1">
             <template slot="title">蓝鲸淘</template>
-            <el-menu-item-group>
+
+            <el-menu-item index="1-4-1">
+              <a class="menu"  href="//otcgo.cn/download" > APP下载 </a>
+            </el-menu-item>
+
+            <!-- <el-menu-item-group>
               <template slot="title">交易对</template>
-              <!--<el-menu-item index="1-4-1">
+              <el-menu-item index="1-4-1">
                 <router-link class="text-center pointer" :to="{path: '/markets',
                           query: { 'class': 'neocny' }}" tag="li">小蚁股-人民币
                 </router-link>
@@ -56,7 +78,7 @@
                 <router-link class="text-center pointer" :to="{path: '/markets',
                           query: { 'class': 'gascny' }}" tag="li">小蚁币-人民币
                 </router-link>
-              </el-menu-item>-->
+              </el-menu-item>
               <el-menu-item index="1-4-1">
                 <router-link class="text-center pointer" :to="{path: '/markets',
                             query: { 'class': 'kacneo' }}" tag="li">开拍币-小蚁股
@@ -67,11 +89,25 @@
                           query: { 'class': 'lzglzj' }}" tag="li">量子股份-量子积分
                 </router-link>
               </el-menu-item>
-            </el-menu-item-group>
+            </el-menu-item-group> -->
   
             <el-menu-item index="1-4-1">
               <router-link class="menu" to="/"> 首 &nbsp; 页 </router-link>
             </el-menu-item>
+
+            <el-menu-item-group>
+              <template slot="title">视频教程</template>
+              <el-menu-item index="1-4-1">
+                <router-link class="text-center pointer" :to="{path: '/video',
+                          query: { 'name': 'web' }}" tag="li">网页钱包
+                </router-link>
+              </el-menu-item>
+              <el-menu-item index="1-4-1">
+                <router-link class="text-center pointer" :to="{path: '/video',
+                          query: { 'name': 'app' }}" tag="li">APP钱包
+                </router-link>
+              </el-menu-item>
+            </el-menu-item-group> 
             <!--<el-menu-item index="1-4-1">
               <router-link class="menu" to="/ico/status">ICO专区</router-link>
             </el-menu-item>-->
@@ -103,6 +139,24 @@
               render: true
             },
             name: '量子股份-量子积分'
+          }
+        ],
+         videoLists: [
+          {
+            link: {
+              path: '/video',
+              query: { 'name': 'web' },
+              // render: true
+            },
+            name: '网页钱包'
+          },
+          {
+            link: {
+              path: '/video',
+              query: { 'name': 'app' },
+              // render: true
+            },
+            name: 'APP钱包'
           }
         ]
       }

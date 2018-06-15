@@ -3,7 +3,7 @@
     .index
       el-carousel(:interval="5000", height="400px")
         el-carousel-item(v-for="banner in banners")
-          router-link(:to="banner.route")
+          a(v-bind:href="banner.route.path",target="_blank")
             img(:src="banner.src", :alt="banner.dec")
       o-content
 </template>
@@ -17,23 +17,22 @@
     data: () => ({
       banners: [
         {
-          src: require('~images/banner_LZG-LZJ.jpg'),
-          preview: require('~images/banner_LZG-LZJ-r.jpg'),
-          dec: '量子积分与量子股份交易对海报',
+          src: require('~images/app-download.jpg'),
+          preview: require('~images/app-download.jpg'),
+          dec: 'sea app download',
           route: {
-            path: '/markets',
-            query: { 'class': 'lzglzj' }
+            path: '//otcgo.cn/download'
           }
         },
-        {
-          src: require('~images/banner_KAC-ANS.jpg'),
-          preview: require('~images/banner_KAC-ANS-r.jpg'),
-          dec: '蓝鲸淘正式上线开拍币\\小蚁股交易对',
-          route: {
-            path: '/markets',
-            query: { 'class': 'kacneo' }
-          }
-        }
+        // {
+        //   src: require('~images/banner_KAC-ANS.jpg'),
+        //   preview: require('~images/banner_KAC-ANS-r.jpg'),
+        //   dec: '蓝鲸淘正式上线开拍币\\小蚁股交易对',
+        //   route: {
+        //     path: '/markets',
+        //     query: { 'class': 'kacneo' }
+        //   }
+        // }
       ],
       loading: false
     })

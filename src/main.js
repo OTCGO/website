@@ -3,6 +3,7 @@ import '../theme/index.css'
 import 'progressive-image/dist/index.css'
 import '~styles/common.styl'
 
+
 import Vue from 'vue'
 import _ from 'lodash'
 import VueResource from 'vue-resource'
