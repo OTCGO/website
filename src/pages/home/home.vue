@@ -21,7 +21,7 @@
           preview: require('~images/app-download.jpg'),
           dec: 'sea app download',
           route: {
-            path: '//otcgo.cn/download'
+            path: '//otcgo.cn/download/'
           }
         },
         // {

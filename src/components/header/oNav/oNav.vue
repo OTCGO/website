@@ -18,7 +18,7 @@
               ></router-link>
             </ul>
           </a> -->
-          <a href="//otcgo.cn/download" target="_blank" class="menu">APP下载</a>
+          <a href="//otcgo.cn/download/" target="_blank" class="menu">APP下载</a>
         </li>
   
         <li>
@@ -64,7 +64,7 @@
             <template slot="title">蓝鲸淘</template>
 
             <el-menu-item index="1-4-1">
-              <a class="menu"  href="//otcgo.cn/download" > APP下载 </a>
+              <a class="menu"  href="//otcgo.cn/download/" > APP下载 </a>
             </el-menu-item>
 
             <!-- <el-menu-item-group>
