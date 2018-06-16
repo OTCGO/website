@@ -23,11 +23,6 @@
 
    // this.$route.query
     data: () => ({
-        // v_url:'http://paclsxg3t.bkt.clouddn.com/SEA%28%E8%93%9D%E9%B2%B8%E6%B7%98%29%E7%BD%91%E9%A1%B5%E9%92%B1%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.mp4',
-        // playerOptions:{
-        //     height: '500',
-        //     autoplay: true,
-        // }
         playerOptions: {
           height: '500',
           autoplay: false,
@@ -36,8 +31,7 @@
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
             type: "video/mp4",
-            // mp4
-            //src: 'http://paclsxg3t.bkt.clouddn.com/SEA%28%E8%93%9D%E9%B2%B8%E6%B7%98%29%E7%BD%91%E9%A1%B5%E9%92%B1%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.mp4',
+            // mp4,
             src:''
           }],
           poster: "",
@@ -60,9 +54,9 @@
         const type = this.$route.query.name
         console.log('mounted',type)
         switch(type){
-            case 'web': this.playerOptions.sources[0].src = 'http://paclsxg3t.bkt.clouddn.com/SEA%28%E8%93%9D%E9%B2%B8%E6%B7%98%29%E7%BD%91%E9%A1%B5%E9%92%B1%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.mp4'
+            case 'web': this.playerOptions.sources[0].src = 'https://otcgo.oss-cn-beijing.aliyuncs.com/SEA%28%E8%93%9D%E9%B2%B8%E6%B7%98%29%E7%BD%91%E9%A1%B5%E9%92%B1%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.mp4'
                 break;
-            case 'app': this.playerOptions.sources[0].src   = 'http://paclsxg3t.bkt.clouddn.com/SEA%20app%E9%92%B1%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.MOV'
+            case 'app': this.playerOptions.sources[0].src   = 'https://otcgo.oss-cn-beijing.aliyuncs.com/SEA%20app%E9%92%B1%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.MOV'
         }
        
     }
