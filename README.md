@@ -1,3 +1,10 @@
+## update
+
+#### 2018-06-20
+* 添加个人中心打开wif，输入密码。
+
+
+
 # 蓝鲸淘前端部分
 
 蓝鲸淘是一个基于[NEO区块链](http://neo.org)的智能资产管理平台。
@@ -68,3 +75,6 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+

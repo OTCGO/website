@@ -12,8 +12,8 @@
 
       </p>
       <p><b>你的WIF私钥: </b>
-        <span @click="open = !open" class="btn ljbutton">{{open? '关闭':'打开'}}</span>
-        <span v-if="open">{{wif}}</span><br>
+        <span @click="openWif()" class="btn ljbutton">{{open? '关闭':'打开'}}</span>
+        <span v-if="open">{{w_wif}}</span><br>
       </p>
     </div>
 
@@ -32,6 +32,24 @@
             </el-button>
       </div>
     </div>
+
+
+    </el-dialog>
+      <el-dialog v-model="wifModal">
+       <div class="row" >
+        <span class="col-xs-3" >输入密码：</span>
+        <div class="col-xs-6">
+            <input type="password" v-model="pwd"  class="form-control" style="width:100% !important;" placeholder="请输入密码">
+        </div>
+      </div>
+
+        <div class="row" style="margin-top:20px;">
+          <div class="col-xs-3"></div>
+          <div class="col-xs-6">
+            <el-button type="primary" @click="geneWif()" class="btn btn-block ljbutton" :loading="loading" :disabled="disabled">{{loading ? '执行中' : '确认'}}
+            </el-button>
+      </div>
+    </div>
     </el-dialog>
   </div>
 </template>
@@ -47,10 +65,13 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
     data: () => ({
       open: false,
       nep2:undefined,
+      w_wif:undefined,
       nep2Open:false,
+      wifOpen:false,
       number: 0,
       animatedNumber: 0,
       nep2Modal:false,
+      wifModal:false,
       pwd:"",
       loading:false,
       disabled:false,
@@ -67,6 +88,47 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
         this.nep2Open = !this.nep2Open
 
       },
+      openWif(){
+        console.log('this.w_wif',this.w_wif)
+        console.log('this.wifModal',this.wifModal)
+        if(!this.w_wif){
+            this.wifModal = true
+        }
+        this.open = !this.open
+        this.wifOpen = !this.wifOpen
+      },
+
+      geneWif(){
+        try {
+            const privateKey = decrypt(this.privateKeyEncrypted, this.pwd)
+
+            if(privateKey !== this.wa('privateKey')){
+              this.wifModal = true
+              this.loading = false
+              this.disabled = false
+              this.$message.error('验证失败，请重试!')
+              return
+            }
+
+            this.open = true 
+
+        this.w_wif = this.wif
+        this.loading = false
+        this.disabled = false
+
+        this.wifModal = false
+        this.wifOpen = true
+
+
+        } catch (error) {
+          this.open = false 
+          this.loading = false
+          this.disabled = false
+          this.wifModal = false
+          this.wifOpen = true
+        }
+      },
+
       geneNep2(){
       //  console.log('geneNep2')
 
@@ -149,6 +211,7 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
       ...mapGetters(['wa', 'uid']),
       address() { 
         this.privateKeyEncrypted = this.wa('privateKeyEncrypted')
+        // this.w_wif = this.wa('wif') 
         // console.log('this.privateKeyEncrypted',this.privateKeyEncrypted)
         return this.wa('address')
       },
