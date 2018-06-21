@@ -21,7 +21,7 @@
        <div class="row" >
         <span class="col-xs-3" >输入密码：</span>
         <div class="col-xs-6">
-            <input type="password" v-model="pwd"  class="form-control" style="width:100% !important;" placeholder="请输入密码">
+            <input type="password" v-model="pwd" @keyup.enter="enterNep2"  class="form-control" style="width:100% !important;" placeholder="请输入密码">
         </div>
       </div>
 
@@ -39,7 +39,7 @@
        <div class="row" >
         <span class="col-xs-3" >输入密码：</span>
         <div class="col-xs-6">
-            <input type="password" v-model="pwd"  class="form-control" style="width:100% !important;" placeholder="请输入密码">
+            <input type="password" v-model="pwd"  @keyup.enter="enterWif"   class="form-control" style="width:100% !important;" placeholder="请输入密码">
         </div>
       </div>
 
@@ -98,6 +98,15 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
         this.wifOpen = !this.wifOpen
       },
 
+      enterWif(){
+         // console.log('enterWif')
+         this.geneWif()
+      },
+
+      enterNep2(){
+        this.geneNep2()
+      },
+
       geneWif(){
         try {
             const privateKey = decrypt(this.privateKeyEncrypted, this.pwd)
@@ -110,7 +119,7 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
               return
             }
 
-            this.open = true 
+        this.open = true 
 
         this.w_wif = this.wif
         this.loading = false
@@ -118,6 +127,7 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
 
         this.wifModal = false
         this.wifOpen = true
+        this.pwd = ''
 
 
         } catch (error) {
@@ -126,6 +136,7 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
           this.disabled = false
           this.wifModal = false
           this.wifOpen = true
+          this.pwd = ''
         }
       },
 
@@ -174,12 +185,14 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
         this.disabled = false
         this.nep2Modal = false
         this.nep2Open = true
+        this.pwd = ''
       } catch (error) {
 
         this.loading = false
         this.disabled = false
         this.nep2Modal = false
         this.nep2Open = true
+        this.pwd = ''
       }
 
     });
@@ -202,6 +215,7 @@ import transferModalVue from '../../../components/admin/transferModal.vue';
           this.disabled = false
           this.nep2Modal = false
           this.nep2Open = true
+          this.pwd = ''
       }
        // console.log('geneNep2',this.nep2)
       }
