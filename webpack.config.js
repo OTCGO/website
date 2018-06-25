@@ -1,12 +1,16 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const HtmlwebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    publicPath: './',
+    // filename: 'build.js'
+    filename:'[name]bundle.js',
+    chunkFilename:'[name]chunk.js'
   },
   module: {
     rules: [
@@ -66,8 +70,10 @@ module.exports = {
     }
   },
   devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    port: 8081,
     historyApiFallback: true,
-    noInfo: true,
+    // noInfo: true,
     proxy: {
       '/api/*': {
         // target: 'http://future.otcgo.cn/',
@@ -77,6 +83,16 @@ module.exports = {
       }
     }
   },
+  plugins:[
+    new HtmlwebpackPlugin({
+      title: 'SEA',
+      template: './src/index.html',
+      inject: true
+    }),
+    new CopyWebpackPlugin([
+      { from: 'static', to: 'static' }
+    ]),
+  ],
   performance: {
     hints: false
   },
@@ -87,6 +103,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
+
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
