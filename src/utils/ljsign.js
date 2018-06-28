@@ -64,3 +64,26 @@ export function getCompressedPubHex (pubhex) {
   const prefix = parseInt('0x' + y[y.length - 1]) % 2 ? '03' : '02'
   return prefix + result['x']
 }
+
+
+export function  getWif(encrypted, passphrase) {
+	const n = 16384
+	const r = 8
+	const p = 8
+	return new  Promise((resolve, reject) => {
+		ThinNeo.Helper.GetPrivateKeyFromNep2(encrypted, passphrase, n, r, p, (info, result) => {
+			try {
+				if (info === 'finish') {
+					const prikey = result
+					const wif  = ThinNeo.Helper.GetWifFromPrivateKey(prikey)
+					resolve(wif)
+				}
+
+				reject('error')
+			} catch (error) {
+				reject('nep2 error')
+				console.log('GetPrivateKeyFromNep2', error)
+			}
+		})
+	})
+}

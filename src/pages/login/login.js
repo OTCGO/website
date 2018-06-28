@@ -35,6 +35,8 @@ export default {
           this.loading = false
           this.$message.success('验证成功!')
           this.$router.push({ path: '/admin/balances' })
+
+          console.log('this.wallet', this.wallet)
           this.$store.dispatch('LOGIN', this.wallet)
               .then(() => {
                 delete this.wallet

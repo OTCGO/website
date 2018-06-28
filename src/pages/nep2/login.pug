@@ -1,0 +1,41 @@
+.container.container-padding
+	.panel.panel-default.panel-state
+		.panel-body  登录离线钱包
+	.row(style="text-align:center")
+		.col-xs-12.col-lg-offset-3.col-lg-9.text-left
+			h3.h2 登录离线钱包
+	canvas#particle
+	.login-body.row
+		.col-xs-3.col-lg-3
+			.ad-tips
+				ol
+					li 点击"浏览"按钮，找到钱包备份文件所在的硬盘位置，并导入。
+					li 输入您在创建钱包时,设置的钱包密码。
+					li 当前钱包页面为WEB离线钱包页面，请放心导入钱包备份文件。
+		.content.col-xs-12.col-lg-9
+			form.from-group.login
+				// File input
+				.input-group
+					input.form-control(type="text", style="background-color: #fff;", v-model.trim="nep2", placeholder="请输入nep2字符")
+					//- label.btn-bs-file.btn.btn-select-file.btn-primary.btn-lj
+					//- 	| 浏览
+					//- 	input(type="file", accept="application/json, .json", @change="readFile($event.target.files[0])")
+					//- span.error-text(v-show="filenameError", style="display:inline-block;padding-left:10px;")
+					//- 	| {{ filenameError }}
+
+				// The primary passwd input
+				.input-group(:class="{ 'has-error': $v.password.$error }")
+					input.form-control.pwd(:class="{ 'has-error': $v.password.$error }", type="password", v-model.trim="password", placeholder="输入钱包密码", @keyup.enter="login")
+					span.error-text(v-if="!$v.password.required && $v.password.$dirty") 请您填写密码
+					span.error-text(v-if="!$v.password.minLength && $v.password.$dirty") 密码不能小于4位
+					span.error-text(v-if="!$v.password.maxLength && $v.password.$dirty") 密码不能超过16位
+					span.error-text(v-if="!$v.password.$invalid && $v.password.$dirty")
+						img(:src="img.yes")
+
+				// Login button
+				.input-group
+					el-button.form-control(type="primary", style="border-radius:6px;", @click="login", :disabled="$v.$invalid", :loading="loading")
+						| 登 &nbsp &nbsp 录
+				.register.text-center
+					router-link(to="/signUp") 没有钱包?立即创建!
+			p.tips 离线钱包由NEO区块链提供技术支持
