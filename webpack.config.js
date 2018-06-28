@@ -4,11 +4,15 @@ const HtmlwebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:8081/',
+      './src/main.js',
+    ]
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: './',
-    // filename: 'build.js'
+    // publicPath: './',
     filename:'[name]bundle.js',
     chunkFilename:'[name]chunk.js'
   },
@@ -70,7 +74,7 @@ module.exports = {
     }
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    // contentBase: path.join(__dirname, "dist"),
     port: 8081,
     historyApiFallback: true,
     // noInfo: true,

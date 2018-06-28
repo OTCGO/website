@@ -9,6 +9,8 @@ const routes = [
 
   // 登陆
   { path: '/login', name: 'login', component: r => require(['~pages/login/index.vue'], r) },
+  // nep2 登陆
+  { path: '/nep2', name: 'nep2', component: r => require(['~pages/nep2/index.vue'], r) },
 
   // 地址为空跳转Home页面
   { path: '/', component: r => require(['~pages/home/home.vue'], r) },

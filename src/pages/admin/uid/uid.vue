@@ -58,7 +58,7 @@
   import { mapGetters } from 'vuex'
   import { wallet } from '@cityofzion/neon-js'
   import { decrypt } from '~utils/ljsign'
-import transferModalVue from '../../../components/admin/transferModal.vue';
+  import transferModalVue from '../../../components/admin/transferModal.vue';
 
 
   export default {
