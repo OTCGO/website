@@ -4,12 +4,7 @@ const HtmlwebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: {
-    app: [
-      'webpack-dev-server/client?http://localhost:8081/',
-      './src/main.js',
-    ]
-  },
+  entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     // publicPath: './',
