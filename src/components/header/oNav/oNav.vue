@@ -25,10 +25,10 @@
           <router-link class="menu" to="/"> 首 &nbsp; 页 </router-link>
         </li>
 
-        <li class="first">
+        <li class="first" onclick="">
            <a class="menu">
             视频教程
-            <ul class="menulist">
+            <ul class="menulist" >
               <router-link
                   v-for="item in videoLists"
                   v-bind:key="item.name"
