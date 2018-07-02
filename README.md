@@ -1,6 +1,9 @@
 ## update
 
 
+#### 2018-07-02
+* 修复ios 视频教程无法点击问题
+
 #### 2018-06-28
 * 添加Nep2登陆
 
@@ -54,7 +57,7 @@
 
 白皮书： [中文]() -**等待更新**
 
-GitHub：👉 [AmagiDDmxh](https://github.com/AmagiDDmxh)
+
 
 neo新人交流群：529334803
 
