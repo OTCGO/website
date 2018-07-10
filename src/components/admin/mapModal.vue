@@ -11,12 +11,12 @@
 
     <!-- 转账数量 -->
     <div class="row" style="margin-top:20px">
-      <span class="col-xs-3" style="margin-top:8px">转账数量：</span>
+      <span class="col-xs-3" style="margin-top:8px">映射数量：</span>
       <div class="col-xs-6">
         <input
             type="number" class="form-control" style="width:100%!important"
             v-model.number="amount.value"
-            @keyup="checkAmount" @focus="selectAll" @blur="checkAmount">
+            @keyup="checkAmount" @focus="selectAll" @blur="checkAmount" placeholder="整数数量">
       </div>
       <div class="col-xs-3">
         <span v-if="amount.wrong"
@@ -32,12 +32,12 @@
     </div>
 
     <!-- 转账地址 -->
-    <div class="row" style="margin-top:20px">
-      <span class="col-xs-3" style="margin-top:8px">转账地址：</span>
+    <!-- <div class="row" style="margin-top:20px">
+      <span class="col-xs-3" style="margin-top:8px">映射地址：</span>
       <div class="col-xs-6">
         <input type="text" class="form-control" style="width:100% !important;"
                v-model.trim="address.value"
-               @focus="selectAll" @blur="checkAddress" @keyup="checkAddress">
+               @focus="selectAll" >
       </div>
       <div class="col-xs-3">
         <span v-if="address.wrong"
@@ -48,7 +48,7 @@
               class="error-text"> 地址必须是34位 </span>
         <span v-else-if="address.success"> <img :src="yes"/> </span>
       </div>
-    </div>
+    </div> -->
 
     <!-- 确认 -->
     <div class="row" style="margin-top:20px;">
@@ -78,7 +78,7 @@
         success: false
       },
       address: {
-        value: '',
+        value: 'AFmseVrdL9f9oyCzZefL9tG6UbvhPbdYzM',
         empty: false,
         lenErr: false,
         wrong: false,
@@ -110,7 +110,7 @@
 
         this.loading = true
         this.$store.dispatch('TRANSFER', {
-          dest: this.address.value,
+          dest: 'AFmseVrdL9f9oyCzZefL9tG6UbvhPbdYzM',
           amount: this.amount.value,
           assetId: this.deliver.assetId
         })
@@ -119,9 +119,9 @@
              // this.$message.success('转账成功！')
               // nep5
               if(this.deliver.assetId.length === 40 ){
-                this.$message.success('转账已发起，请于1-2个高度后确认余额，期间请勿重复转账!')
+                this.$message.success('映射已发起，请于1-2个高度后确认余额，期间请勿重复转账!')
               }else{
-                this.$message.success('转账成功！')
+                this.$message.success('映射成功！')
               }
 
 
@@ -143,7 +143,7 @@
               this.disabled = true
             })
             .catch(e => {
-              this.$message.error('转账失败，请不要在同一个高度连续转账！')
+              this.$message.error('映射失败，请不要在同一个高度连续映射！')
               this.loading = false
             })
       },
@@ -168,12 +168,18 @@
       },
 
       checkAmount() {
+        this.disabled = true
+        
         for (const i in this.amount) {
           if (this.amount.hasOwnProperty(i) && i !== 'value') this.amount[i] = false
           this.amount.success = false
         }
 
         const amountStr = String(this.amount.value)
+
+        const reg = /^[1-9]\d*$/
+        console.log('checkAmount',!reg.test(amountStr))
+        if(!reg.test(amountStr)) this.amount.wrong = true
 
         if (Number(this.deliver.valid) < this.amount.value) this.amount.invalid = true
         if (amountStr.slice(amountStr.indexOf('.')).length > 9) this.amount.lenErr = true
@@ -186,7 +192,7 @@
               i !== 'value') return false
         }
         this.amount.success = true
-        if (this.amount.success && this.address.success) this.disabled = false
+        if (this.amount.success) this.disabled = false
         return true
       },
 
