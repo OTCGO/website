@@ -55,6 +55,7 @@ app.$notify.warning({
   offset: 100
 })
 
+console.log('process.NODE_ENV',process.NODE_ENV)
 if (process.NODE_ENV === 'production') {
 	window.console.log = function() {}
 }

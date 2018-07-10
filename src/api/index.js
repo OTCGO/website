@@ -22,7 +22,7 @@ const signatureRedeem = async data => fetching('signature/redeem', data, 'post')
 const getI = async id => (await fetching(`ico/${id}`))
 
 export const getA = async add => (await fetching(`balances/${add}`))
-export const getU = async add => (await fetching(`uid/${add}`))
+export const getU = async add => (add && await fetching(`uid/${add}`))
 
 export const getH = async (name, add, params) => {
   if (name === 'redeem') return await fetching(`redeem/${add}`, { params })

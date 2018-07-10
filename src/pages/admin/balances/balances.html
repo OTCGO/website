@@ -25,8 +25,14 @@
           </template>
           <template v-else>
             <span class="link-span"
-                  @click="transfer(balance)"
+                  @click="transfer(balance,1)"
                   v-show="balance['assetType'] != 'Share'">转账</span>
+          </template>
+
+          <template v-if="balance['assetId']=='ceab719b8baa2310f232ee0d277c061704541cfb'">
+            <span class="link-span"
+                  @click="transfer(balance,2)"
+                  v-show="balance['assetType'] != 'Share'">&nbsp;&nbsp;映射</span>
           </template>
         </td>
       </tr>
@@ -220,10 +226,16 @@
   </el-dialog>-->
   <!-- 转账 -->
   <el-dialog v-model="transferModal" class="tiny-dialog">
-    <transfer-modal @success="transferSuccess"></transfer-modal>
+    <transfer-modal @success="transferSuccess" ></transfer-modal>
   </el-dialog>
   <!-- 交易 -->
   <el-dialog v-model="askModal" id="dialogTransaction">
     <ask-modal @success="askSuccess"></ask-modal>
   </el-dialog>
+
+    <!-- 转账 -->
+    <el-dialog v-model="mapModal" class="tiny-dialog">
+      <map-modal @success="mapSuccess"></map-modal>
+    </el-dialog>
+
 </div>
