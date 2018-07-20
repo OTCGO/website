@@ -70,12 +70,13 @@
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 text-center">
                             <h4 class="text-color text-type2">友情链接</h4>
-                            <!--  <ul class="list-unstyled">
-                      <li><router-link class="text-color2" to="/time-entries">小蚁官网</router-link></li>
-                    <li><router-link class="text-color2" to="/time-entries">BB评级</router-link></li>
-                    <li><router-link class="text-color2" to="/time-entries">天使汇</router-link></li>
-                    <li><router-link class="text-color2" to="/time-entries">比特时代</router-link></li>
-                    </ul> -->
+                              <ul class="list-unstyled">
+                      <li><a class="text-color2" target="_blank" href="https://neo.org">NEO智能经济</a></li>
+                      <li><a class="text-color2" target="_blank" href="https://ont.io">本体网络</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
+                    </ul>
                         </div>
                     </div>
                     <div class="col-lg-2 text-center">
@@ -88,7 +89,7 @@
     </div>
 </template>
 <script>
-export default {}
+export default {};
 </script>
 <style lang="css">
 .qrCode {
