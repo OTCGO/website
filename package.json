@@ -5,7 +5,7 @@
   "author": "hongtao.qiu <hongtao.qiu@baluntek.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development  webpack-dev-server --content-base ./dist --open --inline --hot  --host 0.0.0.0 --port 8081 --disableHostCheck true",
+    "dev": "cross-env NODE_ENV=development  webpack-dev-server --content-base ./dist --open --inline --hot  --port 8081 --disableHostCheck true",
     "build": "cross-env NODE_ENV=production webpack --progress --colors",
     "build:loccal": "cross-env NODE_ENV=production webpack ",
     "svg": "vsvg -s ./src/images/svgs -t ./src/images/compiled-icons",

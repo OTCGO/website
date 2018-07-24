@@ -2,17 +2,11 @@
 	.panel.panel-default.panel-state
 		.panel-body  登录离线钱包
 	.row(style="text-align:center")
-		.col-xs-12.col-lg-offset-3.col-lg-9.text-left
+		.col-xs-12.col-lg-12.text-left
 			h3.h2 登录离线钱包
 	canvas#particle
 	.login-body.row
-		.col-xs-3.col-lg-3
-			.ad-tips
-				ol
-					li 点击"浏览"按钮，找到钱包备份文件所在的硬盘位置，并导入。
-					li 输入您在创建钱包时,设置的钱包密码。
-					li 当前钱包页面为WEB离线钱包页面，请放心导入钱包备份文件。
-		.content.col-xs-12.col-lg-9
+		.content.col-xs-12.col-lg-12
 			form.from-group.login
 				// File input
 				.input-group
@@ -38,4 +32,4 @@
 						| 登 &nbsp &nbsp 录
 				.register.text-center
 					router-link(to="/signUp") 没有钱包?立即创建!
-			p.tips 离线钱包由NEO区块链提供技术支持
+				p.tips NEO/ONT提供底层技术支持
