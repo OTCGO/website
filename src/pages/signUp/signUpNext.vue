@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="col-xs-offset-3">
-      <p class="tips">离线钱包由NEO区块链提供技术支持</p>
+      <p class="tips">NEO/ONT提供底层技术支持</p>
     </div>
   </div>
 </template>
