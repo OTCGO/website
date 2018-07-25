@@ -73,6 +73,7 @@
                               <ul class="list-unstyled">
                       <li><a class="text-color2" target="_blank" href="https://neo.org">NEO智能经济</a></li>
                       <li><a class="text-color2" target="_blank" href="https://ont.io">本体网络</a></li>
+                       <li><a class="text-color2" target="_blank" href="http://cryptogladiator.io/">疯狂角斗士</a></li>
                       <li><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
                       <li><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
