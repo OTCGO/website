@@ -77,6 +77,7 @@
                       <li><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
                       <li><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.byb.world">币用宝</a></li>
                     </ul>
                         </div>
                     </div>
