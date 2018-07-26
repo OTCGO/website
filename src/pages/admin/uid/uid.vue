@@ -134,6 +134,7 @@ export default {
         this.wifOpen = true;
         this.pwd = "";
       } catch (error) {
+        this.$message.error("验证失败，请重试!");
         this.open = false;
         this.loading = false;
         this.disabled = false;
@@ -209,6 +210,7 @@ export default {
         // this.nep2Modal = false
         // this.nep2Open = true
       } catch (error) {
+        this.$message.error("验证失败，请重试!");
         this.loading = false;
         this.disabled = false;
         this.nep2Modal = false;
