@@ -11,7 +11,9 @@
                li(@click="handleNav"): a.title 菜   单
                li(@click="handleNav"): router-link(to="/admin/balances") 资产列表
                // li(@click="handleNav"): router-link(:to="{ path: '/admin/order', query: { type: 'sell'}}") 我的挂单
-               li(@click="handleNav('bonus')"): router-link(to="/admin/bonus") 提取分红
+               li(@click="handleNav('bonus')"): router-link(to="/admin/bonus") 提取GAS分红
+
+               li(@click="handleNav('ong')"): router-link(to="/admin/ong") 提取ONG分红
 
                li(:class="[{'on': onHistory}, 'drop-trigger']")
                   a(@click="handleNav('history')") 交易记录
@@ -27,8 +29,16 @@
                router-view
    .row
       .col-xs-offset-3
-         .admin-footer-line(v-if="onBonus")
-           b(style={"color": "#000"}) 提取提示：
-           el-button(type="primary", @click="claimTransfer", v-loading.lock="loading", size="mini", :disabled="disabled") 点击此处
-           |  将自己全部的NEO小蚁股对自己的钱包地址进行一次转账，“不可提取数量” 才能变成 “可提取数量”。
-         .admin-footer-line(v-else) NEO/ONT提供底层技术支持
+        .admin-footer-line(v-if="onBonus")
+          b(style={"color": "#000"}) 提取提示：
+          el-button(type="primary", @click="claimTransfer", v-loading.lock="loading", size="mini", :disabled="disabled") 点击此处
+          |  将自己全部的NEO对自己的钱包地址进行一次转账，“不可提取数量” 才能变成 “可提取数量”。
+        .admin-footer-line(v-if="onOng")
+          b(style={"color": "#000"}) 提取提示：
+          el-button(type="primary", @click="claimOngTransfer", v-loading.lock="loading", size="mini", :disabled="disabled") 点击此处 
+          <br>
+          |  1.将自己全部的ontology-ON对自己的钱包地址进行一次转账，“不可提取数量” 才能变成 “可提取数量”。 <br>
+          |  2.转账ONG\\ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
+          |  3.提取ONG需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，提取失败。建议储备足量的ONG后，再进行提取。
+
+        .admin-footer-line NEO/ONT提供底层技术支持

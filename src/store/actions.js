@@ -142,5 +142,7 @@ export default {
     address: state.wa['address']
   })),
 
-  [type.doClaim]: ({ state }) => service.doClaim(state.wa['publicKey'], state.wa['privateKey'])
+  [type.doClaim]: ({ state }) => service.doClaim(state.wa['publicKey'], state.wa['privateKey']),
+
+  [type.doClaimOng]: ({ state }) => service.doClaimOng(state.wa['publicKey'], state.wa['privateKey'])
 }
