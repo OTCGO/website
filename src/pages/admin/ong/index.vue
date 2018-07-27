@@ -17,7 +17,7 @@ const bonusHeader = [
     width: "25%"
   },
   {
-    label: "不可提取数量",
+    label: "待提取数量",
     width: "25%"
   },
   {
