@@ -59,6 +59,12 @@
         </el-button>
       </div>
     </div>
+
+ 
+  <div>
+    <br>
+    注意：转账ONG\\ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
+  </div>
   </div>
 </template>
 

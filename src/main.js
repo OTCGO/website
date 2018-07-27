@@ -1,8 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.css'
+
+import 'font-awesome/css/font-awesome.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '../theme/index.css'
 import 'progressive-image/dist/index.css'
 import '~styles/common.styl'
+import 'normalize.css/normalize.css'
 
+
+import 'video.js/dist/video.min.js'
 
 import Vue from 'vue'
 import _ from 'lodash'

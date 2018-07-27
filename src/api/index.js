@@ -247,9 +247,18 @@ export const getBlockHigh = async () =>
 export const claimSign = async ({ id, signature }) =>
     (await fetching('claim/sign', { id, signature }, 'post'))
 
+
+export const claimSignOng = async ({ id, signature }) =>
+    (await fetching('claim/sign/ong', { id, signature }, 'post'))
+
 export const doClaim = async (hexPubkey, pr) => {
   const { order, transaction } = await (fetching('claim', { hexPubkey }, 'post'))
   return claimSign({id: order.id, signature: ljSign(pr, transaction)})
+}
+
+export const doClaimOng = async (hexPubkey, pr) => {
+  const { order, transaction } = await (fetching('claim/ong', { hexPubkey }, 'post'))
+  return claimSignOng({id: order.id, signature: ljSign(pr, transaction)})
 }
 
 export default {
@@ -284,7 +293,8 @@ export default {
   getHistoryById,
   getMyHistoryById,
   getBlockHigh,
-  doClaim
+  doClaim,
+  doClaimOng
 }
 
 /* eslint-disable no-return-await */

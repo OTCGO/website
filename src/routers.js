@@ -26,6 +26,7 @@ const routes = [
       { path: 'history/transaction', component: r => require(['~pages/admin/history/transaction.vue'], r), name: 'transactionH' },
       { path: 'history/ico', component: r => require(['~pages/admin/history/ico.vue'], r), name: 'icoH' },
       { path: 'bonus', component: r => require(['~pages/admin/bonus'], r), name: 'bonus' },
+      { path: 'ong', component: r => require(['~pages/admin/ong'], r), name: 'ong' },
       { path: '', component: r => require(['~pages/admin/balances/balances.vue'], r) }
     ]
   },

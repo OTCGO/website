@@ -41,5 +41,6 @@ export default {
   getOrderByAddress: 'GET_ORDER_BY_ADDRESS',
   getHistoryById: 'GET_HISTORY_BY_ID',
   getMyHistoryById: 'GET_MY_HISTORY_BY_ID',
-  doClaim: 'DO_CLAIM'
+  doClaim: 'DO_CLAIM',
+  doClaimOng: 'DO_CLAIM_ONG'
 }
