@@ -63,16 +63,16 @@
  
   <div v-if="deliver.assetId === '0000000000000000000000000000000000000002' || deliver.assetId === '0000000000000000000000000000000000000001'">
     <br>
-    注意：转账ONG\ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
+    注意：转账ONG或ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
   </div>
   </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import { mapGetters } from 'vuex'
   import yes from '~images/yes.png'
   import { ONT_ASSETID, ONG_ASSETID } from '~constants'
-
+  import { findBalances } from "~utils/util";
 
   export default {
     data: () => ({
@@ -104,7 +104,9 @@
       },
       yes
     }),
-
+    computed: {
+       // ...mapGetters(["balances"])
+    },
     methods: {
       transfer() {
         if (!this.checkAddress() || !this.checkAmount()) {
@@ -115,6 +117,22 @@
           this.$message('余额不足！')
           return
         }
+
+       
+        // ont ong 
+        if(this.deliver.assetId === ONT_ASSETID || this.deliver.assetId === ONG_ASSETID) {
+
+           // console.log('this.balances',this.balances)
+          const [{ total }] = findBalances(this.$store.getters.balances, "ontology-ONG");
+          console.log('this.balances',total)
+          console.log("total", total);
+          if (parseFloat(total) < 0.01) {
+            this.$message.error("ontology-ONG 余额不足");
+            return;
+          }
+        }
+
+
 
 
 
@@ -196,6 +214,15 @@
           if (Number(this.deliver.valid) < this.amount.value) this.amount.invalid = true
         }
 
+        // ong 整数
+        if(this.deliver.assetId === ONT_ASSETID) {
+          const reg = /^[1-9]\d*$/
+          if (!reg.test(this.amount.value)) {
+                this.$message.error('请输入整数转账数量')
+                return   
+          }
+        }
+
         
         if (amountStr.slice(amountStr.indexOf('.')).length > 9) this.amount.lenErr = true
         if (amountStr === '' || this.amount.value === 0) this.amount.empty = true
@@ -224,6 +251,8 @@
     mounted() {
      // console.log('mounted')
      console.log('mounted',this.transferType)
+     console.log('balances',this.$store.getters.balances)
+
     }
   }
 </script>

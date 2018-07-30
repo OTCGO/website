@@ -67,6 +67,7 @@ export default {
     getClaim() {
       const anc = findBalances(this.balances, "gas");
 
+
       this.bonusSource = anc.reduce(
         (arr, item) =>
           arr.concat({
@@ -85,22 +86,38 @@ export default {
       );
     },
     claim(cb) {
-      console.log("claim");
-      this.claimTransfer()
+      console.log("this.bonusSource[0].enable",this.bonusSource[0].enable.value);
+       console.log("this.bonusSource[0].disable",this.bonusSource[0].disable.value);
 
-      cb(false);
-      this.blockChanged = false;
-      this.$store
-        .dispatch("DO_CLAIM")
-        .then(r => {
-          if (r.hasOwnProperty("result") && r.result)
-            this.$message.success("提取成功");
-          if (r.error) this.$message.warning(r.error);
-          this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
-        })
-        .catch(e => {
-          this.$message.error(JSON.parse(e.bodyText).error);
-        });
+      // tran
+
+      if(this.bonusSource[0].disable.value == 0 && this.bonusSource[0].enable.value == 0){
+        return
+      }
+
+      if(this.bonusSource[0].disable.value > 0){
+          this.claimTransfer()
+      }
+     
+
+
+      if(this.bonusSource[0].enable.value > 0){
+        // gas 
+        cb(false);
+        this.blockChanged = false;
+        this.$store
+          .dispatch("DO_CLAIM")
+          .then(r => {
+            if (r.hasOwnProperty("result") && r.result)
+              this.$message.success("提取成功");
+            if (r.error) this.$message.warning(r.error);
+            this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
+          })
+          .catch(e => {
+            this.$message.error(JSON.parse(e.bodyText).error);
+          });
+      }
+
     },
 
     claimTransfer() {
@@ -108,6 +125,12 @@ export default {
 
       this.loading = true;
       const [{ assetId, valid }] = findBalances(this.balances, "neo");
+
+      if(valid < 0){
+        return
+      }
+
+
       const dest = this.wa("address");
       if (!valid) {
         this.loading = false;
