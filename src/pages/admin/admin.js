@@ -54,6 +54,9 @@ export default {
       console.log('this.onOng ', this.onOng)
     },
     claimTransfer() {
+
+      console.log('claimTransfer')
+      
       this.loading = true
       const [{
         assetId,

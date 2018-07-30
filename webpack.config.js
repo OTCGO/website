@@ -65,7 +65,8 @@ module.exports = {
       '~api': path.resolve(__dirname, 'src/api'),
       '~pages': path.resolve(__dirname, 'src/pages'),
       '~polyfill': path.resolve(__dirname, 'src/polyfill'),
-      '~libs': path.resolve(__dirname, 'src/libs')
+      '~libs': path.resolve(__dirname, 'src/libs'),
+      '~constants': path.resolve(__dirname, 'src/constants')
     }
   },
   devServer: {
