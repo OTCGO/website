@@ -80,28 +80,41 @@ export default {
       );
     },
     claim(cb) {
-      const [{ total }] = findBalances(this.balances, "ontology-ONG");
-      if (parseFloat(total) < 0.01) {
-        this.$message.error("ontology-ONG 余额不足");
-        return;
+
+      if(this.bonusSource[0].disable.value == 0 && this.bonusSource[0].enable.value == 0){
+        return
       }
 
-      cb(false);
-      this.blockChanged = false;
-      this.$store
-        .dispatch("DO_CLAIM_ONG")
-        .then(r => {
-          if (r.hasOwnProperty("result") && r.result) {
-            this.$message.success("提取成功");
-            this.claimOngTransfer();
-          }
 
-          if (r.error) this.$message.warning(r.error);
-          this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
-        })
-        .catch(e => {
-          this.$message.error(JSON.parse(e.bodyText).error);
-        });
+      if(this.bonusSource[0].disable.value > 0){
+         this.claimOngTransfer();
+      }
+
+
+      if(this.bonusSource[0].enable.value > 0){
+        const [{ total }] = findBalances(this.balances, "ontology-ONG");
+        if (parseFloat(total) < 0.01) {
+          this.$message.error("ontology-ONG 余额不足");
+          return;
+        }
+
+        cb(false);
+        this.blockChanged = false;
+        this.$store
+          .dispatch("DO_CLAIM_ONG")
+          .then(r => {
+            if (r.hasOwnProperty("result") && r.result) {
+              this.$message.success("提取成功");
+            }
+
+            if (r.error) this.$message.warning(r.error);
+            this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
+          })
+          .catch(e => {
+            this.$message.error(JSON.parse(e.bodyText).error);
+          });
+      }
+
     },
     watch: {
       balances() {
@@ -122,6 +135,10 @@ export default {
       this.loading = true;
 
       const [{ assetId, valid }] = findBalances(this.balances, "ontology-ONT");
+
+      if(!valid){
+        return
+      }
       const dest = this.wa("address");
 
       if (!valid) {
