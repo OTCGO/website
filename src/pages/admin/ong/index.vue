@@ -80,10 +80,6 @@ export default {
       );
     },
     claim(cb) {
-
-      this.claimOngTransfer()
-
-
       const [{ total }] = findBalances(this.balances, "ontology-ONG");
       if (parseFloat(total) < 0.01) {
         this.$message.error("ontology-ONG 余额不足");
@@ -95,8 +91,11 @@ export default {
       this.$store
         .dispatch("DO_CLAIM_ONG")
         .then(r => {
-          if (r.hasOwnProperty("result") && r.result)
+          if (r.hasOwnProperty("result") && r.result) {
             this.$message.success("提取成功");
+            this.claimOngTransfer();
+          }
+
           if (r.error) this.$message.warning(r.error);
           this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
         })
