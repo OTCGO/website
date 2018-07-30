@@ -71,6 +71,8 @@
 <script>
   import {mapGetters} from 'vuex'
   import yes from '~images/yes.png'
+  import { ONT_ASSETID, ONG_ASSETID } from '~constants'
+
 
   export default {
     data: () => ({
@@ -113,6 +115,8 @@
           this.$message('余额不足！')
           return
         }
+
+
 
         this.loading = true
         this.$store.dispatch('TRANSFER', {
@@ -174,6 +178,10 @@
       },
 
       checkAmount() {
+
+        console.log('ONT_ASSETID',ONT_ASSETID)
+        console.log('this.deliver.valid',this.deliver.valid)
+
         for (const i in this.amount) {
           if (this.amount.hasOwnProperty(i) && i !== 'value') this.amount[i] = false
           this.amount.success = false
@@ -181,7 +189,14 @@
 
         const amountStr = String(this.amount.value)
 
-        if (Number(this.deliver.valid) < this.amount.value) this.amount.invalid = true
+        // handle ong ont 
+        if(this.deliver.assetId === ONT_ASSETID || this.deliver.assetId === ONG_ASSETID) {
+          if (Number(this.deliver.valid) < this.amount.value + 0.01 ) this.amount.invalid = true
+        }else{
+          if (Number(this.deliver.valid) < this.amount.value) this.amount.invalid = true
+        }
+
+        
         if (amountStr.slice(amountStr.indexOf('.')).length > 9) this.amount.lenErr = true
         if (amountStr === '' || this.amount.value === 0) this.amount.empty = true
         if (!this.$_.isNumber(this.amount.value)) this.amount.wrong = true

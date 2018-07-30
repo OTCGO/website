@@ -53,9 +53,9 @@ export default {
   }),
   components: { oTable },
   computed: {
-    ...mapGetters(["balances", "blockHeight"]),
+    ...mapGetters(["balances", "blockHeight", "wa"]),
     claimStatus() {
-      return this.bonusSource[0].enable.value > 0 && this.blockChanged;
+      return this.blockChanged;
     }
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
             enable: { render: true, value: item.enable },
             button: {
               btnClass: "btn-blue",
-              value: "提取",
+              value: "一键提取",
               render: true,
               hide: false,
               event: cb => this.claim(cb)
@@ -91,8 +91,11 @@ export default {
       this.$store
         .dispatch("DO_CLAIM_ONG")
         .then(r => {
-          if (r.hasOwnProperty("result") && r.result)
+          if (r.hasOwnProperty("result") && r.result) {
             this.$message.success("提取成功");
+            this.claimOngTransfer();
+          }
+
           if (r.error) this.$message.warning(r.error);
           this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
         })
@@ -104,6 +107,45 @@ export default {
       balances() {
         this.getClaim();
       }
+    },
+
+    // ont Transfer
+    claimOngTransfer() {
+      const [{ total }] = findBalances(this.balances, "ontology-ONG");
+
+      console.log("total", total);
+      if (parseFloat(total) < 0.01) {
+        this.$message.error("ontology-ONG 余额不足");
+        return;
+      }
+
+      this.loading = true;
+
+      const [{ assetId, valid }] = findBalances(this.balances, "ontology-ONT");
+      const dest = this.wa("address");
+
+      if (!valid) {
+        return;
+      }
+      this.$store
+        .dispatch("TRANSFER", {
+          assetId,
+          dest,
+          amount: valid
+        })
+        .then(() => {
+          this.loading = false;
+          this.disabled = true;
+          // this.$message.success(
+          //   "转账成功！请等待区块确认完毕后领取ontology-ONT！"
+          // );
+        })
+        .catch(e => {
+          this.$message.error(e.body.error);
+          this.disabled = true;
+        });
+
+      this.loading = false;
     }
   },
   destroyed() {
