@@ -29,10 +29,9 @@
                router-view
    .row
       .col-xs-offset-3
-        .admin-footer-line(v-if="onBonus")
-
-        .admin-footer-line(v-if="onOng")
+        
+        .admin-footer(v-if="onOng")
           b(style={"color": "#000"}) 提取提示：
-            | 1.提取ONG需向本体主网支付0.02ONG。会自动从用户余额中扣除；余额不足时，提取失败。建议储备足量的ONG后，再进行提取。
+            | 提取ONG需向本体主网支付0.02ONG。会自动从用户余额中扣除；余额不足时，提取失败。建议储备足量的ONG后，再进行提取。
 
         .admin-footer-line NEO/ONT提供底层技术支持
