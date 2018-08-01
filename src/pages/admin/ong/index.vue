@@ -73,6 +73,7 @@ export default {
               value: "一键提取",
               render: true,
               hide: false,
+              disable:true,
               event: cb => this.claim(cb)
             }
           }),
@@ -85,6 +86,8 @@ export default {
         return
       }
 
+      this.blockChanged = false;
+      cb(false);
 
       if(this.bonusSource[0].disable.value > 0){
          this.claimOngTransfer();
@@ -98,8 +101,10 @@ export default {
           return;
         }
 
-        cb(false);
-        this.blockChanged = false;
+       
+        
+
+        
         this.$store
           .dispatch("DO_CLAIM_ONG")
           .then(r => {
@@ -113,6 +118,8 @@ export default {
           .catch(e => {
             this.$message.error(JSON.parse(e.bodyText).error);
           });
+
+          
       }
 
     },
