@@ -37,7 +37,7 @@
     "vue-form-components": "^1.1.20",
     "vue-moment": "^2.0.2",
     "vue-resource": "^1.1.2",
-    "vue-router": "^2.2.0",
+    "vue-router": "^2.8.1",
     "vue-validator": "^3.0.0-alpha.2",
     "vue-video-player": "^5.0.2",
     "vuetable-2": "^1.6.3",

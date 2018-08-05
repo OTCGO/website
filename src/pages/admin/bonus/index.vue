@@ -95,6 +95,10 @@ export default {
         return
       }
 
+              // gas 
+      cb(false);
+      this.blockChanged = false;
+
       if(this.bonusSource[0].disable.value > 0){
           this.claimTransfer()
       }
@@ -102,9 +106,6 @@ export default {
 
 
       if(this.bonusSource[0].enable.value > 0){
-        // gas 
-        cb(false);
-        this.blockChanged = false;
         this.$store
           .dispatch("DO_CLAIM")
           .then(r => {
@@ -154,11 +155,11 @@ export default {
 
       this.loading = false;
     },
-    watch: {
-      balances() {
-        this.getClaim();
-      }
-    }
+    // watch: {
+    //   balances() {
+    //     this.getClaim();
+    //   }
+    // }
   },
   destroyed() {
     window.clearInterval(this.claimTimer);
