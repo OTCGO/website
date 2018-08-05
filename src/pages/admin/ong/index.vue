@@ -81,7 +81,7 @@ export default {
       );
     },
     claim(cb) {
-
+      
       if(this.bonusSource[0].disable.value == 0 && this.bonusSource[0].enable.value == 0){
         return
       }
@@ -123,11 +123,11 @@ export default {
       }
 
     },
-    watch: {
-      balances() {
-        this.getClaim();
-      }
-    },
+    // watch: {
+    //   balances() {
+    //     this.getClaim();
+    //   }
+    // },
 
     // ont Transfer
     claimOngTransfer() {

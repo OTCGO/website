@@ -155,11 +155,11 @@ export default {
 
       this.loading = false;
     },
-    watch: {
-      balances() {
-        this.getClaim();
-      }
-    }
+    // watch: {
+    //   balances() {
+    //     this.getClaim();
+    //   }
+    // }
   },
   destroyed() {
     window.clearInterval(this.claimTimer);
