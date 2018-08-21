@@ -208,7 +208,7 @@
         const amountStr = String(this.amount.value)
 
         // handle ong ont 
-        if(this.deliver.assetId === ONT_ASSETID || this.deliver.assetId === ONG_ASSETID) {
+        if(this.deliver.assetId === ONG_ASSETID) {
           if (Number(this.deliver.valid) < this.amount.value + 0.01 ) this.amount.invalid = true
         }else{
           if (Number(this.deliver.valid) < this.amount.value) this.amount.invalid = true
