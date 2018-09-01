@@ -65,6 +65,10 @@
                         link: '//t.me/otcgo',
                         src: require('~images/svgs/Telegram.svg'),
                         desc: 'Telegram'
+                    }, {
+                        link: 'https://twitter.com/smart_exchangea',
+                        src: require('~images/svgs/Twitter.svg'),
+                        desc: 'Twitter'
                     }
                 ]
             };
