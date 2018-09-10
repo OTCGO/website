@@ -3,6 +3,7 @@
     <hr class="user-line"/>
     <div class="user-info">
       <p><b>你的钱包地址: </b>{{ address }}</p>
+       <p><b>你的公钥字符: </b>{{ publicKey }}</p>
       <p><b>你的UID: </b>{{ uid }}</p>
       <p><b>你的NEP2字符:  </b>
 
@@ -82,7 +83,8 @@ export default {
     pwd: "",
     loading: false,
     disabled: false,
-    privateKeyEncrypted: undefined
+    privateKeyEncrypted: undefined,
+    publicKey:undefined
   }),
 
   methods: {
@@ -245,8 +247,10 @@ export default {
   computed: {
     ...mapGetters(["wa", "uid"]),
     address() {
+      
       this.privateKeyEncrypted = this.wa("privateKeyEncrypted");
-      // this.w_wif = this.wa('wif')
+      this.publicKey = this.wa("publicKeyCompressed");
+      //this.w_wif = this.wa('wif')
       // console.log('this.privateKeyEncrypted',this.privateKeyEncrypted)
       return this.wa("address");
     },

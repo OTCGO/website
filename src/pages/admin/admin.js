@@ -8,6 +8,7 @@ import {
 export default {
   data: () => ({
     onHistory: false,
+    onTool: false,
     onOrder: false,
     onBonus: false,
     loading: false,
@@ -39,9 +40,10 @@ export default {
       } else if (typeof str === 'string') {
         const arrStr = str.split('')
         const capitalizeStr = arrStr[0].toUpperCase() + str.substr(str.indexOf(arrStr[0]) + 1)
+        console.log('capitalizeStr',capitalizeStr)
         this['on' + capitalizeStr] = !this['on' + capitalizeStr]
       } else {
-        this.loading = this.onBonus = this.onOng = this.onHistory = this.onOrder = false
+        this.loading = this.onBonus = this.onOng = this.onHistory = this.onTool =  this.onOrder = false
       }
 
 
@@ -49,6 +51,10 @@ export default {
         this.onOng = true
         this.onBonus = false
       }
+
+      // if(str === 'tool'){
+      //   this.onTool = true
+      // }
 
       // console.log('this.onBonus ', this.onBonus)
       // console.log('this.onOng ', this.onOng)
