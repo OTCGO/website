@@ -144,5 +144,7 @@ export default {
 
   [type.doClaim]: ({ state }) => service.doClaim(state.wa['publicKey'], state.wa['privateKey']),
 
-  [type.doClaimOng]: ({ state }) => service.doClaimOng(state.wa['publicKey'], state.wa['privateKey'])
+  [type.doClaimOng]: ({ state }) => service.doClaimOng(state.wa['publicKey'], state.wa['privateKey']),
+
+  [type.signStr]: ({ state }, str) => service.signStr(str, state.wa['privateKey'])
 }

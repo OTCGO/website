@@ -42,5 +42,6 @@ export default {
   getHistoryById: 'GET_HISTORY_BY_ID',
   getMyHistoryById: 'GET_MY_HISTORY_BY_ID',
   doClaim: 'DO_CLAIM',
-  doClaimOng: 'DO_CLAIM_ONG'
+  doClaimOng: 'DO_CLAIM_ONG',
+  signStr:'SIGN_STR'
 }
