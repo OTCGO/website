@@ -1,0 +1,23 @@
+<div>
+    
+    <el-row>
+        <el-input
+            type="textarea"
+            :rows="3"
+            placeholder="请输入签名内容"
+            v-model="signStrBefore">
+         </el-input>
+
+        <el-button type="primary" style="display:block;margin:10px auto 0px auto" @click="signStr" >确定签名</el-button>
+    </el-row>
+
+    <h4>签名后</h4>
+    <el-row>
+            <el-input
+                type="textarea"
+                :rows="3"
+                placeholder=""
+                v-model="signStrAfter">
+             </el-input>
+    </el-row>
+</div>    

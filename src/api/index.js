@@ -261,6 +261,13 @@ export const doClaimOng = async (hexPubkey, pr) => {
   return claimSignOng({id: order.id, signature: ljSign(pr, transaction)})
 }
 
+
+export const signStr = async (str, pr) => {
+  console.log('signStr',str)
+  console.log('pr',pr)
+  return  ljSign(pr, str)
+}
+
 export default {
   getA,
   getB,
@@ -294,7 +301,9 @@ export default {
   getMyHistoryById,
   getBlockHigh,
   doClaim,
-  doClaimOng
+  doClaimOng,
+
+  signStr
 }
 
 /* eslint-disable no-return-await */
