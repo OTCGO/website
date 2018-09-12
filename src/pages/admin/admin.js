@@ -50,8 +50,8 @@ export default {
         this.onBonus = false
       }
 
-      // console.log('this.onBonus ', this.onBonus)
-      // console.log('this.onOng ', this.onOng)
+      console.log('this.onBonus ', this.onBonus)
+      console.log('this.onOng ', this.onOng)
     },
     claimTransfer() {
 

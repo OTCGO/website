@@ -80,6 +80,7 @@
                       <li><a class="text-color2" target="_blank" href="http://www.byb.world">币用宝</a></li>
                       <li><a class="text-color2" target="_blank" href="https://neons.name/">NNS</a></li>
                       <li><a class="text-color2" target="_blank" href="https://www.zdpvt.com/">支点</a></li>
+                      <li><a class="text-color2" target="_blank" href="https://www.deepbrainchain.org/">深脑链</a></li>
                     </ul>
                         </div>
                     </div>
