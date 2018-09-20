@@ -84,8 +84,8 @@
                       <li><a class="text-color2" target="_blank" href="https://www.chainfor.com/">链向财经</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.bixiaobai.com/">币小白</a></li>
                       <li><a class="text-color2" target="_blank" href="http://biyiye.com/">币一页</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://m.odaily.com">星球日报</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://m.ihuoqiu.com">火球财经</a></li>
+                      <li><a class="text-color2" target="_blank" href="https://www.odaily.com">星球日报</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.ihuoqiu.com">火球财经</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.blockchainho.me">区块链之家论坛</a></li>
                       <li><a class="text-color2" target="_blank" href="https://mifengcha.com">BlockCC</a></li>
                     </ul>
