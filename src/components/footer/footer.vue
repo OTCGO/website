@@ -88,6 +88,7 @@
                       <li><a class="text-color2" target="_blank" href="http://www.ihuoqiu.com">火球财经</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.blockchainho.me">区块链之家论坛</a></li>
                       <li><a class="text-color2" target="_blank" href="https://mifengcha.com">BlockCC</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.wanlianzhijia.com">万链之家</a></li>
                     </ul>
                         </div>
                     </div>
