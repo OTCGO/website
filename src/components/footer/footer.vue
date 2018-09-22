@@ -74,6 +74,7 @@
                       <li><a class="text-color2" target="_blank" href="https://neo.org">NEO智能经济</a></li>
                       <li><a class="text-color2" target="_blank" href="https://ont.io">本体网络</a></li>
                        <li><a class="text-color2" target="_blank" href="http://cryptogladiator.io/">疯狂角斗士</a></li>
+                       <li><a class="text-color2" target="_blank" href="http://www.niubilai.com">币莱财经</a></li>
                       <li><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
                       <li><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
@@ -89,6 +90,8 @@
                       <li><a class="text-color2" target="_blank" href="http://www.blockchainho.me">区块链之家论坛</a></li>
                       <li><a class="text-color2" target="_blank" href="https://mifengcha.com">BlockCC</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.wanlianzhijia.com">万链之家</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.bitansuo.com">币探索</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.7234.cn">链世界</a></li>
                     </ul>
                         </div>
                     </div>
