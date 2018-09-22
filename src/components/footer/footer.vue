@@ -91,6 +91,7 @@
                       <li><a class="text-color2" target="_blank" href="https://mifengcha.com">BlockCC</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.wanlianzhijia.com">万链之家</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.bitansuo.com">币探索</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://www.7234.cn">链世界</a></li>
                     </ul>
                         </div>
                     </div>
