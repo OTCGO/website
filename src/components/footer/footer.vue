@@ -94,6 +94,7 @@
                       <li><a class="text-color2" target="_blank" href="http://www.7234.cn">链世界</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.qukuainews.com/">区块链中文网</a></li>
                       <li><a class="text-color2" target="_blank" href="http://www.blockcircles.cn/">区块界</a></li>
+                      <li><a class="text-color2" target="_blank" href="http://BTCsos.com/">速援财经</a></li>
                     </ul>
                         </div>
                     </div>
