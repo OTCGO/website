@@ -59,42 +59,45 @@
                     <li><router-link class="text-color2" to="/time-entries">联系我们</router-link></li>
                     </ul> -->
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                      <!--  <div class="col-lg-3 col-md-6 col-sm-6 text-center">
                             <h4 class="text-color text-type2">帮助中心</h4>
-                            <!--  <ul class="list-unstyled">
+                            &lt;!&ndash;  <ul class="list-unstyled">
                     <li><router-link class="text-color2" to="/time-entries">投资流程</router-link></li>
                     <li><router-link class="text-color2" to="/time-entries">挂单流程</router-link></li>
                     <li><router-link class="text-color2" to="/time-entries">客服中心</router-link></li>
                     <li><router-link class="text-color2" to="/time-entries">常见问题</router-link></li>
-                    </ul> -->
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 text-center">
+                    </ul> &ndash;&gt;
+                        </div>-->
+                        <div class="col-lg-6 col-md-12 col-sm-12 text-center">
                             <h4 class="text-color text-type2">友情链接</h4>
-                              <ul class="list-unstyled">
-                      <li><a class="text-color2" target="_blank" href="https://neo.org">NEO智能经济</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://ont.io">本体网络</a></li>
-                       <li><a class="text-color2" target="_blank" href="http://cryptogladiator.io/">疯狂角斗士</a></li>
-                       <li><a class="text-color2" target="_blank" href="http://www.niubilai.com">币莱财经</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.byb.world">币用宝</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://neons.name/">NNS</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://www.zdpvt.com/">支点</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://www.deepbrainchain.org/">深脑链</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://www.chainfor.com/">链向财经</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.bixiaobai.com/">币小白</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://biyiye.com/">币一页</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://www.odaily.com">星球日报</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.ihuoqiu.com">火球财经</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.blockchainho.me">区块链之家论坛</a></li>
-                      <li><a class="text-color2" target="_blank" href="https://mifengcha.com">BlockCC</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.wanlianzhijia.com">万链之家</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.bitansuo.com">币探索</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.7234.cn">链世界</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.qukuainews.com/">区块链中文网</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://www.blockcircles.cn/">区块界</a></li>
-                      <li><a class="text-color2" target="_blank" href="http://BTCsos.com/">速援财经</a></li>
+                              <ul class="list-unstyled row">
+                      <li class="col-md-6 col-sm-6 "><a class="text-color2" target="_blank" href="https://neo.org">NEO智能经济</a></li>
+                     <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://ont.io">本体网络</a></li>
+                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://cryptogladiator.io/">疯狂角斗士</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.niubilai.com">币莱财经</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.byb.world">币用宝</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://neons.name/">NNS</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.zdpvt.com/">支点</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.deepbrainchain.org/">深脑链</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.chainfor.com/">链向财经</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.bixiaobai.com/">币小白</a></li>
+                     <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://biyiye.com/">币一页</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.odaily.com">星球日报</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.ihuoqiu.com">火球财经</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.blockchainho.me">区块链之家论坛</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://mifengcha.com">BlockCC</a></li>
+                     <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.wanlianzhijia.com">万链之家</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.bitansuo.com">币探索</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.7234.cn">链世界</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.qukuainews.com/">区块链中文网</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.blockcircles.cn/">区块界</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://BTCsos.com/">速援财经</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.hunxu.cn">区块链媒体</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.bitool.cn">币兔社区</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.tokenpapa.com">币头条</a></li>
                     </ul>
                         </div>
                     </div>
@@ -181,7 +184,6 @@ export default {};
 }
 
 .list-unstyled>li {
-    width: 100%;
     padding-left: 75px;
     text-align: left;
 }
