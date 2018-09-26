@@ -212,7 +212,6 @@
     }
 
     .list-unstyled > li {
-        width: 100%;
         padding-left: 75px;
         text-align: left;
     }
