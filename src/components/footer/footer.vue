@@ -98,6 +98,7 @@
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.hunxu.cn">区块链媒体</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.bitool.cn">币兔社区</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.tokenpapa.com">币头条</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://doubi.com">豆币</a></li>
                     </ul>
                         </div>
                     </div>
