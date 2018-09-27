@@ -99,6 +99,11 @@
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://www.bitool.cn">币兔社区</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.tokenpapa.com">币头条</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://doubi.com">豆币</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.77zhijia.com">七七之家</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="https://bee360.io">BEE360</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc112.com">千币网</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.bitjia.com">比特家</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.178bit.com">口袋比特</a></li>
                     </ul>
                         </div>
                     </div>
