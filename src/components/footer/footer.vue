@@ -104,6 +104,17 @@
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc112.com">千币网</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.bitjia.com">比特家</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.178bit.com">口袋比特</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc126.com">比特币家园</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc789.com">比特之窗</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.qklyz.com">区块链驿站</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.qianba.com">博链财经</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://bishequ.com">币社区</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.blockisx.com">区间集</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://gameyjy.com">区块链游戏研究院</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://qukuailiant.com">区块链条网</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.biiquan.com">币圈网</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.qzcj.top">前瞻区块链财经</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.o-o-o.link">链链财经</a></li>
                     </ul>
                         </div>
                     </div>
