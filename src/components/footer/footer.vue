@@ -104,6 +104,8 @@
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc112.com">千币网</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.bitjia.com">比特家</a></li>
                       <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.178bit.com">口袋比特</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc126.com">比特币家园</a></li>
+                      <li class="col-md-6 col-sm-6"><a class="text-color2" target="_blank" href="http://www.btc789.com">比特之窗</a></li>
                     </ul>
                         </div>
                     </div>
