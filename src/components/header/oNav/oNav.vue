@@ -40,9 +40,10 @@
             </ul>
           </a> 
         </li>
-        <!--<li>
-          <router-link class="menu" to="/ico/status">ICO专区</router-link>
-        </li>-->
+        <li>
+          <router-link class="menu" to="/about">了解我们
+          </router-link>
+        </li>
         <li>
           <a class="menu" href="//shang.qq.com/wpa/qunwpa?idkey=1c63793c5fc8adaf4d6c5c9ee782c1ce8fb14dee9494d69a7372efc5415988d6" target="_blank" title="蓝鲸淘第五社群">加入社群</a>
          </li>
