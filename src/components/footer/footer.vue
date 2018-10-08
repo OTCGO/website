@@ -125,6 +125,8 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.hellobtc.com">白话区块链</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.block123.com">区块链导航</a></li>
                       <li ><a class="text-color2" target="_blank" href="https://www.soniubi.com/">搜牛币</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.bcfans.com">BCfans</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.qqbite.com">丘比特财经</a></li>
                     </ul>
                         </div>
                     </div>
