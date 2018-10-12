@@ -127,6 +127,14 @@
                       <li ><a class="text-color2" target="_blank" href="https://www.soniubi.com/">搜牛币</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.bcfans.com">BCfans</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.qqbite.com">丘比特财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://btsabc.org">比特帝国</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.jingyublock.com">鲸鱼区块链</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.tanuonline.com">探牛社区</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.bitbee24.com">蜜蜂财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://chaindaily.com">今日链闻</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.120btc.com">币圈子</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.chainpow.com">链豹财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.queding.cn">确定财经</a></li>
                     </ul>
                         </div>
                     </div>
