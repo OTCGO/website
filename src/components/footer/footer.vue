@@ -135,6 +135,10 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.120btc.com">币圈子</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.chainpow.com">链豹财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.queding.cn">确定财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.xiha.top">嘻哈财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://worldb.pro">Blockfo</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.100qkl.com">壹佰区块链网</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://vt.sootoo.com">维特财经</a></li>
                     </ul>
                         </div>
                     </div>
