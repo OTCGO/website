@@ -261,6 +261,11 @@ export const doClaimOng = async (hexPubkey, pr) => {
   return claimSignOng({id: order.id, signature: ljSign(pr, transaction)})
 }
 
+export const getNnAddress = async (domain) => {
+  const result = await (fetching(`resolve/${domain}`))
+  return result
+}
+
 
 export const signStr = async (str, pr) => {
   console.log('signStr',str)
@@ -303,7 +308,9 @@ export default {
   doClaim,
   doClaimOng,
 
-  signStr
+  signStr,
+
+  getNnAddress
 }
 
 /* eslint-disable no-return-await */
