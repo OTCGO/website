@@ -37,6 +37,7 @@
       <div class="col-xs-6">
         <input type="text" class="form-control" style="width:100% !important;"
                v-model.trim="address.value"
+               placeholder="NEO地址或NEO域名"
                @focus="selectAll" @blur="checkAddress" @keyup="checkAddress">
       </div>
       <div class="col-xs-3">
