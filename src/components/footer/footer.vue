@@ -142,6 +142,8 @@
                       <li ><a class="text-color2" target="_blank" href="https://www.hibtc.org">hi区块链</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.bitol.net">比特在线</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.ttbite.com">天天比特</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.finacerun.com">奔跑财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://liansiling.com">链司令</a></li>
                     </ul>
                         </div>
                     </div>
