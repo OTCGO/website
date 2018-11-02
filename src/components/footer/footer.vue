@@ -77,6 +77,7 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.niubilai.com">币莱财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.dubiwang.com">读币网</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://alchemint.io">阿基米德稳定币</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.jgy.com">九个亿财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://loopring.org">路印协议</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.binance.com">币安</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.byb.world">币用宝</a></li>
@@ -144,6 +145,12 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.ttbite.com">天天比特</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.finacerun.com">奔跑财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://liansiling.com">链司令</a></li>
+                      <li ><a class="text-color2" target="_blank" href="https://zanbtc.com">赞比社区</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.bitnews.vip">比特快讯</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.bikeji.com">币科技</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.shenliancaijing.com">深链财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.blockob.com">区块链资讯</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://bcsky.pro">链天下</a></li>
                     </ul>
                         </div>
                     </div>
