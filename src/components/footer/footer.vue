@@ -151,6 +151,8 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.shenliancaijing.com">深链财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.blockob.com">区块链资讯</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://bcsky.pro">链天下</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.ok35.com">西瓜财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.zxbcc.com ">指向标财经</a></li>
                     </ul>
                         </div>
                     </div>
