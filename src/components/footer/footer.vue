@@ -154,7 +154,7 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.ok35.com">西瓜财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.zxbcc.com ">指向标财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.labajun.com">喇叭君财经</a></li>
-                      <li ><a class="text-color2" target="_blank" href="http://airdrop6.com">空投评级</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://airdrop6.com">Airdrop6空投</a></li>
                     </ul>
                         </div>
                     </div>
