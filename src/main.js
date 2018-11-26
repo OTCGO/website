@@ -5,7 +5,7 @@ import '../theme/index.css'
 import 'progressive-image/dist/index.css'
 import '~styles/common.styl'
 import 'normalize.css/normalize.css'
-
+import VueQrcode from '@xkeshi/vue-qrcode';
 
 import 'video.js/dist/video.min.js'
 
@@ -45,6 +45,7 @@ Vue.http.options.root = '/api/v1'
 Vue.http.options.emulateJSON = true
 
 Vue.component('icon', Icon)
+Vue.component(VueQrcode.name, VueQrcode);
 // Vue.component('Vuetable', require('vuetable-2/src/components/Vuetable.vue'))
 
 const app = new Vue({

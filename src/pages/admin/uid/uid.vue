@@ -1,9 +1,17 @@
 <template>
   <div>
-    <hr class="user-line"/>
+    <hr class="user-line"/>      
     <div class="user-info">
+
+           
+    <div style="width:150px;height:150px;float:right ">
+      <qrcode :value="address" :options="{ size: 150 }"></qrcode>
+      <span style="text-align:center;display: inherit">钱包地址</span>  
+    </div>
+
       <p><b>你的钱包地址: </b>{{ address }}</p>
-       <p><b>你的公钥字符: </b>{{ publicKey }}</p>
+       <p><b>你的公钥字符: </b>{{ publicKey }}
+       </p>
       <p><b>你的UID: </b>{{ uid }}</p>
       <p><b>你的NEP2字符:  </b>
 
@@ -84,7 +92,7 @@ export default {
     loading: false,
     disabled: false,
     privateKeyEncrypted: undefined,
-    publicKey:undefined
+    publicKey: undefined
   }),
 
   methods: {
@@ -223,8 +231,6 @@ export default {
     },
 
     download() {
-
-
       const text = JSON.stringify({
         address: this.wa("address"),
         publicKey: this.wa("publicKey"),
@@ -232,7 +238,7 @@ export default {
         privateKeyEncrypted: this.wa("privateKeyEncrypted")
       });
 
-      console.log('download',text)
+      console.log("download", text);
       const file = new window.Blob([text], { type: "text/plan" });
 
       const aLink = document.createElement("a");
@@ -247,7 +253,6 @@ export default {
   computed: {
     ...mapGetters(["wa", "uid"]),
     address() {
-      
       this.privateKeyEncrypted = this.wa("privateKeyEncrypted");
       this.publicKey = this.wa("publicKeyCompressed");
       //this.w_wif = this.wa('wif')
@@ -267,6 +272,6 @@ export default {
 }
 
 .user-info {
-  margin-top: 66px;
+  margin-top: 10px;
 }
 </style>
