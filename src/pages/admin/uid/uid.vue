@@ -6,6 +6,7 @@
            
     <div style="width:150px;height:150px;float:right ">
       <qrcode :value="address" :options="{ size: 150 }"></qrcode>
+      <span style="text-align:center;display: inherit">钱包地址</span>  
     </div>
 
       <p><b>你的钱包地址: </b>{{ address }}</p>
