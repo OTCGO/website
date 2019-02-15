@@ -273,6 +273,20 @@ export const signStr = async (str, pr) => {
   return  ljSign(pr, str)
 }
 
+
+export const swapSEA = async (info) => {
+  const result = await (fetching(`swap/${info}`))
+  return result
+}
+
+export const broadcastSEA = async (publicKeyCompressed,pr,transaction) => {
+  const signature = ljSign(pr, transaction)
+  const result = await (fetching(`broadcast/${publicKeyCompressed}_${signature}_${transaction}`))
+  return result
+}
+
+
+
 export default {
   getA,
   getB,
@@ -310,7 +324,10 @@ export default {
 
   signStr,
 
-  getNnAddress
+  getNnAddress,
+
+  swapSEA,
+  broadcastSEA
 }
 
 /* eslint-disable no-return-await */
