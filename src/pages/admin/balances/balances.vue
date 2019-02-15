@@ -6,9 +6,10 @@ import { mapActions, mapGetters } from "vuex";
 import transferModal from "~components/admin/transferModal.vue";
 import mapModal from "~components/admin/mapModal.vue";
 import askModal from "~components/admin/askModal";
+import { swapSEA, broadcastSEA } from "~api";
 
 export default {
-  components: { transferModal, askModal , mapModal},
+  components: { transferModal, askModal, mapModal },
   data: () => ({
     // dialog
     dialogPay: false,
@@ -22,7 +23,14 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["balances"])
+    ...mapGetters(["wa", "balances"])
+    // address() {
+    // this.privateKeyEncrypted = this.wa("privateKeyEncrypted");
+    // this.publicKey = this.wa("publicKeyCompressed");
+    // //this.w_wif = this.wa('wif')
+    // // console.log('this.privateKeyEncrypted',this.privateKeyEncrypted)
+    //return this.wa("address");
+    //   },
   },
 
   methods: {
@@ -50,6 +58,35 @@ export default {
         document.body.style.overflow = "hidden";
         document.getElementsByClassName("tiny-dialog")[0].style.position =
           "absolute";
+      }
+    },
+
+    // 申一股，申一币置换
+    async switchSEA({ assetId }) {
+      try {
+        // console.log("switch_publicKey", this.wa("publicKeyCompressed"));
+        const { transaction,result } = await swapSEA(`${this.wa("address")}_${assetId}`);
+
+        if(!transaction){
+          return this.$message.success("置换失败，请稍后再试！");
+        }
+
+        console.log("switch,transaction", transaction);
+        if(result){
+          const result = await broadcastSEA(this.wa("publicKeyCompressed"),this.wa("privateKey"),transaction)
+          console.log("switch,broadcastSEA", result);
+          if(result){
+           return this.$message.success("置换成功，请等待1-2区块后查看资产！");
+          }
+          
+          return this.$message.success("置换失败，请稍后再试！");
+        }
+
+        return this.$message.success("置换失败，请稍后再试！");
+        
+      } catch (error) {
+        console.log("switch", error);
+        return this.$message.success("置换失败，请稍后再试！");
       }
     },
 

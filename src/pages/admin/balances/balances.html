@@ -34,6 +34,18 @@
                   @click="transfer(balance,2)"
                   v-show="balance['assetType'] != 'Share'">&nbsp;&nbsp;映射</span>
           </template> -->
+
+          <template v-if="balance['assetId']=='a52e3e99b6c2dd2312a94c635c050b4c2bc2485fcb924eecb615852bd534a63f' && balance['valid'] > 0">
+            <span class="link-span"
+                  @click="switchSEA(balance)"
+                >&nbsp;&nbsp;置换</span>
+          </template>
+
+          <template v-if="balance['assetId']=='30e9636bc249f288139651d60f67c110c3ca4c3dd30ddfa3cbcec7bb13f14fd4' && balance['valid'] > 0">
+            <span class="link-span"
+                  @click="switchSEA(balance)"
+                  >&nbsp;&nbsp;置换</span>
+          </template>
         </td>
       </tr>
     </tbody>
