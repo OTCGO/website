@@ -155,6 +155,9 @@
                       <li ><a class="text-color2" target="_blank" href="http://www.zxbcc.com ">指向标财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://www.labajun.com">喇叭君财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://airdrop6.com">Airdrop6空投</a></li>
+                      <li ><a class="text-color2" target="_blank" href="https://www.tuoluocaijing.cn/">陀螺财经</a></li>
+                      <li ><a class="text-color2" target="_blank" href="https://www.qkl123/">区块链导航</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://dapponline.io/">DappOnline</a></li>
                     </ul>
                         </div>
                     </div>
