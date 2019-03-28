@@ -52,7 +52,7 @@
                         src: require('~images/svgs/Github.svg'),
                         desc: 'Github'
                     }, {
-                        link: '//shang.qq.com/wpa/qunwpa?idkey=1c63793c5fc8adaf4d6c5c9ee782c1ce8fb14dee9494d69a7372efc5415988d6',
+                        link: '//shang.qq.com/wpa/qunwpa?idkey=084887ec4235e85c771e41797f3360ae4be6f50b82d410e5e5d6890e11966d86',
                         src: require('~images/svgs/QQ.svg'),
                         desc: 'QQ'
                     }, {
