@@ -158,6 +158,8 @@
                       <li ><a class="text-color2" target="_blank" href="https://www.tuoluocaijing.cn/">陀螺财经</a></li>
                       <li ><a class="text-color2" target="_blank" href="https://www.qkl123.com/">区块链导航</a></li>
                       <li ><a class="text-color2" target="_blank" href="http://dapponline.io/">DappOnline</a></li>
+                      <li ><a class="text-color2" target="_blank" href="http://www.linglu666.com/">领鹿谷科技</a></li>
+                      <li ><a class="text-color2" target="_blank" href="https://www.cgquanter.com/">创谷量化</a></li>
                     </ul>
                         </div>
                     </div>
