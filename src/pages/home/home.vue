@@ -6,6 +6,12 @@
                     a(v-bind:href="banner.route.path",target="_blank")
                         img(:src="banner.src", :alt="banner.dec")
             o-content
+
+            el-dialog(visible=true,title="提示",:visible.sync="dialogVisible")
+                span SEA网页钱包升级中，转账功能暂不可用，需要进行转账操作请复制NEP2至移动端钱包进行转账操作，造成不便，请谅解。
+                    
+
+
 </template>
 
 <script>
@@ -41,7 +47,8 @@
                     }
                 }
             ],
-            loading: false
+            loading: false,
+            dialogVisible:true
         })
     };
 </script>
