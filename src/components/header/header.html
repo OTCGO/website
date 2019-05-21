@@ -1,8 +1,8 @@
 <div id="head">
   <div class="logo">
     <div class="logo-left">
-      <router-link to="/index"><img src="../../images/logo.svg" height="70" alt=""/></router-link>
-       <span id="des">NEO\ONT生态代币一站式管理</span>
+      <router-link to="/index"><img src="../../images/logo.svg" height="70" alt="" /></router-link>
+      <span id="des">NEO\ONT生态代币一站式管理</span>
     </div>
     <transition name="fade" mode="out-in">
       <div class="logo-right">
@@ -18,9 +18,15 @@
           </ul>
 
           <ul v-else>
-            <li class="border"><router-link to="/login" class="header-a">钱包文件登录</router-link></li>
-            <li class="border"><router-link to="/nep2" class="header-a">nep2登录</router-link></li>
-            <li><router-link to="/signUp" class="header-a">创建钱包</router-link></li>
+            <li class="border">
+              <router-link to="/login" class="header-a">钱包文件登录</router-link>
+            </li>
+            <li class="border">
+              <router-link to="/nep2" class="header-a">nep2登录</router-link>
+            </li>
+            <li>
+              <router-link to="/signUp" class="header-a">创建钱包</router-link>
+            </li>
           </ul>
         </div>
       </div>
