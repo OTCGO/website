@@ -7,17 +7,17 @@
     <div v-if="showHeader" class="table-header">
       <div class="header-list" :style="{
         width: item.width || '20%'
-      }" v-for="item in tableHeader">
+      }" v-for="item in tableHeader" :key="item.index">
         {{ item.label }}
       </div>
     </div>
     <div class="table-scroll">
-      <table :class="['table table-bordred table-striped text-center table-hover', size]">
+      <table :class="['table table-bordred table-striped text-center table-hover', size]" v-if="dataSource.length">
         <tbody>
-          <tr v-for="(item, index) in dataSource" v-if="dataSource.length">
+          <tr v-for="(item, index) in dataSource"  :key="index" >
             <td :style="{
               width: items.width || '20%'
-            }" v-for="items in item" v-if="items.render" :class="[items.class ? items.class : '']">
+            }" :key="items.index" v-for="items in item" v-if="items.render"  :class="[items.class ? items.class : '']">
               <span v-if="!items.event">{{ items.value }}</span>
               <button v-if="items.event && !items.hide"
                       :class="['btn-trade', items.btnClass, buttonStatus ? '' : 'disabled']"

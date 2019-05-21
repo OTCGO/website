@@ -23,11 +23,11 @@
             <span class="link-span-seal">提现</span> <!--@click="openFetch"-->
             <span class="link-span-seal">转账</span> <!--@click="balanceTransfer(balance['asset'],balance['divisible'],balance['name'],balance['valid'])"-->
           </template>
-          <!-- <template v-else>
+          <template v-else>
             <span class="link-span"
                   @click="transfer(balance,1)"
                   v-show="balance['assetType'] != 'Share'">转账</span>
-          </template> -->
+          </template>
 
           <!-- <template v-if="balance['assetId']=='ceab719b8baa2310f232ee0d277c061704541cfb'">
             <span class="link-span"

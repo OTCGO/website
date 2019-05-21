@@ -79,6 +79,7 @@ export default {
           }),
         []
       );
+      // console.log('this.bonusSource',this.bonusSource)
     },
     claim(cb) {
       

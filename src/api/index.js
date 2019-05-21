@@ -3,7 +3,9 @@ import VueResource from 'vue-resource'
 import Base58 from 'bs58'
 import CryptoJS from 'crypto-js'
 
-import { signatureData as ljSign } from '~libs/wallet'
+import {
+  signatureData as ljSign
+} from '~libs/wallet'
 
 Vue.use(VueResource)
 
@@ -21,18 +23,33 @@ const signatureRedeem = async data => fetching('signature/redeem', data, 'post')
 
 const getI = async id => (await fetching(`ico/${id}`))
 
-export const getA = async add => (await fetching(`balances/${add}`))
+export const getA = async add => {
+  if (add) {
+    return (await fetching(`balances/${add}`))
+  }
+
+}
 export const getU = async add => (add && await fetching(`uid/${add}`))
 
 export const getH = async (name, add, params) => {
-  if (name === 'redeem') return await fetching(`redeem/${add}`, { params })
-  if (name === 'transfer') return await fetching(`balances/transfer/history/${add}`, { params })
-  return await fetching(`redeem/${add}`, { params: {option: name} })
+  if (name === 'redeem') return await fetching(`redeem/${add}`, {
+    params
+  })
+  if (name === 'transfer') return await fetching(`balances/transfer/history/${add}`, {
+    params
+  })
+  return await fetching(`redeem/${add}`, {
+    params: {
+      option: name
+    }
+  })
 }
 
 export const getB = async () => await fetching('block/count')
 
-export const getM = async (name, params) => await fetching(`order_book/${name}`, { params })
+export const getM = async (name, params) => await fetching(`order_book/${name}`, {
+  params
+})
 
 export const getO = async add => await fetching(`order/${add}`)
 
@@ -116,16 +133,38 @@ export const cancel = async (id, pr) => {
 
 const signICO = async data => await (fetching('ico/sign', data, 'post'))
 
-export const bidICO = async ({ id, shares, hexPubkey, password }, pr) => {
-  const { transaction, order } = await (fetching('ico/bid', { id, shares, hexPubkey, password }, 'post'))
+export const bidICO = async ({
+  id,
+  shares,
+  hexPubkey,
+  password
+}, pr) => {
+  const {
+    transaction,
+    order
+  } = await (fetching('ico/bid', {
+    id,
+    shares,
+    hexPubkey,
+    password
+  }, 'post'))
   return signICO({
     id: order.id,
     signature: ljSign(pr, transaction)
   })
 }
 
-export const askICO = async ({ id, hexPubkey }, pr) => {
-  const { transaction, order } = await (fetching('ico/ask', { id, hexPubkey }, 'post'))
+export const askICO = async ({
+  id,
+  hexPubkey
+}, pr) => {
+  const {
+    transaction,
+    order
+  } = await (fetching('ico/ask', {
+    id,
+    hexPubkey
+  }, 'post'))
   return signICO({
     id: order.id,
     signature: ljSign(pr, transaction)
@@ -155,31 +194,80 @@ export const getMarketsById = async marketId => await (fetching(`markets/${marke
  * 挂卖单
  */
 
-export const sendAsk = async ({ assetId, valueId, price, amount, hexPubkey }, pr) => {
-  const { transaction, order: { id } } = await (fetching('otc/ask', { assetId, valueId, price, amount, hexPubkey }, 'post'))
+export const sendAsk = async ({
+  assetId,
+  valueId,
+  price,
+  amount,
+  hexPubkey
+}, pr) => {
+  const {
+    transaction,
+    order: {
+      id
+    }
+  } = await (fetching('otc/ask', {
+    assetId,
+    valueId,
+    price,
+    amount,
+    hexPubkey
+  }, 'post'))
 
   const signature = ljSign(pr, transaction)
-  return otcSign({ id, signature })
+  return otcSign({
+    id,
+    signature
+  })
 }
 
 /**
  * 挂买单
  */
 
-export const sendBid = async ({ assetId, valueId, price, amount, hexPubkey }, pr) => {
-  const { transaction, order: { id } } = await (fetching('otc/bid', { assetId, valueId, price, amount, hexPubkey }, 'post'))
+export const sendBid = async ({
+  assetId,
+  valueId,
+  price,
+  amount,
+  hexPubkey
+}, pr) => {
+  const {
+    transaction,
+    order: {
+      id
+    }
+  } = await (fetching('otc/bid', {
+    assetId,
+    valueId,
+    price,
+    amount,
+    hexPubkey
+  }, 'post'))
   // 不需要随机字符
   // const nonce = getNonce()
   const signature = ljSign(pr, transaction)
-  return otcSign({ id, signature })
+  return otcSign({
+    id,
+    signature
+  })
 }
 
 /**
  * 卖家吃单
  */
 
-export const sendFreeAsk = async ({ id, hexPubkey }, pr) => {
-  const { transaction, order } = await (fetching('otc/free/ask', { id, hexPubkey }, 'post'))
+export const sendFreeAsk = async ({
+  id,
+  hexPubkey
+}, pr) => {
+  const {
+    transaction,
+    order
+  } = await (fetching('otc/free/ask', {
+    id,
+    hexPubkey
+  }, 'post'))
   return otcSign({
     id: order.id,
     signature: ljSign(pr, transaction)
@@ -190,8 +278,17 @@ export const sendFreeAsk = async ({ id, hexPubkey }, pr) => {
  * 买家吃单
  * @param {*} param
  */
-export const sendFreeBid = async ({ id, hexPubkey }, pr) => {
-  const { transaction, order } = await (fetching('otc/free/bid', { id, hexPubkey }, 'post'))
+export const sendFreeBid = async ({
+  id,
+  hexPubkey
+}, pr) => {
+  const {
+    transaction,
+    order
+  } = await (fetching('otc/free/bid', {
+    id,
+    hexPubkey
+  }, 'post'))
   return otcSign({
     id: order.id,
     signature: ljSign(pr, transaction)
@@ -202,8 +299,14 @@ export const sendFreeBid = async ({ id, hexPubkey }, pr) => {
  * 订单签名
  * @param {*} param
  */
-export const otcSign = async ({ id, signature }) =>
-  await (fetching('otc/sign', { id, signature }, 'post'))
+export const otcSign = async ({
+    id,
+    signature
+  }) =>
+  await (fetching('otc/sign', {
+    id,
+    signature
+  }, 'post'))
 
 /**
  * 获取指定地址的交易记录用于个人成交单查询
@@ -216,49 +319,102 @@ export const getRedeem = async address => await (fetching(`redeem/${address}`))
  * @param {*} param
  */
 
-export const getOrderByAddress = async ({ marketId, address }) => await (
-    fetching(
-        `order/${address}`, {
-          params: { marketId }
-        })
+export const getOrderByAddress = async ({
+  marketId,
+  address
+}) => await (
+  fetching(
+    `order/${address}`, {
+      params: {
+        marketId
+      }
+    })
 )
 
 /**
  * 获取市场最新交易
  * @param {市场ID} marketId
  */
-export const getHistoryById = async ({ marketId, active, length }) =>
-    await (fetching(`history/${marketId}`, { params: { active, length } }))
+export const getHistoryById = async ({
+    marketId,
+    active,
+    length
+  }) =>
+  await (fetching(`history/${marketId}`, {
+    params: {
+      active,
+      length
+    }
+  }))
 
 /**
  * 获取我的成交单
  * @param {市场ID} marketId
  */
-export const getMyHistoryById = async ({marketId, address, active, length}) =>
-    await (fetching(`history/${marketId}`, { params: {address, active, length} }))
+export const getMyHistoryById = async ({
+    marketId,
+    address,
+    active,
+    length
+  }) =>
+  await (fetching(`history/${marketId}`, {
+    params: {
+      address,
+      active,
+      length
+    }
+  }))
 
 /**
  * 获取区块高度
  * @return {height} [number] 高度
  */
 export const getBlockHigh = async () =>
-    await (fetching('block/count')).height
+  await (fetching('block/count')).height
 
-export const claimSign = async ({ id, signature }) =>
-    (await fetching('claim/sign', { id, signature }, 'post'))
+export const claimSign = async ({
+    id,
+    signature
+  }) =>
+  (await fetching('claim/sign', {
+    id,
+    signature
+  }, 'post'))
 
 
-export const claimSignOng = async ({ id, signature }) =>
-    (await fetching('claim/sign/ong', { id, signature }, 'post'))
+export const claimSignOng = async ({
+    id,
+    signature
+  }) =>
+  (await fetching('claim/sign/ong', {
+    id,
+    signature
+  }, 'post'))
 
 export const doClaim = async (hexPubkey, pr) => {
-  const { order, transaction } = await (fetching('claim', { hexPubkey }, 'post'))
-  return claimSign({id: order.id, signature: ljSign(pr, transaction)})
+  const {
+    order,
+    transaction
+  } = await (fetching('claim', {
+    hexPubkey
+  }, 'post'))
+  return claimSign({
+    id: order.id,
+    signature: ljSign(pr, transaction)
+  })
 }
 
 export const doClaimOng = async (hexPubkey, pr) => {
-  const { order, transaction } = await (fetching('claim/ong', { hexPubkey }, 'post'))
-  return claimSignOng({id: order.id, signature: ljSign(pr, transaction)})
+  const {
+    order,
+    transaction
+  } = await (fetching('claim/ong', {
+    hexPubkey
+  }, 'post'))
+  return claimSignOng({
+    id: order.id,
+    signature: ljSign(pr, transaction)
+  })
 }
 
 export const getNnAddress = async (domain) => {
@@ -268,9 +424,9 @@ export const getNnAddress = async (domain) => {
 
 
 export const signStr = async (str, pr) => {
-  console.log('signStr',str)
-  console.log('pr',pr)
-  return  ljSign(pr, str)
+  console.log('signStr', str)
+  console.log('pr', pr)
+  return ljSign(pr, str)
 }
 
 
@@ -279,9 +435,20 @@ export const swapSEA = async (info) => {
   return result
 }
 
-export const broadcastSEA = async (publicKeyCompressed,pr,transaction) => {
+export const broadcastSEA = async (publicKeyCompressed, pr, transaction) => {
   const signature = ljSign(pr, transaction)
   const result = await (fetching(`broadcast/${publicKeyCompressed}_${signature}_${transaction}`))
+  return result
+}
+
+
+/**
+ * 获取 seac 分红
+ *
+ * @param {*} address
+ */
+const getSeacBonus = async (address) => {
+  const result = await (fetching(`claim/seac/${address}`))
   return result
 }
 
@@ -327,7 +494,9 @@ export default {
   getNnAddress,
 
   swapSEA,
-  broadcastSEA
+  broadcastSEA,
+
+  getSeacBonus
 }
 
 /* eslint-disable no-return-await */

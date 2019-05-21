@@ -1,12 +1,32 @@
-import { img } from '~utils/config'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
-import { decrypt, doValidatePwd ,getWif, } from '~utils/ljsign'
-import { genKeyPairHex, encryptPrivateKey, getCompressedPubHex } from '~utils/ljsign'
-import { wallet } from '@cityofzion/neon-js'
-import { ljWifkeyToPubkey, ljWifkeyToHexkey,isWIF } from '~libs/LJSign'
+import {
+  img
+} from '~utils/config'
+import {
+  required,
+  minLength,
+  maxLength
+} from 'vuelidate/lib/validators'
+import {
+  decrypt,
+  doValidatePwd,
+  getWif,
+} from '~utils/ljsign'
+import {
+  genKeyPairHex,
+  encryptPrivateKey,
+  getCompressedPubHex
+} from '~utils/ljsign'
+import {
+  wallet
+} from '@cityofzion/neon-js'
+import {
+  ljWifkeyToPubkey,
+  ljWifkeyToHexkey,
+  isWIF
+} from '~libs/LJSign'
 
 export default {
-  data () {
+  data() {
     return {
       img,
       nep2: '',
@@ -27,20 +47,20 @@ export default {
   },
 
   methods: {
-    async login () {
+    async login() {
       console.log('nep2 login')
-      
+
       this.loading = true
       try {
-     
+
         const wif = await getWif(this.nep2, this.password)
 
 
-        console.log('wif',wif)
+        // console.log('wif',wif)
 
-        const privateKey =  wallet.getPrivateKeyFromWIF(wif)
+        const privateKey = wallet.getPrivateKeyFromWIF(wif)
 
-        console.log('privateKey',privateKey)
+        // console.log('privateKey',privateKey)
         if (isWIF(wif)) {
           // this.wallet['privateKey'] = wallet.getPrivateKeyFromWIF(wif)
 
@@ -55,29 +75,31 @@ export default {
 
           this.loading = false
           this.$message.success('验证成功!')
-          this.$router.push({ path: '/admin/balances' })
+          this.$router.push({
+            path: '/admin/balances'
+          })
           this.$store.dispatch('LOGIN', this.wallet)
-              .then(() => {
-                delete this.wallet
-                // this.loading = false
-                // this.$message.success('验证成功!')
-                // this.$router.push({ path: '/admin/balances' })
-              }, () => {
-                this.$message.error('验证失败，请检查nep2字符与密码重试!')
-                this.loading = false
-              })
+            .then(() => {
+              delete this.wallet
+              // this.loading = false
+              // this.$message.success('验证成功!')
+              // this.$router.push({ path: '/admin/balances' })
+            }, () => {
+              this.$message.error('验证失败，请检查nep2字符与密码重试!')
+              this.loading = false
+            })
         } else {
           this.loading = false
           this.$message.error('验证失败，请检查nep2字符与密码重试!')
         }
       } catch (e) {
-        console.log('e',e)
+        console.log('e', e)
         this.loading = false
         this.$message.error('验证失败，请检查nep2字符与密码重试!')
       }
-      
+
     },
-    readFile (file) {
+    readFile(file) {
       // const reader = new window.FileReader()
       // let vm = this
 
@@ -93,25 +115,25 @@ export default {
       // }
       // reader.readAsText(file)
     },
-    checkFile (file, filename) {
+    checkFile(file, filename) {
       // if (!file.hasOwnProperty('publicKey') || !file.hasOwnProperty('publicKeyCompressed') ||
       //     !file.hasOwnProperty('privateKeyEncrypted') || !file.hasOwnProperty('address')) return false
       // this.filename = filename
       // this.filenameError = ''
       // return true
     },
-    selectAll (e) {
-     //  setTimeout(() => e.target.select(), 0)
+    selectAll(e) {
+      //  setTimeout(() => e.target.select(), 0)
     }
   },
 
   computed: {
-    loggedIn () {
+    loggedIn() {
       return this.$store.getters['loggedIn']
     }
   },
 
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     next(vm => {
       vm.loggedIn ? next('/admin/balances') : next('/nep2')
     })

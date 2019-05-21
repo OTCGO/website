@@ -1,15 +1,12 @@
 <template>
-  <o-table
-      :tableHeader="bonusHeader"
-      :dataSource="bonusSource"
-      :buttonStatus="claimStatus"
-  ></o-table>
+  <o-table :tableHeader="bonusHeader" :dataSource="bonusSource" :buttonStatus="claimStatus"></o-table>
 </template>
 
 <script>
 import oTable from "~components/common/Table";
 import { mapGetters } from "vuex";
 import { findBalances } from "~utils/util";
+import service from "~api";
 
 const bonusHeader = [
   {
@@ -31,21 +28,19 @@ const bonusHeader = [
 ];
 
 export default {
-  created() {
-    this.getClaim();
-
-    this.claimTimer = setInterval(
-      () => this.$store.dispatch("GET_ASSET").then(() => this.getClaim()),
-      2000
-    );
-
-    this.$store.watch(
-      state => state.blockHeight,
-      (newVal, oldVal) => {
-        if (newVal !== oldVal) this.blockChanged = true;
-      }
-    );
-  },
+  // async created() {
+  //  await this.getClaim();
+  //   // this.claimTimer = setInterval(
+  //   //   () => this.$store.dispatch("GET_ASSET").then(() => this.getClaim()),
+  //   //   2000
+  //   // );
+  //   // this.$store.watch(
+  //   //   state => state.blockHeight,
+  //   //   (newVal, oldVal) => {
+  //   //     if (newVal !== oldVal) this.blockChanged = true;
+  //   //   }
+  //   // );
+  // },
   data: () => ({
     bonusHeader,
     bonusSource: [],
@@ -53,128 +48,102 @@ export default {
   }),
   components: { oTable },
   computed: {
-    ...mapGetters(["balances", "blockHeight", "wa"]),
+    ...mapGetters(["balances","blockHeight", "wa"]),
     claimStatus() {
       return this.blockChanged;
+    },
+    address() {
+      return this.wa("address");
     }
   },
-  methods: {
-    getClaim() {
-      const anc = findBalances(this.balances, "SEAS");
+  async mounted() {
+    try {
+      this.loading = true;
+      await this.getClaim();
+      this.loading = false;
 
-      this.bonusSource = anc.reduce(
-        (arr, item) =>
-          arr.concat({
-            name: { render: true, value: item.name },
-            disable: { render: true, value: item.disable },
-            enable: { render: true, value: item.enable },
-            button: {
-              btnClass: "btn-blue",
-              value: "一键提取",
-              render: true,
-              hide: false,
-              disable:true,
-              event: cb => this.claim(cb)
-            }
-          }),
-        []
-      );
+      console.log("seac this.bonusSource", this.bonusSource);
+    } catch (error) {
+      this.loading = false;
+      console.log("error", error);
+    }
+  },
+
+  methods: {
+    async getClaim() {
+      // console.log('getClaim',service)
+      const bonus = await service.getSeacBonus(this.address);
+
+      this.bonusSource = [
+        {
+          name: { render: true, value: "SEAC" },
+          disable: { render: true, value: bonus.unavailable },
+          enable: { render: true, value: bonus.available },
+          button: {
+            btnClass: "btn-blue",
+            value: "一键提取",
+            render: true,
+            hide: false,
+            disable: !bonus.available ? true : false,
+            event: cb => this.claim(cb)
+          }
+        }
+      ];
     },
     claim(cb) {
-      
-      if(this.bonusSource[0].disable.value == 0 && this.bonusSource[0].enable.value == 0){
-        return
+      if (this.bonusSource[0].enable.value == 0) {
+        return;
       }
+      
 
       this.blockChanged = false;
       cb(false);
 
-      if(this.bonusSource[0].disable.value > 0){
-         this.claimOngTransfer();
+      if (this.bonusSource[0].enable.value > 0) {
+        console.log('claim')
+        this.transfer();
       }
-
-
-      if(this.bonusSource[0].enable.value > 0){
-        const [{ total }] = findBalances(this.balances, "ontology-ONG");
-        if (parseFloat(total) < 0.01) {
-          this.$message.error("ontology-ONG 余额不足");
-          return;
-        }
-
-       
-        
-
-        
-        this.$store
-          .dispatch("DO_CLAIM_ONG")
-          .then(r => {
-            if (r.hasOwnProperty("result") && r.result) {
-              this.$message.success("提取成功");
-            }
-
-            if (r.error) this.$message.warning(r.error);
-            this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
-          })
-          .catch(e => {
-            this.$message.error(JSON.parse(e.bodyText).error);
-          });
-
-          
-      }
-
     },
+    transfer() {
+      this.loading = true;
+
+      const [{ assetId, valid }] = findBalances(this.balances, "SEAS");
+      console.log('assetId',assetId)
+      console.log('valid',valid)
+      this.$store
+        .dispatch("TRANSFER", {
+          assetId,
+          dest:this.address,
+          amount: valid > 1 ? 1 : valid
+        })
+        .then((r) => {
+          if (r.hasOwnProperty("result") && r.result) {
+              this.$message.success("提取成功,到账需要区块确认，请稍后查看余额");
+              this.getClaim()
+          }
+
+          this.blockChanged = true
+          this.loading = false;
+          this.disabled = true;
+        })
+        .catch(e => {
+          this.blockChanged = true
+          console.log('e',e)
+          this.$message.error("提取失败，请稍后重试");
+          this.disabled = true;
+        });
+
+        
+    }
+
+
     // watch: {
     //   balances() {
     //     this.getClaim();
     //   }
     // },
-
-    // ont Transfer
-    claimOngTransfer() {
-      const [{ total }] = findBalances(this.balances, "ontology-ONG");
-
-      console.log("total", total);
-      if (parseFloat(total) < 0.01) {
-        this.$message.error("ontology-ONG 余额不足");
-        return;
-      }
-
-      this.loading = true;
-
-      const [{ assetId, valid }] = findBalances(this.balances, "ontology-ONT");
-
-      if(!valid){
-        return
-      }
-      const dest = this.wa("address");
-
-      if (!valid) {
-        return;
-      }
-      this.$store
-        .dispatch("TRANSFER", {
-          assetId,
-          dest,
-          amount: valid
-        })
-        .then(() => {
-          this.loading = false;
-          this.disabled = true;
-          // this.$message.success(
-          //   "转账成功！请等待区块确认完毕后领取ontology-ONT！"
-          // );
-        })
-        .catch(e => {
-          this.$message.error(e.body.error);
-          this.disabled = true;
-        });
-
-      this.loading = false;
-    }
   },
-  destroyed() {
-    window.clearInterval(this.claimTimer);
-  }
+  destroyed() {}
 };
 </script>
 
