@@ -79,6 +79,7 @@ export default {
               value: "一键提取",
               render: true,
               hide: false,
+              disable: item.disable === '0' && item.enable === '0' ? true : false,
               event: cb => this.claim(cb)
             }
           }),
@@ -109,12 +110,14 @@ export default {
         this.$store
           .dispatch("DO_CLAIM")
           .then(r => {
+            this.blockChanged = true
             if (r.hasOwnProperty("result") && r.result)
               this.$message.success("提取成功");
             if (r.error) this.$message.warning(r.error);
             this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
           })
           .catch(e => {
+            this.blockChanged = true
             this.$message.error(JSON.parse(e.bodyText).error);
           });
       }

@@ -1,9 +1,5 @@
 <template>
-  <o-table
-      :tableHeader="bonusHeader"
-      :dataSource="bonusSource"
-      :buttonStatus="claimStatus"
-  ></o-table>
+  <o-table :tableHeader="bonusHeader" :dataSource="bonusSource" :buttonStatus="claimStatus"></o-table>
 </template>
 
 <script>
@@ -73,7 +69,7 @@ export default {
               value: "一键提取",
               render: true,
               hide: false,
-              disable:true,
+              disable: item.disable === '0' && item.enable === '0' ? true : false,
               event: cb => this.claim(cb)
             }
           }),
@@ -82,47 +78,44 @@ export default {
       // console.log('this.bonusSource',this.bonusSource)
     },
     claim(cb) {
-      
-      if(this.bonusSource[0].disable.value == 0 && this.bonusSource[0].enable.value == 0){
-        return
+      if (
+        this.bonusSource[0].disable.value == 0 &&
+        this.bonusSource[0].enable.value == 0
+      ) {
+        return;
       }
 
       this.blockChanged = false;
       cb(false);
 
-      if(this.bonusSource[0].disable.value > 0){
-         this.claimOngTransfer();
+      if (this.bonusSource[0].disable.value > 0) {
+        this.claimOngTransfer();
       }
 
-
-      if(this.bonusSource[0].enable.value > 0){
+      if (this.bonusSource[0].enable.value > 0) {
         const [{ total }] = findBalances(this.balances, "ontology-ONG");
         if (parseFloat(total) < 0.01) {
           this.$message.error("ontology-ONG 余额不足");
           return;
         }
 
-       
-        
-
-        
         this.$store
           .dispatch("DO_CLAIM_ONG")
           .then(r => {
+            this.blockChanged = true
             if (r.hasOwnProperty("result") && r.result) {
               this.$message.success("提取成功");
+              
             }
 
             if (r.error) this.$message.warning(r.error);
             this.$store.dispatch("GET_ASSET").then(() => this.getClaim());
           })
           .catch(e => {
+            this.blockChanged = true
             this.$message.error(JSON.parse(e.bodyText).error);
           });
-
-          
       }
-
     },
     // watch: {
     //   balances() {
@@ -144,8 +137,8 @@ export default {
 
       const [{ assetId, valid }] = findBalances(this.balances, "ontology-ONT");
 
-      if(!valid){
-        return
+      if (!valid) {
+        return;
       }
       const dest = this.wa("address");
 

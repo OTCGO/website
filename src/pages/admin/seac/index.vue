@@ -44,7 +44,8 @@ export default {
   data: () => ({
     bonusHeader,
     bonusSource: [],
-    blockChanged: true
+    blockChanged: true,
+    btnDisable:false
   }),
   components: { oTable },
   computed: {
@@ -84,7 +85,8 @@ export default {
             value: "一键提取",
             render: true,
             hide: false,
-            disable: !bonus.available ? true : false,
+            // disable:false,
+            disable: bonus.available === '0' ? true : false,
             event: cb => this.claim(cb)
           }
         }

@@ -20,7 +20,7 @@
             }" :key="items.index" v-for="items in item" v-if="items.render"  :class="[items.class ? items.class : '']">
               <span v-if="!items.event">{{ items.value }}</span>
               <button v-if="items.event && !items.hide"
-                      :class="['btn-trade', items.btnClass, buttonStatus ? '' : 'disabled']"
+                      :class="['btn-trade', items.btnClass, items.disable  ? 'disabled' : '']"
                       :disabled="!buttonStatus"
                       @click="buttonEvent(items.event)">
                 {{ status ? items.value : '执行中' }}
