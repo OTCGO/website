@@ -14,7 +14,7 @@
             <foot></foot>
             <footer class="footer">
                 <div class="footer-link">
-                    Copyright &copy; 2017 &nbsp;<a href="https://otcgo.cn/">otcgo.cn</a>&nbsp; 版权所有 湘ICP备16019051号-1
+                    Copyright &copy; 2019 &nbsp;<a href="https://otcgo.cn/">otcgo.cn</a>&nbsp; 版权所有 湘ICP备16019051号-1
                 </div>
                 <div class="concat-link">
                     <template v-for='item in concats'>
@@ -26,10 +26,13 @@
                             <img :src="item.src" width="25" height="25" style="margin-left: 15px" :alt="item.desc">
                         </a>
                     </template>
+                     <a class="donation" target="_blank" href="http://state.otcgo.cn/addrinfo.html?address=AU6WPAYiTFtay8QJqsYVGhZ6gbBwnKPxkf&network=mainnet">捐赠我们</a>
                 </div>
                 <!--<div>
                   Copyright 2017 <a href="https://otcgo.cn/">otcgo.cn</a> 蓝鲸淘
                 </div>-->
+
+               
             </footer>
 
         </div>
@@ -271,6 +274,15 @@
         bottom: 20px;
         left: -30px;
         display: none;
+    }
+
+    footer .donation{
+        color: #fff;
+        font-size: 18px;
+        margin-left: 5px;
+        padding-left: 8px;
+        border-left: 1px solid #ffffff;
+        text-decoration: none;
     }
 
     /*@media (max-width: 500px) {
