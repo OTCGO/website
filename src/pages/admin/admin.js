@@ -50,6 +50,8 @@ export default {
       if (str === 'ong') {
         this.onOng = true
         this.onBonus = false
+      }else{
+        this.onOng = false
       }
 
       // if(str === 'tool'){

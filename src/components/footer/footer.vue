@@ -163,6 +163,8 @@
                     </ul>
                         </div>
                     </div>
+                  
+
                     <div class="col-lg-2 text-center">
                         <h4 class="text-color text-type2">微信订阅号</h4>
                         <img :src="require('~images/wx-QRcode.jpg')" alt="QRcode" class="qrCode" />
@@ -280,4 +282,6 @@ export default {};
         margin: 0 auto;
     }
 }
+
+
 </style>
