@@ -26,14 +26,20 @@
                             <img :src="item.src" width="25" height="25" style="margin-left: 15px" :alt="item.desc">
                         </a>
                     </template>
-                     <a class="donation" target="_blank" href="http://state.otcgo.cn/addrinfo.html?address=AU6WPAYiTFtay8QJqsYVGhZ6gbBwnKPxkf&network=mainnet">捐赠我们</a>
+                     <!-- <a class="donation" target="_blank" href="http://state.otcgo.cn/addrinfo.html?address=AU6WPAYiTFtay8QJqsYVGhZ6gbBwnKPxkf&network=mainnet">捐赠我们</a>
+                -->
                 </div>
+
+
                 <!--<div>
                   Copyright 2017 <a href="https://otcgo.cn/">otcgo.cn</a> 蓝鲸淘
                 </div>-->
 
                
             </footer>
+                <div class="donation" >
+                    捐赠我们:AU6WPAYiTFtay8QJqsYVGhZ6gbBwnKPxkf
+                </div>
 
         </div>
 
@@ -276,12 +282,12 @@
         display: none;
     }
 
-    footer .donation{
+    .donation{
+        background: #000;
+        text-align: right;
         color: #fff;
         font-size: 18px;
-        margin-left: 5px;
-        padding-left: 8px;
-        border-left: 1px solid #ffffff;
+        border-top: 1px solid #ffffff;
         text-decoration: none;
     }
 
