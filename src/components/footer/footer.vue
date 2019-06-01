@@ -205,19 +205,19 @@ export default {};
 }
 
 .bg-blue1 {
-    background-image: url(../../images/foot-1.png);
+    background-image: url(../../images/001.png);
 }
 
 .bg-blue2 {
-    background-image: url(../../images/foot-2.png);
+    background-image: url(../../images/002.png);
 }
 
 .bg-blue3 {
-    background-image: url(../../images/foot-3.png);
+    background-image: url(../../images/003.png);
 }
 
 .bg-blue4 {
-    background-image: url(../../images/foot-4.png);
+    background-image: url(../../images/004.png);
 }
 
 .foot-li {

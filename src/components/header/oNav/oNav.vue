@@ -49,7 +49,7 @@
          </li>
       </ul>
 
-      <form class="col-sm-12 navbar-form navbar-right" style="margin-right: 20px;">
+      <form class="col-sm-12 hide navbar-form navbar-right" style="margin-right: 20px;">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="资产关键词搜索暂未开放" disabled>
         </div>
