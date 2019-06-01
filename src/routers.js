@@ -85,7 +85,6 @@ const routes = [
       }
     ]
   },
-
   // 视频教程
   {
     path: '/video',
