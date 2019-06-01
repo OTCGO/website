@@ -223,7 +223,8 @@ export default {
         
 
 
-        if (/.neo/i.test(this.address.value)) {
+        console.log("this.address.value", this.address.value);
+        if (/.neo/g.test(this.address.value)) {
           const result = await service.getNnAddress(this.address.value);
           console.log("checkAddress", result);
           if (result["error"]) {
