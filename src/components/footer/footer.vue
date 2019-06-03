@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
     <div id="footer">
         <div class="row footer-top" >
             <div class="col-lg-3 col-xs-6 bg-li">
@@ -33,6 +33,47 @@
                     <p class="foot-des">保障投资人的分红收益</p>
                 </div>
             </div>
+        </div>
+        <div class="partner">
+            <h4 class="text-color text-left text-type2">合作伙伴</h4>
+            <ul class="list-unstyled row partner-list">
+                <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/hello_capital.jpg" alt="">
+                    </div>
+                </li>
+                <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/honglian.jpg" alt="">
+                    </div>
+                </li>
+                <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/NGC.jpg" alt="">
+                    </div>
+                </li>
+                <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/NEO.jpg" alt="">
+                    </div>
+                </li> <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/NNS.jpg" alt="">
+                    </div>
+                </li> <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/ONT.jpg" alt="">
+                    </div>
+                </li> <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/tianlian.jpg" alt="">
+                    </div>
+                </li> <li class="partner-li">
+                    <div class="partner-item">
+                        <img src="../../images/partner/alchemint.jpg" alt="">
+                    </div>
+                </li>
+            </ul>
         </div>
         <hr class="cut-line"/>
         <div class="row">
@@ -188,7 +229,29 @@ export default {};
 .footer-top{
     padding: 80px;
 }
-
+.partner-list{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+.partner-li{
+    float: none;
+    width:12.5%;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+.partner-item{
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background: white;
+    padding:2px 6px;
+}
+.partner-item img{
+    width:100%;
+}
 .cut-line {
     margin: 0 auto;
     border-color: #e9e9e9;
@@ -275,7 +338,11 @@ export default {};
 .about {
     margin: 37px 0 60px 0;
 }
-
+@media (max-device-width: 992px) {
+    .partner-li{
+        width:25%;
+    }
+}
 @media (max-width: 500px) {
     .footer-top{
         padding: 10px;
