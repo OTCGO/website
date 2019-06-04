@@ -1,10 +1,10 @@
 <template lang="pug">
     .page-index
         .index
-            el-carousel(:interval="5000", height="400px")
+            el-carousel(:interval="5000")
                 el-carousel-item(v-for="banner in banners")
-                    a(v-bind:href="banner.route.path",target="_blank")
-                        img(:src="banner.src", :alt="banner.dec")
+                    a.test(v-bind:href="banner.route.path",target="_blank")
+                        img.test-img(:src="banner.src", :alt="banner.dec")
             o-content
 
             //- el-dialog(visible=true,title="提示",:visible.sync="dialogVisible",center)
@@ -61,7 +61,14 @@ export default {
 .el-table__header .is-leaf {
   text-align: center;
 }
-
+.el-carousel__container{
+    height:400px
+}
+    @media (max-device-width:576px){
+        .el-carousel__container{
+            height:320px !important
+        }
+    }
 @media (max-width: 500px) {
   .el-carousel {
     display: none;
@@ -94,4 +101,12 @@ export default {
                 width: 100%;
                 height: 400px; */
 }
+    .test{
+        width:100%;
+        height:100%;
+        .test-img{
+            width:100%;
+            height:100%
+        }
+    }
 </style>
