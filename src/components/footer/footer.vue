@@ -38,6 +38,19 @@
             <h4 class="text-color text-left text-type2">合作伙伴</h4>
             <ul class="list-unstyled row partner-list">
                 <li class="partner-li">
+                <div class="partner-item">
+                    <img src="../../images/partner/NEO.jpg" alt="">
+                </div>
+            </li> <li class="partner-li">
+                <div class="partner-item">
+                    <img src="../../images/partner/ONT.jpg" alt="">
+                </div>
+            </li><li class="partner-li">
+                <div class="partner-item">
+                    <img src="../../images/partner/alchemint.jpg" alt="">
+                </div>
+            </li>
+                <li class="partner-li">
                     <div class="partner-item">
                         <img src="../../images/partner/hello_capital.jpg" alt="">
                     </div>
@@ -52,25 +65,13 @@
                         <img src="../../images/partner/NGC.jpg" alt="">
                     </div>
                 </li>
-                <li class="partner-li">
-                    <div class="partner-item">
-                        <img src="../../images/partner/NEO.jpg" alt="">
-                    </div>
-                </li> <li class="partner-li">
+                 <li class="partner-li">
                     <div class="partner-item">
                         <img src="../../images/partner/NNS.jpg" alt="">
                     </div>
-                </li> <li class="partner-li">
-                    <div class="partner-item">
-                        <img src="../../images/partner/ONT.jpg" alt="">
-                    </div>
-                </li> <li class="partner-li">
+                </li><li class="partner-li">
                     <div class="partner-item">
                         <img src="../../images/partner/tianlian.jpg" alt="">
-                    </div>
-                </li> <li class="partner-li">
-                    <div class="partner-item">
-                        <img src="../../images/partner/alchemint.jpg" alt="">
                     </div>
                 </li>
             </ul>
@@ -239,6 +240,7 @@ export default {};
     width:12.5%;
     padding-left: 15px;
     padding-bottom: 15px;
+    box-sizing: border-box;
 }
 .partner-item{
     width:100%;
@@ -247,7 +249,7 @@ export default {};
     align-items:center;
     justify-content: center;
     background: white;
-    padding:2px 6px;
+
 }
 .partner-item img{
     width:100%;
@@ -341,6 +343,7 @@ export default {};
 @media (max-device-width: 992px) {
     .partner-li{
         width:25%;
+        margin-left: -1px;
     }
 }
 @media (max-width: 500px) {
