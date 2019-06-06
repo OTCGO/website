@@ -23,11 +23,11 @@ export default {
   data: () => ({
     banners: [
       {
-        src: require("~images/ong-ont.png"),
-        preview: require("~images/ong-ont.png"),
-        dec: "ong-ont",
+        src: require("~images/banner1.jpg"),
+        preview: require("~images/banner1.jpg"),
+        dec: "",
         route: {
-          path: "//otcgo.cn/download/"
+          path: "/"
         }
       },
       /*{
@@ -39,9 +39,9 @@ export default {
                   }
                 }*/
       {
-        src: require("~images/banner_99.jpg"),
-        preview: require("~images/banner_99.jpg"),
-        dec: "九九重阳节",
+        src: require("~images/banner_2.jpg"),
+        preview: require("~images/banner_2.jpg"),
+        dec: "",
         route: {
           path: "/"
         }
