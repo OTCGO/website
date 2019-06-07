@@ -45,6 +45,13 @@ export default {
         route: {
           path: "/"
         }
+      },{
+        src: require("~images/banner_3.jpg"),
+        preview: require("~images/banner_3.jpg"),
+        dec: "",
+        route: {
+          path: "/"
+        }
       }
     ],
     loading: false,
