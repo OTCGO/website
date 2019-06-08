@@ -27,7 +27,7 @@ export default {
         preview: require("~images/banner1.jpg"),
         dec: "",
         route: {
-          path: "/"
+          path: "https://mp.weixin.qq.com/s/1AgqE9I_DH49TZnViAz2kw"
         }
       },
       /*{
@@ -39,18 +39,11 @@ export default {
                   }
                 }*/
       {
-        src: require("~images/banner_2.jpg"),
-        preview: require("~images/banner_2.jpg"),
-        dec: "",
-        route: {
-          path: "/"
-        }
-      },{
         src: require("~images/banner_3.jpg"),
         preview: require("~images/banner_3.jpg"),
         dec: "",
         route: {
-          path: "/"
+          path: "http://zgcom.udesk.cn/hc/articles/106751"
         }
       }
     ],
