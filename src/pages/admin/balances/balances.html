@@ -237,8 +237,8 @@
     </div>
   </el-dialog>-->
   <!-- 转账 -->
-  <el-dialog v-model="transferModal" class="tiny-dialog">
-    <transfer-modal @success="transferSuccess" ></transfer-modal>
+  <el-dialog v-model="transferModal" class="tiny-dialog" @close="transferClose">
+    <transfer-modal @success="transferSuccess" ref="transferModall" v-if="hackReset" ></transfer-modal>
   </el-dialog>
   <!-- 交易 -->
   <el-dialog v-model="askModal" id="dialogTransaction">
