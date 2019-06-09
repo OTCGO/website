@@ -348,7 +348,7 @@ export default {
         "gas"
     );
 
-    this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(2))
+    this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(3))
     console.log("created", this.maxFee);
 
   },
