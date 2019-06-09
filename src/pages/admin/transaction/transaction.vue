@@ -57,7 +57,7 @@
     </div>
 
     <div class="row" style="margin-top:20px">
-      <span class="col-xs-3" style="margin-top:8px">手续费：</span>
+      <span class="col-xs-3" style="margin-top:8px">手续费({{feeTitle}}) ：</span>
       <span class="col-xs-6" style="">
         <el-slider v-model="fee"  show-input=""  :max="maxFee" :min="0" :step="0.001" :disabled="feeDisabled"></el-slider>
       </span>
@@ -124,7 +124,8 @@ export default {
     
     fee: 0.001, // 手续费
     maxFee:0,
-    feeDisabled:false
+    feeDisabled:false,
+    feeTitle:'gas'
   }),
   // computed: {
   //    ...mapGetters(["balances"])
@@ -168,7 +169,7 @@ export default {
           dest: this.nncaddress,
           amount: this.amount.value.toString(),
           assetId: this.deliver.assetId,
-          fee:this.fee
+          fee:this.fee | 0
         })
         .then(i => {
           // this.$message.success('转账成功！')
@@ -349,11 +350,16 @@ export default {
 
     this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(2))
     console.log("created", this.maxFee);
+
   },
   mounted() {
     // console.log('mounted')
     console.log("mounted", this.$store.getters.balances);
     this.nncaddress = "";
+
+    
+    console.log("feeTitle", this.feeTitle);
+    this.feeTitle = (this.deliver.assetId === ONT_ASSETID ||  this.deliver.assetId === ONG_ASSETID) ? 'ong' : 'gas'
     
     // console.log("mounted", this.transferType);
     // console.log("balances", this.$store.getters.balances);
