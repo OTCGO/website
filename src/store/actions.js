@@ -73,7 +73,7 @@ export default {
         amount,
         assetId,
         hexPubkey: state.wa['publicKey'],
-        fee
+        fee:fee || 0
       }, state.wa['privateKey'])
     } catch (e) {
       return Promise.reject(e)
