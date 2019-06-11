@@ -66,6 +66,7 @@ export default {
   },
 
   async [type.transfer] ({ state }, { dest, amount, assetId ,fee}) {
+    console.log('fee',fee)
     try {
       return await service.transfer({
         dest,

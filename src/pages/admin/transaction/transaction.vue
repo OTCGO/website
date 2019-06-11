@@ -80,6 +80,10 @@
     <br>
     注意：转账ONG或ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
   </div>
+    <div v-else>
+    <br>
+    注意：手续费小于0.001时候，会出现延时到账或者无法到账的情况，请选择合适的手续费。<br>
+  </div>
   </div>
 </template>
 
@@ -163,13 +167,13 @@ export default {
 
       this.loading = true;
       
-      console.log("dest2", this.nncaddress);
+      console.log("this.fee", this.fee);
       this.$store
         .dispatch("TRANSFER", {
           dest: this.nncaddress,
           amount: this.amount.value.toString(),
           assetId: this.deliver.assetId,
-          fee:this.fee | 0
+          fee: this.fee 
         })
         .then(i => {
           // this.$message.success('转账成功！')
