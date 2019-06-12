@@ -186,7 +186,7 @@ export default {
             this.$message.success("转账成功！");
           }
 
-          this.getMaxFee();
+          // this.getMaxFee();
           
           this.$set(this.amount, "value", "");
           this.$set(this.address, "value", "");
