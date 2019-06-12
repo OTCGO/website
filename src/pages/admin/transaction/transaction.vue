@@ -82,7 +82,7 @@
   </div>
     <div v-else>
     <br>
-    注意：手续费小于0.001时候，会出现延时到账或者无法到账的情况，请选择合适的手续费。<br>
+    注意：当手续费低于0.001时，会出现延时到账或者无法到账的情况，请选择合适的手续费。<br>
   </div>
   </div>
 </template>
@@ -186,6 +186,8 @@ export default {
             this.$message.success("转账成功！");
           }
 
+          this.getMaxFee();
+          
           this.$set(this.amount, "value", "");
           this.$set(this.address, "value", "");
           this.loading = false;
@@ -323,6 +325,16 @@ export default {
         e.target.select();
       }, 0);
     },
+
+    getMaxFee(){
+      const [{total}] = findBalances(
+            this.$store.getters.balances,
+            "gas"
+        );
+
+      this.maxFee = total > 1 ? 1 : Math.floor(total * 1000) / 1000  
+      console.log("created", this.maxFee);
+    }
   },
 
   computed: {
@@ -347,13 +359,9 @@ export default {
         return
     }
 
-    const [{total}] = findBalances(
-        this.$store.getters.balances,
-        "gas"
-    );
+    this.getMaxFee()
 
-    this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(3))
-    console.log("created", this.maxFee);
+   
 
   },
   mounted() {
