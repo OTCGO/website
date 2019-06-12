@@ -57,7 +57,7 @@
     </div>
 
     <div class="row" style="margin-top:20px">
-      <span class="col-xs-3" style="margin-top:8px">手续费：</span>
+      <span class="col-xs-3" style="margin-top:8px">手续费({{feeTitle}}) ：</span>
       <span class="col-xs-6" style="">
         <el-slider v-model="fee"  show-input=""  :max="maxFee" :min="0" :step="0.001" :disabled="feeDisabled"></el-slider>
       </span>
@@ -79,6 +79,10 @@
   <div v-if="deliver.assetId === '0000000000000000000000000000000000000002' || deliver.assetId === '0000000000000000000000000000000000000001'">
     <br>
     注意：转账ONG或ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
+  </div>
+    <div v-else>
+    <br>
+    注意：当手续费低于0.001时，会出现延时到账或者无法到账的情况，请选择合适的手续费。<br>
   </div>
   </div>
 </template>
@@ -124,7 +128,8 @@ export default {
     
     fee: 0.001, // 手续费
     maxFee:0,
-    feeDisabled:false
+    feeDisabled:false,
+    feeTitle:'gas'
   }),
   // computed: {
   //    ...mapGetters(["balances"])
@@ -162,13 +167,13 @@ export default {
 
       this.loading = true;
       
-      console.log("dest2", this.nncaddress);
+      console.log("this.fee", this.fee);
       this.$store
         .dispatch("TRANSFER", {
           dest: this.nncaddress,
           amount: this.amount.value.toString(),
           assetId: this.deliver.assetId,
-          fee:this.fee
+          fee: this.fee 
         })
         .then(i => {
           // this.$message.success('转账成功！')
@@ -181,6 +186,8 @@ export default {
             this.$message.success("转账成功！");
           }
 
+          this.getMaxFee();
+          
           this.$set(this.amount, "value", "");
           this.$set(this.address, "value", "");
           this.loading = false;
@@ -318,6 +325,16 @@ export default {
         e.target.select();
       }, 0);
     },
+
+    getMaxFee(){
+      const [{total}] = findBalances(
+            this.$store.getters.balances,
+            "gas"
+        );
+
+      this.maxFee = total > 1 ? 1 : Math.floor(total * 1000) / 1000  
+      console.log("created", this.maxFee);
+    }
   },
 
   computed: {
@@ -342,18 +359,19 @@ export default {
         return
     }
 
-    const [{total}] = findBalances(
-        this.$store.getters.balances,
-        "gas"
-    );
+    this.getMaxFee()
 
-    this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(2))
-    console.log("created", this.maxFee);
+   
+
   },
   mounted() {
     // console.log('mounted')
     console.log("mounted", this.$store.getters.balances);
     this.nncaddress = "";
+
+    
+    console.log("feeTitle", this.feeTitle);
+    this.feeTitle = (this.deliver.assetId === ONT_ASSETID ||  this.deliver.assetId === ONG_ASSETID) ? 'ong' : 'gas'
     
     // console.log("mounted", this.transferType);
     // console.log("balances", this.$store.getters.balances);
