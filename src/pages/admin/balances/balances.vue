@@ -17,6 +17,7 @@ export default {
     transferModal: false,
     mapModal: false,
     askModal: false,
+    hackReset:true,
     // btnText:'隐藏余额为0的资产',
     isDisplay: true
     // transferType: 1, // 1 交易 2 映射
@@ -36,7 +37,8 @@ export default {
   methods: {
     transfer({ name }, type) {
       this.$store.commit("SET_DELIVER", name);
-
+       this.$router.push({path:'/admin/transaction'})
+    /*
       if (type === 1) {
         this.transferModal = true;
       }
@@ -59,31 +61,49 @@ export default {
         document.getElementsByClassName("tiny-dialog")[0].style.position =
           "absolute";
       }
+
+      */
+    },
+
+    transferClose() {
+      // this.$refs.mychild.
+     //  this.hackReset = false
+      // this.$nextTick(() => {
+      //   this.hackReset = true
+      // })
+      console.log('this.$refs.transferModal',this.$refs.transferModall)
+      // this.$refs.transferModall.handleDestroyed()
+     // this.$destroy('transferModal')
     },
 
     // 申一股，申一币置换
     async switchSEA({ assetId }) {
       try {
         // console.log("switch_publicKey", this.wa("publicKeyCompressed"));
-        const { transaction,result } = await swapSEA(`${this.wa("address")}_${assetId}`);
+        const { transaction, result } = await swapSEA(
+          `${this.wa("address")}_${assetId}`
+        );
 
-        if(!transaction){
+        if (!transaction) {
           return this.$message.success("置换失败，请稍后再试！");
         }
 
         console.log("switch,transaction", transaction);
-        if(result){
-          const result = await broadcastSEA(this.wa("publicKeyCompressed"),this.wa("privateKey"),transaction)
+        if (result) {
+          const result = await broadcastSEA(
+            this.wa("publicKeyCompressed"),
+            this.wa("privateKey"),
+            transaction
+          );
           console.log("switch,broadcastSEA", result);
-          if(result){
-           return this.$message.success("置换成功，请等待1-2区块后查看资产！");
+          if (result) {
+            return this.$message.success("置换成功，请等待1-2区块后查看资产！");
           }
-          
+
           return this.$message.success("置换失败，请稍后再试！");
         }
 
         return this.$message.success("置换失败，请稍后再试！");
-        
       } catch (error) {
         console.log("switch", error);
         return this.$message.success("置换失败，请稍后再试！");

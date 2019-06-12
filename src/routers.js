@@ -42,6 +42,10 @@ const routes = [
         component: r => require(['~pages/admin/redeem/redeem.vue'], r)
       },
       {
+        path: 'transaction',
+        component: r => require(['~pages/admin/transaction/transaction.vue'], r)
+      },
+      {
         path: 'balances',
         component: r => require(['~pages/admin/balances/balances.vue'], r)
       },

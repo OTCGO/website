@@ -65,14 +65,16 @@ export default {
     }, state.wa['privateKey'])
   },
 
-  async [type.transfer] ({ state }, { dest, amount, assetId }) {
+  async [type.transfer] ({ state }, { dest, amount, assetId ,fee}) {
+    console.log('fee',fee)
     try {
       return await service.transfer({
         dest,
         source: state.wa['address'],
         amount,
         assetId,
-        hexPubkey: state.wa['publicKey']
+        hexPubkey: state.wa['publicKey'],
+        fee:fee || 0
       }, state.wa['privateKey'])
     } catch (e) {
       return Promise.reject(e)
