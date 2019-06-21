@@ -49,11 +49,13 @@ export default {
       }
     })
   },
-  [type.setDeliver] (state, name) {
+  [type.setDeliver] (state, assetId) {
     state.deliver = state.balances.find(i => {
+
       const arr = Object.values(i)
       for (let j = 0; j < arr.length; j++) {
-        if (arr[j] === name) return true
+        console.log('arr',arr)
+        if (arr[j] === assetId) return true
       }
     })
   },

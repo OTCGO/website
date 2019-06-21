@@ -35,8 +35,8 @@ export default {
   },
 
   methods: {
-    transfer({ name }, type) {
-      this.$store.commit("SET_DELIVER", name);
+    transfer({ assetId }, type) {
+      this.$store.commit("SET_DELIVER", assetId);
        this.$router.push({path:'/admin/transaction'})
     /*
       if (type === 1) {
