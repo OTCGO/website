@@ -150,7 +150,7 @@ export default {
         // console.log('this.balances',this.balances)
         const [{ total }] = findBalances(
           this.$store.getters.balances,
-          "ontology-ONG"
+          "0000000000000000000000000000000000000002"
         );
         console.log("this.balances", total);
         
@@ -350,7 +350,8 @@ export default {
 
     const [{total}] = findBalances(
         this.$store.getters.balances,
-        "gas"
+        "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"
+        //"gas"
     );
 
     this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(2))

@@ -13,8 +13,8 @@ export const formatPrice = (value) => {
 }
 
 // Find data from balances
-export const findBalances = (balances, marketSign) => {
-  return balances.filter(item => item.marketSign === marketSign)
+export const findBalances = (balances, assetId) => {
+  return balances.filter(item => item.assetId === assetId)
 }
 
 /**

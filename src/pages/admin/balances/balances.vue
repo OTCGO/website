@@ -19,7 +19,8 @@ export default {
     askModal: false,
     hackReset:true,
     // btnText:'隐藏余额为0的资产',
-    isDisplay: true
+    isDisplay: true,
+    activeName:'NEO'
     // transferType: 1, // 1 交易 2 映射
   }),
 
@@ -35,8 +36,8 @@ export default {
   },
 
   methods: {
-    transfer({ assetId }, type) {
-      this.$store.commit("SET_DELIVER", assetId);
+    transfer(asset) {
+      this.$store.commit("SET_DELIVER", asset);
        this.$router.push({path:'/admin/transaction'})
     /*
       if (type === 1) {

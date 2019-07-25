@@ -69,7 +69,7 @@ export default {
       const [{
         assetId,
         valid
-      }] = findBalances(this.balances, 'neo')
+      }] = findBalances(this.balances, '602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7')
       const dest = this.wa('address')
       if (!valid) {
         this.loading = false
@@ -98,7 +98,7 @@ export default {
 
       const [{
         total
-      }] = findBalances(this.balances, 'ontology-ONG')
+      }] = findBalances(this.balances, '0000000000000000000000000000000000000002')
 
       console.log('total', total)
       if (parseFloat(total) < 0.01) {
@@ -112,7 +112,7 @@ export default {
       const [{
         assetId,
         valid
-      }] = findBalances(this.balances, 'ontology-ONT')
+      }] = findBalances(this.balances, '0000000000000000000000000000000000000001')
       const dest = this.wa('address')
 
       if (!valid) {

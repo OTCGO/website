@@ -76,7 +76,7 @@
     </div>
 
  
-  <div v-if="deliver.assetId === '0000000000000000000000000000000000000002' || deliver.assetId === '0000000000000000000000000000000000000001'">
+  <div v-if="deliver.chain === 'ONT'">
     <br>
     注意：转账ONG或ONT需向本体主网支付0.01ONG。会自动从用户余额中扣除；余额不足时，转账失败。<br>
   </div>
@@ -149,13 +149,12 @@ export default {
 
       // ont ong
       if (
-        this.deliver.assetId === ONT_ASSETID ||
-        this.deliver.assetId === ONG_ASSETID
+        this.deliver.chain === 'ONT' 
       ) {
         // console.log('this.balances',this.balances)
         const [{ total }] = findBalances(
           this.$store.getters.balances,
-          "ontology-ONG"
+          "0000000000000000000000000000000000000002"
         );
         console.log("this.balances", total);
         
@@ -327,9 +326,11 @@ export default {
     },
 
     getMaxFee(){
+
+      console.log("getMaxFee", this.maxFee);
       const [{total}] = findBalances(
             this.$store.getters.balances,
-            "gas"
+            "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"
         );
 
       this.maxFee = total > 1 ? 1 : Math.floor(total * 1000) / 1000  
@@ -349,8 +350,7 @@ export default {
   created(){
 
     if (
-        this.deliver.assetId === ONT_ASSETID ||
-        this.deliver.assetId === ONG_ASSETID
+       this.deliver.chain === 'ONT' 
       ){
         console.log("created", this.maxFee);
         this.maxFee = 0.01
@@ -371,7 +371,7 @@ export default {
 
     
     console.log("feeTitle", this.feeTitle);
-    this.feeTitle = (this.deliver.assetId === ONT_ASSETID ||  this.deliver.assetId === ONG_ASSETID) ? 'ong' : 'gas'
+    this.feeTitle = (this.deliver.chain === 'ONT' ) ? 'ong' : 'gas'
     
     // console.log("mounted", this.transferType);
     // console.log("balances", this.$store.getters.balances);
