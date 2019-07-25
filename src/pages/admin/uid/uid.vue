@@ -40,11 +40,11 @@
 
         <span class="btn ljbutton" @click="download">导出</span>
       </p>
-      <p>
+      <!-- <p>
         <b>NEP6 文件:</b>
 
         <span class="btn ljbutton" @click="openNep2('nep6')">导出</span>
-      </p>
+      </p> -->
     </div>
 
     <el-dialog v-model="nep2Modal">
@@ -334,7 +334,7 @@ export default {
 
       const aLink = document.createElement("a");
       aLink.href = window.URL.createObjectURL(file);
-      aLink.download = `${this.wa("uid")}.json`;
+      aLink.download = `${this.wa("address")}.json`;
       aLink.click();
 
       window.URL.revokeObjectURL(aLink.href);
