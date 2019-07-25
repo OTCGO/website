@@ -49,15 +49,16 @@ export default {
       }
     })
   },
-  [type.setDeliver] (state, assetId) {
-    state.deliver = state.balances.find(i => {
+  [type.setDeliver] (state, asset) {
+    state.deliver = asset
+    // state.deliver = state.balances.find(i => {
 
-      const arr = Object.values(i)
-      for (let j = 0; j < arr.length; j++) {
-        console.log('arr',arr)
-        if (arr[j] === assetId) return true
-      }
-    })
+    //   const arr = Object.values(i)
+    //   for (let j = 0; j < arr.length; j++) {
+    //     console.log('arr',arr)
+    //     if (arr[j] === assetId) return true
+    //   }
+    // })
   },
   [type.downloadWallet] (state) {
     const { publicKeyCompressed, publicKey, privateKeyEncrypted, address } = state.waT

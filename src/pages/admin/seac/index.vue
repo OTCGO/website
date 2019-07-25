@@ -109,7 +109,7 @@ export default {
     transfer() {
       this.loading = true;
 
-      const [{ assetId, valid }] = findBalances(this.balances, "SEAS");
+      const [{ assetId, valid }] = findBalances(this.balances, "de7be47c4c93f1483a0a3fff556a885a68413d97");
       console.log('assetId',assetId)
       console.log('valid',valid)
       this.$store

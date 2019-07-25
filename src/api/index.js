@@ -25,7 +25,7 @@ const getI = async id => (await fetching(`ico/${id}`))
 
 export const getA = async add => {
   if (add) {
-    return (await fetching(`balances/${add}`))
+    return (await fetching(`balances/neo/${add}`))
   }
 
 }
