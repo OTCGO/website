@@ -56,6 +56,15 @@
       <span class="col-xs-6" style="">{{ nncaddress }}</span>
     </div>
 
+    <div class="row" style="margin-top:20px">
+      <span class="col-xs-3" style="margin-top:8px">手续费：</span>
+      <span class="col-xs-6" style="">
+        <el-slider v-model="fee"  show-input=""  :max="maxFee" :min="0" :step="0.001" :disabled="feeDisabled"></el-slider>
+      </span>
+     
+      
+    </div>
+
     <!-- 确认 -->
     <div class="row" style="margin-top:20px;">
       <div class="col-xs-3"></div>
@@ -111,11 +120,15 @@ export default {
       addLenErr: false,
       addEmpty: false
     },
-    yes
+    yes,
+    
+    fee: 0.001, // 手续费
+    maxFee:0,
+    feeDisabled:false
   }),
-  computed: {
-    // ...mapGetters(["balances"])
-  },
+  // computed: {
+  //    ...mapGetters(["balances"])
+  // },
   methods: {
     async transfer() {
       console.log("dest1", this.nncaddress);
@@ -137,7 +150,7 @@ export default {
         // console.log('this.balances',this.balances)
         const [{ total }] = findBalances(
           this.$store.getters.balances,
-          "ontology-ONG"
+          "0000000000000000000000000000000000000002"
         );
         console.log("this.balances", total);
         
@@ -154,7 +167,8 @@ export default {
         .dispatch("TRANSFER", {
           dest: this.nncaddress,
           amount: this.amount.value.toString(),
-          assetId: this.deliver.assetId
+          assetId: this.deliver.assetId,
+          fee:this.fee
         })
         .then(i => {
           // this.$message.success('转账成功！')
@@ -224,7 +238,7 @@ export default {
 
 
         console.log("this.address.value", this.address.value);
-        if (/.neo/g.test(this.address.value)) {
+        if (/\.neo$/.test(this.address.value)) {
           const result = await service.getNnAddress(this.address.value);
           console.log("checkAddress", result);
           if (result["error"]) {
@@ -304,17 +318,52 @@ export default {
       setTimeout(function() {
         e.target.select();
       }, 0);
+    },
+
+    handleDestroyed(){
+      console.log("handleDestroyed");
+      this.$destroy();
     }
   },
 
   computed: {
     ...mapGetters(["deliver"])
+
+
+  },
+   beforeDestroy() {
+    console.log('Mounted destroyed')
+  },
+
+  created(){
+
+    if (
+        this.deliver.assetId === ONT_ASSETID ||
+        this.deliver.assetId === ONG_ASSETID
+      ){
+        console.log("created", this.maxFee);
+        this.maxFee = 0.01
+        this.fee =  0.01
+        this.feeDisabled = true
+        return
+    }
+
+    const [{total}] = findBalances(
+        this.$store.getters.balances,
+        "602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7"
+        //"gas"
+    );
+
+    this.maxFee = total > 1 ? 1 : Number(Number(total).toFixed(2))
+    console.log("created", this.maxFee);
   },
   mounted() {
     // console.log('mounted')
+    console.log("mounted", this.$store.getters.balances);
     this.nncaddress = "";
-    console.log("mounted", this.transferType);
-    console.log("balances", this.$store.getters.balances);
+    
+    // console.log("mounted", this.transferType);
+    // console.log("balances", this.$store.getters.balances);
   }
 };
 </script>

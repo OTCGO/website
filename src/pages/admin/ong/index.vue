@@ -56,7 +56,10 @@ export default {
   },
   methods: {
     getClaim() {
-      const anc = findBalances(this.balances, "ontology-ONG");
+      const anc = findBalances(this.balances,
+       // "ontology-ONG"
+       "0000000000000000000000000000000000000002"
+       );
 
       this.bonusSource = anc.reduce(
         (arr, item) =>
@@ -93,7 +96,10 @@ export default {
       }
 
       if (this.bonusSource[0].enable.value > 0) {
-        const [{ total }] = findBalances(this.balances, "ontology-ONG");
+        const [{ total }] = findBalances(this.balances,
+         //"ontology-ONG"
+         "0000000000000000000000000000000000000002"
+         );
         if (parseFloat(total) < 0.01) {
           this.$message.error("ontology-ONG 余额不足");
           return;
@@ -125,7 +131,10 @@ export default {
 
     // ont Transfer
     claimOngTransfer() {
-      const [{ total }] = findBalances(this.balances, "ontology-ONG");
+      const [{ total }] = findBalances(this.balances, 
+      //"ontology-ONG"
+      "0000000000000000000000000000000000000002"
+      );
 
       console.log("total", total);
       if (parseFloat(total) < 0.01) {
@@ -135,7 +144,10 @@ export default {
 
       this.loading = true;
 
-      const [{ assetId, valid }] = findBalances(this.balances, "ontology-ONT");
+      const [{ assetId, valid }] = findBalances(this.balances,
+       //"ontology-ONT"
+       "0000000000000000000000000000000000000001"
+       );
 
       if (!valid) {
         return;
