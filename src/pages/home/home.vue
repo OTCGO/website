@@ -23,11 +23,18 @@ export default {
   data: () => ({
     banners: [
       {
-        src: require("~images/banner1.jpg"),
-        preview: require("~images/banner1.jpg"),
+        src: require("~images/banner4.jpg"),
+        preview: require("~images/banner4.jpg"),
         dec: "",
         route: {
-          path: "https://mp.weixin.qq.com/s/1AgqE9I_DH49TZnViAz2kw"
+          path: ""
+        }
+      },{
+        src: require("~images/banner5.jpg"),
+        preview: require("~images/banner5.jpg"),
+        dec: "",
+        route: {
+          path: ""
         }
       },
       /*{
