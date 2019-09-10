@@ -3,6 +3,7 @@
     .plans__title: h3 商业计划书 文档下载
     ul.plans__content
       li: a(:href="require('~static/蓝鲸淘发展白皮书2.0.pdf')") 蓝鲸淘发展白皮书2.0.pdf
+      li: a(:href="require('~static/SEA商业白皮书3.0.pdf')") 蓝鲸淘发展白皮书3.0.pdf
       li: a(:href="require('~static/蓝鲸淘路演PPT 以及文字解说.doc')") 蓝鲸淘路演PPT（附带文字解说）.doc
 
 </template>
