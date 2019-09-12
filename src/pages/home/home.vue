@@ -22,6 +22,14 @@ export default {
 
   data: () => ({
     banners: [
+        {
+            src: require("~images/guoqing.jpg"),
+            preview: require("~images/guoqing.jpg"),
+            dec: "",
+            route: {
+                path: ""
+            }
+        }
      /* {
         src: require("~images/banner4.jpg"),
         preview: require("~images/banner4.jpg"),
