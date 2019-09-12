@@ -22,7 +22,15 @@ export default {
 
   data: () => ({
     banners: [
-      {
+        {
+            src: require("~images/guoqing.jpg"),
+            preview: require("~images/guoqing.jpg"),
+            dec: "",
+            route: {
+                path: ""
+            }
+        }
+     /* {
         src: require("~images/banner4.jpg"),
         preview: require("~images/banner4.jpg"),
         dec: "",
@@ -37,14 +45,14 @@ export default {
           path: ""
         }
       },
-      /*{
+      /!*{
                   src: require("~images/app-download.jpg"),
                   preview: require("~images/app-download.jpg"),
                   dec: "sea app download",
                   route: {
                     path: "//otcgo.cn/download/"
                   }
-                }*/
+                }*!/
       {
         src: require("~images/banner_3.jpg"),
         preview: require("~images/banner_3.jpg"),
@@ -52,7 +60,7 @@ export default {
         route: {
           path: "http://zgcom.udesk.cn/hc/articles/106751"
         }
-      }
+      }*/
     ],
     loading: false,
     dialogVisible: true
