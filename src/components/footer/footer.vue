@@ -6,7 +6,7 @@
           </span>
                 <div class="foot-li" style="">
                     <p class="foot-type">资金无忧</p>
-                    <p class="foot-des">智能合约点对点结算</p>
+                    <p class="foot-des">区块链账本存储</p>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6 bg-li">
@@ -22,7 +22,7 @@
           </span>
                 <div class="foot-li" style="">
                     <p class="foot-type">更低费率</p>
-                    <p class="foot-des">交易手续费全网最低</p>
+                    <p class="foot-des">转账费率全网最低</p>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6 bg-li" style="background-image:none">
@@ -30,7 +30,7 @@
           </span>
                 <div class="foot-li" style="">
                     <p class="foot-type">自动分红</p>
-                    <p class="foot-des">保障投资人的分红收益</p>
+                    <p class="foot-des">智能合约自动产出</p>
                 </div>
             </div>
         </div>

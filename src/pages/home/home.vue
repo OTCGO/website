@@ -1,10 +1,10 @@
 <template lang="pug">
     .page-index
         .index
-            el-carousel(:interval="5000")
-                el-carousel-item(v-for="banner in banners")
-                    a.test(v-bind:href="banner.route.path",target="_blank")
-                        img.test-img(:src="banner.src", :alt="banner.dec")
+            //el-carousel(:interval="5000")
+              //  el-carousel-item(v-for="banner in banners")
+                //    a.test(v-bind:href="banner.route.path",target="_blank")
+                 //       img.test-img(:src="banner.src", :alt="banner.dec")
             o-content
 
             //- el-dialog(visible=true,title="提示",:visible.sync="dialogVisible",center)
@@ -22,7 +22,7 @@ export default {
 
   data: () => ({
     banners: [
-      {
+     /* {
         src: require("~images/banner4.jpg"),
         preview: require("~images/banner4.jpg"),
         dec: "",
@@ -37,14 +37,14 @@ export default {
           path: ""
         }
       },
-      /*{
+      /!*{
                   src: require("~images/app-download.jpg"),
                   preview: require("~images/app-download.jpg"),
                   dec: "sea app download",
                   route: {
                     path: "//otcgo.cn/download/"
                   }
-                }*/
+                }*!/
       {
         src: require("~images/banner_3.jpg"),
         preview: require("~images/banner_3.jpg"),
@@ -52,7 +52,7 @@ export default {
         route: {
           path: "http://zgcom.udesk.cn/hc/articles/106751"
         }
-      }
+      }*/
     ],
     loading: false,
     dialogVisible: true
