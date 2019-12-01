@@ -9,6 +9,9 @@ import {
 
 Vue.use(VueResource)
 
+// const host = "https://api.sea.one"
+// const version = "api/v1"
+
 /* eslint-disable no-return-await */
 const fetching = async (endPoint, data = {}, method = 'get') => {
   const response = await Vue.http[method](`${endPoint}/`, data)
