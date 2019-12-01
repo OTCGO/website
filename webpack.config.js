@@ -8,12 +8,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     // publicPath: './',
-    filename:'[name]bundle.js',
-    chunkFilename:'[name]chunk.js'
+    filename: '[name]bundle.js',
+    chunkFilename: '[name]chunk.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -29,14 +28,12 @@ module.exports = {
       }, {
         test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
         exclude: /favicon\.png$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000
-            }
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000
           }
-        ]
+        }]
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -77,21 +74,22 @@ module.exports = {
     proxy: {
       '/api/*': {
         // target: 'http://future.otcgo.cn/',
-        target: 'https://otcgo.cn/',
+        target: 'https://sea.one/',
         secure: false,
         changeOrigin: true
       }
     }
   },
-  plugins:[
+  plugins: [
     new HtmlwebpackPlugin({
       title: 'SEA',
       template: './src/index.html',
       inject: true
     }),
-    new CopyWebpackPlugin([
-      { from: 'static', to: 'static' }
-    ]),
+    new CopyWebpackPlugin([{
+      from: 'static',
+      to: 'static'
+    }]),
   ],
   performance: {
     hints: false
