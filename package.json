@@ -21,7 +21,7 @@
     "element-ui": "^1.1.6",
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^3.2.0",
-    "jquery": "^2.2.0",
+    "jquery": "^3.5.0",
     "js-data": "^3.0.0-rc.9",
     "js-data-http": "^3.0.0-rc.2",
     "jsrsasign": "^7.2.0",
