@@ -24,7 +24,7 @@
     "jquery": "^2.2.0",
     "js-data": "^3.0.0-rc.9",
     "js-data-http": "^3.0.0-rc.2",
-    "jsrsasign": "^7.2.0",
+    "jsrsasign": "^8.0.20",
     "jssha": "^2.3.0",
     "moment": "^2.18.1",
     "moment-countdown": "0.0.3",
